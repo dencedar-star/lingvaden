@@ -1,0 +1,22 @@
+{
+  "name": "Lingvaden English — курсы английского",
+  "short_name": "Lingvaden English",
+  "description": "Интерактивные курсы английского по учебникам: теория, учебник и тесты.",
+  "lang": "ru",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4F5FB",
+  "theme_color": "#17213B",
+  "icons": [],
+  "shortcuts": [
+    {
+      "name": "Мой кабинет",
+      "url": "/me/"
+    },
+    {
+      "name": "Кабинет преподавателя",
+      "url": "/teacher/"
+    }
+  ]
+}

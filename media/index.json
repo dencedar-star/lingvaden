@@ -1,0 +1,767 @@
+{
+ "sb": {
+  "1.1": {
+   "f": "sb/1-1.mp3",
+   "dur": 106.2,
+   "parts": []
+  },
+  "1.2": {
+   "f": "sb/1-2.mp3",
+   "dur": 117.3,
+   "parts": [
+    0.0,
+    16.12,
+    30.17,
+    49.53,
+    67.37,
+    87.43
+   ]
+  },
+  "1.3": {
+   "f": "sb/1-3.mp3",
+   "dur": 138.3,
+   "parts": []
+  },
+  "2.1": {
+   "f": "sb/2-1.mp3",
+   "dur": 143.4,
+   "parts": [
+    0.0,
+    71.84
+   ]
+  },
+  "2.2": {
+   "f": "sb/2-2.mp3",
+   "dur": 65.7,
+   "parts": []
+  },
+  "2.3": {
+   "f": "sb/2-3.mp3",
+   "dur": 180.8,
+   "parts": []
+  },
+  "3.1": {
+   "f": "sb/3-1.mp3",
+   "dur": 128.5,
+   "parts": []
+  },
+  "3.2": {
+   "f": "sb/3-2.mp3",
+   "dur": 128.3,
+   "parts": []
+  },
+  "4.1": {
+   "f": "sb/4-1.mp3",
+   "dur": 126.1,
+   "parts": [
+    0.0,
+    21.47,
+    37.43,
+    58.02
+   ]
+  },
+  "4.2": {
+   "f": "sb/4-2.mp3",
+   "dur": 156.7,
+   "parts": []
+  },
+  "4.3": {
+   "f": "sb/4-3.mp3",
+   "dur": 29.9,
+   "parts": []
+  },
+  "4.4": {
+   "f": "sb/4-4.mp3",
+   "dur": 61.3,
+   "parts": []
+  },
+  "4.5": {
+   "f": "sb/4-5.mp3",
+   "dur": 28.6,
+   "parts": []
+  },
+  "R1.1": {
+   "f": "sb/r1-1.mp3",
+   "dur": 88.2,
+   "parts": []
+  },
+  "R1.2": {
+   "f": "sb/r1-2.mp3",
+   "dur": 73.1,
+   "parts": []
+  },
+  "R1.3": {
+   "f": "sb/r1-3.mp3",
+   "dur": 105.0,
+   "parts": [
+    0.0,
+    25.65,
+    53.13,
+    80.04
+   ]
+  },
+  "5.1": {
+   "f": "sb/5-1.mp3",
+   "dur": 140.0,
+   "parts": []
+  },
+  "5.2": {
+   "f": "sb/5-2.mp3",
+   "dur": 89.1,
+   "parts": [
+    0.0,
+    18.7,
+    33.12,
+    47.91,
+    60.71,
+    74.0
+   ]
+  },
+  "5.3": {
+   "f": "sb/5-3.mp3",
+   "dur": 177.5,
+   "parts": [
+    0.0,
+    60.79,
+    107.36
+   ]
+  },
+  "6.1": {
+   "f": "sb/6-1.mp3",
+   "dur": 96.2,
+   "parts": []
+  },
+  "6.2": {
+   "f": "sb/6-2.mp3",
+   "dur": 167.9,
+   "parts": []
+  },
+  "6.3": {
+   "f": "sb/6-3.mp3",
+   "dur": 115.7,
+   "parts": []
+  },
+  "7.1": {
+   "f": "sb/7-1.mp3",
+   "dur": 138.8,
+   "parts": []
+  },
+  "7.2": {
+   "f": "sb/7-2.mp3",
+   "dur": 206.7,
+   "parts": [
+    0.0,
+    55.88,
+    105.56,
+    166.77
+   ]
+  },
+  "7.3": {
+   "f": "sb/7-3.mp3",
+   "dur": 50.0,
+   "parts": []
+  },
+  "8.1": {
+   "f": "sb/8-1.mp3",
+   "dur": 175.5,
+   "parts": []
+  },
+  "8.2": {
+   "f": "sb/8-2.mp3",
+   "dur": 183.4,
+   "parts": [
+    0.0,
+    43.65,
+    87.8,
+    132.08
+   ]
+  },
+  "8.3": {
+   "f": "sb/8-3.mp3",
+   "dur": 58.7,
+   "parts": []
+  },
+  "R2.1": {
+   "f": "sb/r2-1.mp3",
+   "dur": 177.7,
+   "parts": []
+  },
+  "R2.2": {
+   "f": "sb/r2-2.mp3",
+   "dur": 174.8,
+   "parts": [
+    0.0,
+    38.35,
+    71.21,
+    102.43,
+    137.43
+   ]
+  },
+  "9.1": {
+   "f": "sb/9-1.mp3",
+   "dur": 123.4,
+   "parts": []
+  },
+  "9.2": {
+   "f": "sb/9-2.mp3",
+   "dur": 83.1,
+   "parts": []
+  },
+  "9.3": {
+   "f": "sb/9-3.mp3",
+   "dur": 120.0,
+   "parts": [
+    0.0,
+    61.57
+   ]
+  },
+  "10.1": {
+   "f": "sb/10-1.mp3",
+   "dur": 47.3,
+   "parts": []
+  },
+  "10.2": {
+   "f": "sb/10-2.mp3",
+   "dur": 81.4,
+   "parts": []
+  },
+  "10.3": {
+   "f": "sb/10-3.mp3",
+   "dur": 56.2,
+   "parts": []
+  },
+  "10.4": {
+   "f": "sb/10-4.mp3",
+   "dur": 35.0,
+   "parts": []
+  },
+  "10.5": {
+   "f": "sb/10-5.mp3",
+   "dur": 173.8,
+   "parts": [
+    0.0,
+    49.68,
+    123.51
+   ]
+  },
+  "11.1": {
+   "f": "sb/11-1.mp3",
+   "dur": 192.8,
+   "parts": [
+    0.0,
+    70.74,
+    133.88
+   ]
+  },
+  "11.2": {
+   "f": "sb/11-2.mp3",
+   "dur": 77.9,
+   "parts": [
+    0.0,
+    18.7,
+    40.75,
+    58.31
+   ]
+  },
+  "11.3": {
+   "f": "sb/11-3.mp3",
+   "dur": 180.5,
+   "parts": []
+  },
+  "11.4": {
+   "f": "sb/11-4.mp3",
+   "dur": 63.9,
+   "parts": []
+  },
+  "11.5": {
+   "f": "sb/11-5.mp3",
+   "dur": 43.0,
+   "parts": []
+  },
+  "12.1": {
+   "f": "sb/12-1.mp3",
+   "dur": 132.4,
+   "parts": []
+  },
+  "12.2": {
+   "f": "sb/12-2.mp3",
+   "dur": 16.8,
+   "parts": []
+  },
+  "12.3": {
+   "f": "sb/12-3.mp3",
+   "dur": 182.6,
+   "parts": [
+    0.0,
+    36.34,
+    75.52,
+    104.46,
+    141.45
+   ]
+  },
+  "12.4": {
+   "f": "sb/12-4.mp3",
+   "dur": 78.3,
+   "parts": []
+  },
+  "R3.1": {
+   "f": "sb/r3-1.mp3",
+   "dur": 56.7,
+   "parts": []
+  },
+  "R3.2": {
+   "f": "sb/r3-2.mp3",
+   "dur": 117.0,
+   "parts": [
+    0.0,
+    27.51,
+    58.7,
+    85.42
+   ]
+  },
+  "13.1": {
+   "f": "sb/13-1.mp3",
+   "dur": 148.5,
+   "parts": [
+    0.0,
+    75.47
+   ]
+  },
+  "13.2": {
+   "f": "sb/13-2.mp3",
+   "dur": 144.2,
+   "parts": []
+  },
+  "13.3": {
+   "f": "sb/13-3.mp3",
+   "dur": 201.6,
+   "parts": [
+    0.0,
+    43.81,
+    101.25,
+    137.64
+   ]
+  },
+  "14.1": {
+   "f": "sb/14-1.mp3",
+   "dur": 63.3,
+   "parts": []
+  },
+  "14.2": {
+   "f": "sb/14-2.mp3",
+   "dur": 150.1,
+   "parts": []
+  },
+  "14.3": {
+   "f": "sb/14-3.mp3",
+   "dur": 187.8,
+   "parts": [
+    0.0,
+    74.68,
+    119.28
+   ]
+  },
+  "15.1": {
+   "f": "sb/15-1.mp3",
+   "dur": 223.9,
+   "parts": [
+    0.0,
+    99.27
+   ]
+  },
+  "15.2": {
+   "f": "sb/15-2.mp3",
+   "dur": 127.5,
+   "parts": []
+  },
+  "16.1": {
+   "f": "sb/16-1.mp3",
+   "dur": 148.5,
+   "parts": [
+    0.0,
+    33.57,
+    63.63,
+    89.31,
+    118.47
+   ]
+  },
+  "16.2": {
+   "f": "sb/16-2.mp3",
+   "dur": 88.2,
+   "parts": []
+  },
+  "16.3": {
+   "f": "sb/16-3.mp3",
+   "dur": 160.7,
+   "parts": [
+    0.0,
+    39.52,
+    94.64
+   ]
+  },
+  "R4.1": {
+   "f": "sb/r4-1.mp3",
+   "dur": 60.9,
+   "parts": []
+  },
+  "R4.2": {
+   "f": "sb/r4-2.mp3",
+   "dur": 170.5,
+   "parts": [
+    0.0,
+    27.12,
+    56.53,
+    90.46,
+    138.92
+   ]
+  }
+ },
+ "wb": {
+  "1.1": {
+   "f": "wb/1-1.mp3",
+   "dur": 102.2,
+   "parts": [],
+   "text": "1.1 Why not? More and more women are going into construction and there's a need for builders and plumbers. Listen, I'm not criticising. In fact, I admire you. It's hard to try something new. Well, the first class was a bit nerve-wracking. I wasn't the only woman there, but it was nearly all men. We had to explain why we were on the course, but my mind went blank. And then I said, I'm really interested in houses and I want to know how they work. I felt such a fool and I went bright red. Oh dear. But then no one came up with very clever reasons. Hmm. So what does the course involve? Well, the first term is basic techniques and then we get to choose electrics, plumbing, bricklaying or whatever. What are you going to do? I fancy plumbing. I think it's quite creative. I'd rather work on people's houses than sit in an office all day. and there are plenty of jobs advertised in the paper and online. Plus, have you seen how much plumbers charge? I'm going to make a fortune. Good for you. Any chance of a discount for friends?",
+   "text2": "1.1 Hi Tricia, how are things? Yeah, fine thanks. In fact, I've got some news for you. Oh yes? I've left my job and I've signed up for a building course. Er, run that by me again? A building course at the local technical college. I wanted a new challenge. OK. So most women do an evening course in a foreign language or knitting or whatever, but you want to learn building skills? And why not? More and more women are going into construction, and there's a need for builders and plumbers. Listen, I'm not criticising. In fact, I admire you. It's hard to try something new. Mmm. Well, the first class was a bit nerve-wracking. I wasn't the only woman there, but it was nearly all men. We had to explain why we were on the course, but my mind went blank. And then I said, I'm really interested in houses, and I want to know how they work. I felt such a fool and I went bright red. Oh dear. But then no one came up with very clever reasons. Hmm. So what does the course involve? Well, the first term is basic techniques and then we get to choose – electrics, plumbing, bricklaying or whatever. What are you going to do? I fancy plumbing. I think it's quite creative. I draw the work on people's houses and sit in an office all day, and there are plenty of jobs advertised in the paper and online. Plus, have you seen how much plumbers charge? I'm going to make a fortune. Good for you. Any chance of a discount for friends?"
+  },
+  "1.2": {
+   "f": "wb/1-2.mp3",
+   "dur": 42.1,
+   "parts": [],
+   "text": "1.2 1. I've signed up for a building course. 2. An evening course in a foreign language or knitting or whatever. 3. There's a need for builders and plumbers. 4. The first class was a bit nerve-wracking. Five I felt such a fall and I went bright red.",
+   "text2": "1.2 1 I've signed up for a building course. 2 An evening course in a foreign language or knitting or whatever. 3 There's a need for builders and plumbers. 4 The first class was a bit nerve-wracking. I felt such a fall and I went bright red."
+  },
+  "2.1": {
+   "f": "wb/2-1.mp3",
+   "dur": 156.2,
+   "parts": [
+    0.0,
+    57.99,
+    112.22
+   ],
+   "text": "2.1. Mark. Well, I'm not normally a nervous person, so I felt pretty relaxed about the whole thing. And I've always got on well with people, so I didn't expect there to be a problem. But things started going wrong from the moment I turned up. I was wearing jeans and a shirt, but the restaurant was a really elegant place. Her mum was in a silk dress and her dad in a smart suit. I was really fed up with Annie that she hadn't warned me it was a formal dinner. Anyway, I tried to make conversation, but I kept getting confused when anyone asked me a question. Then I told a couple of jokes and no one laughed. The silence was awful. Annie said her parents didn't mind, but it was a relief when the evening was over. Mrs. De Vere Mark and Annie had been going out together for about six months. She never talked about him much, so we had no idea of what to expect. To be honest, we hadn't been very keen on most of her boyfriends, so my husband and I were rather worried about the dinner. It was difficult when he first arrived because we were wearing smart clothes, but he was in jeans. He was obviously embarrassed. I think Annie had forgotten to tell him that we were meeting in a formal restaurant. Anyway, we all had a drink and relaxed a little. He seemed rather nervous and told one or two awful jokes. But all in all, it was a good evening. In fact, we were pleased that Annie had found someone nice. Annie Well, my parents have never liked any of my boyfriends, so I was pretty stressed about the whole evening. Usually my dad gets in a bad mood about something and so no one can enjoy themselves. Anyway, I felt really guilty when Mark walked in because I hadn't warned him about what to wear. He looked annoyed with me at first, but then he calmed down a bit. Mark chatted with my parents, but he didn't talk too much or try to impress them. I thought everything went well, even Mark's very old jokes. I was in a good mood just to see my parents spending time with my boyfriend.",
+   "text2": "2.1 Mark Well, I'm not normally a nervous person, so I felt pretty relaxed about the whole thing. And I've always got on well with people, so I didn't expect there to be a problem. But things started going wrong from the moment I turned up. I was wearing jeans and a shirt, but the restaurant was a really elegant place. Her mum was in a silk dress and her dad in a smart suit. I was really fed up with Annie that she hadn't warned me it was a formal dinner. Anyway, I tried to make conversation, but I kept getting confused when anyone asked me a question. Then I told a couple of jokes and no one laughed. The silence was awful. said her parents didn't mind, but it was a relief when the evening was over. Mrs. Devere. Mark and Annie had been going out together for about six months. She never talked about him much, so we had no idea of what to expect. To be honest, we hadn't been very keen on most of her boyfriends, so my husband and I were rather worried about the dinner. It was difficult when he first arrived because we were wearing smart clothes, but he was in jeans. scenes. He was obviously embarrassed. I think Annie had forgotten to tell him that we were meeting in a formal restaurant. Anyway, we all had a drink and relaxed a little. He seemed rather nervous and told one or two awful jokes, but all in all it was a good evening. In fact, They were pleased that Annie had found someone nice. Annie. Well, my parents have never liked any of my boyfriends, so I was pretty stressed about the whole evening. Usually, my dad gets in a bad mood about something, and so no one can enjoy themselves. Anyway, I felt really guilty when Mark walked in, because I hadn't warned him about what to wear. He looked annoyed with me at first, but then he calmed down a bit. Mark chatted with my parents, but he didn't talk too much or try to impress them. I thought everything went well, even Mark's very old jokes. I was in a good mood just to see my parents spending time with my boyfriend."
+  },
+  "2.2": {
+   "f": "wb/2-2.mp3",
+   "dur": 45.0,
+   "parts": [],
+   "text": "2.2. 1. I'm not normally a nervous person, so I felt pretty relaxed about the whole thing. 2. I was wearing jeans and a shirt, but the restaurant was a really elegant place. 3. I was really fed up with Annie that she hadn't warned me it was a formal dinner. four to be honest we hadn't been very keen on most of her boyfriends so my husband and i were rather worried about the dinner",
+   "text2": "2.2 1. I'm not normally a nervous person, so I felt pretty relaxed about the whole thing. 2. I was wearing jeans and a shirt, but the restaurant was a really elegant place. 3. I was really fed up with Annie that she hadn't warned me it was a formal dinner. 4. To be honest, we hadn't been very keen on most of her boyfriends, so my husband and I were rather worried about the dinner."
+  },
+  "3.1": {
+   "f": "wb/3-1.mp3",
+   "dur": 255.6,
+   "parts": [
+    0.0,
+    46.97,
+    93.88,
+    142.18,
+    196.44
+   ],
+   "text": "3.1 Speaker 1 We booked the holiday online. The hotel sounded wonderful from the description, and the photos looked good on the website, nice quiet beaches and lots of places to visit. We were so disappointed when we got there. Everywhere was so crowded. We gave up trying to find a space on the beach. There were queues everywhere in the theme parks and you had to wait ages to get a table in the restaurants. We ended up getting really stressed with all the crowds. The receptionist said it was quieter in the autumn, but who wants to go on holiday when it's cold? Speaker 2 It was my first holiday without my parents and I was so excited about it. I travelled with a group of friends from college. We booked a holiday apartment to share the costs of the accommodation. Things started badly because we were delayed at the airport, but things got worse when we arrived at the apartment. The owner charged us a £200 deposit in case we damaged anything. We thought we had paid the full cost when we booked. Then we got ripped off everywhere we went. The restaurants, bars, even at the city ruins. I bought some souvenirs which were half the price everywhere else. I was in such a bad mood all week. Speaker 3 Things started so well. We got to the airport in good time and did a bit of shopping in Duty Free. The flight took off and landed on time, so there were no transport problems for once. Then things started to change. My friend and I couldn't agree on what to do or where to go. We spent so long planning that we didn't see much of the local area. I wanted to learn about local history, visiting the castle, Roman ruins, things like that. Sally wanted to go shopping and hang out at the theme park. My idea of hell. In the end, we didn't stop arguing all week. I was so relieved to get home. Speaker 4 We had booked a taxi to take us to the airport, but the driver didn't turn up. My neighbour offered to take us, but we got stuck in a traffic jam on the motorway. We decided to divert to the nearest railway station, forgetting that there was a train strike that day. We managed to get a taxi. The driver wanted to charge double the normal price. We knew he was ripping us off, but we had no choice. He got us to the terminal half an hour before take-off. We thought we would be okay, but the terminal was so crowded that we had to queue. So we missed the flight and had to wait ages for the next one. The holiday itself was okay, but the journey was a nightmare from start to finish. I don't think we'll be going there again. We expected the resort to have lots of places to visit. Unfortunately, there was only a theme park and some ruins. The ruins had been a temple, according to the guidebook, but we couldn't see anything except a hole in the ground. The other problem was our hotel. It was about an hour outside of the centre and the bus service was terrible. We decided to hire a car and spend a day at the nearest lake. When we got there, there were people all along the lakeside, so we had to eat our picnic in the car. The theme park wasn't much better. It was over 100 kilometres outside of the centre and when we got there, half the rides were closed and the other ones were really old. The kids were so disappointed.",
+   "text2": "3.1 Speaker 1 We booked the holiday online. The hotel sounded wonderful from the description and the photos looked good on the website, nice quiet beaches and lots of places to visit. We were so disappointed when we got there. Everywhere was so crowded. We gave up trying to find a space on the beach. There were queues everywhere in the theme parks and you had to wait ages to get a table in the restaurants. We ended up getting really stressed with all the crowds. The receptionist said it was quieter in the autumn but who wants to go on holiday when it's cold? Speaker 2 It was my first holiday without my parents and I was so excited about it. I travelled with a group of friends from college. We booked a holiday apartment to share the costs of the accommodation. Things started badly because we were delayed at the airport, but things got worse when we arrived at the apartment. The owner charged us a 200 pound deposit in case we damaged anything. We thought we had paid the full cost when we booked. Then we got ripped off everywhere we went. The restaurants, bars, even at the city ruins. I bought some souvenirs which were half the price everywhere else. I was in such a bad mood all week. Speaker 3 Things started so well. We got to the airport in good time and did a bit of shopping in duty-free. The flight took off and landed on time, so there were no transport problems for once. Then things started to change. My friend and I couldn't agree on what to do or where to go. We spent so long planning that we didn't see much of the local area. I wanted to learn about local history, visiting the castle, Roman ruins, things like that. Sally wanted to go shopping and hang out at the theme park, my idea of hell. In the end, we didn't stop arguing all week. I was so relieved to get home. Speaker 4 We had booked a taxi to take us to the airport, but the driver didn't turn up My neighbor offered to take us, but we got stuck in a traffic jam on the motorway We decided to divert to the nearest railway station forgetting that there was a train strike that day We managed to get a taxi The driver wanted to charge double the normal price We knew he was ripping us off, but we had no choice. He got us to the terminal half an hour before takeoff. We thought we would be okay, but the terminal was so crowded that we had to queue. So we missed the flight and had to wait ages for the next one. The holiday itself was okay, but the journey was a nightmare from start to finish. Speaker 5 I don't think we'll be going there again. We expected the resort to have lots of places to visit. Unfortunately, there was only a theme park and some ruins. The ruins had been a temple, according to the guidebook, but we couldn't see anything except a hole in the ground. The other problem was our hotel. It was about an hour outside of the centre and the bus service was terrible. We decided to hire a car and spend a day at the nearest lake. When we got there there were people all along the lakeside so we had to eat our picnic in the car. The theme park wasn't much better it was over 100 kilometers outside of the center and when we got there half the rides were closed and the other ones were really old. The kids were so disappointed."
+  },
+  "3.2": {
+   "f": "wb/3-2.mp3",
+   "dur": 78.7,
+   "parts": [],
+   "text": "3.2 1. The hotel sounded wonderful. The terminal was so crowded. 2. There was only a theme park. There were queues everywhere. 3. We had booked a taxi. I was in such a bad mood. 4. There was a train strike that day. It was quieter in the autumn. 5. My neighbour offered to take us. I was so relieved to get home. 6. The bus service was terrible. The journey was a nightmare.",
+   "text2": "3.2 1 The hotel sounded wonderful. The terminal was so crowded. 2 There was only a theme park. There were queues everywhere. 3 We had booked a taxi. I was in such a bad mood. Four. There was a train strike that day. It was quieter in the autumn. Five. My neighbour offered to take us. I was so relieved to get home. 6. The bus service was terrible. The journey was a nightmare."
+  },
+  "4.1": {
+   "f": "wb/4-1.mp3",
+   "dur": 67.6,
+   "parts": [],
+   "text": "4.1. Part 1. try a few simple changes. The article went on to give some suggestions, and here are a few examples. Take a different route to work or school. Cook one new dish every week. Have lunch with someone you don't know well at work or school. Start a conversation with a stranger every day. Find free activities to do in the evenings and at weekends Call a different friend or relative every week",
+   "text2": "4.1 Part 1 Like a lot of people, I used to have a pretty fixed routine each day, and I often felt bored and frustrated. I used to dream of winning the lottery and having an exciting life. Then I came across an article that changed the way I think. It said, you don't need to do Do anything major to make life more interesting. Just try a few simple changes. The article went on to give some suggestions and here are a few examples. Take a different route to work or school. Cook one new dish every week. Have lunch with someone you don't know well at work or school. Start a conversation with a stranger every day. Find free activities to do in the evenings and at weekends. Call a different friend or relative every week."
+  },
+  "4.2": {
+   "f": "wb/4-2.mp3",
+   "dur": 167.6,
+   "parts": [],
+   "text": "4.2 Part 2 So, I started to make some of these changes. For example, I always used to complain that you need a lot of money to have fun. It's just not true. A quick search on the internet or in my local paper, and I found lots of free activities. Exhibitions at museums and galleries, walks to places of interest, Concerts given by local schools and clubs. In a month, I went out three or four times a week and every weekend, and it didn't cost me a thing. I tried everything from an opera performed by the Music Society to a demonstration of judo at the sports club. Then I decided to put all of these ideas on a website. I was amazed at the number of people who visited the site and left positive comments. But don't just take it from me. First, Amy. When I think about it, I was really boring. I did the same things day after day. I used to drive to work and get stuck in the same traffic jam all the time. How silly is that? So I started to take a different route and I noticed things I'd never seen before. A lovely old church, a beautiful line of trees, for example. Now I walk or cycle whenever I can. I have to get up earlier, but it's worth it because I'm in a much better mood when I get to work. And also Jack. I'm into sport and I'm quite good at it. But I found that even something I enjoy could become boring. I was definitely a creature of habit. I used to train on the same days, at exactly the same time, and do exactly the same things. All my friends were playing the same sports, so I never met anyone new. Then someone mentioned Mike's website, and I decided to check it out. The advice there was beautifully simple. Add variety, and you will get your motivation back. Now I do a different exercise routine every time, have taken up judo for the first time, and I'm also helping local kids get into sport. I feel so much more positive. So there you have it. Simple changes for a more interesting day. Why not give it a try? What have you got to lose?",
+   "text2": "4.2 Part 2 So, I started to make some of these changes. For example, I always used to complain that you need a lot of money to have fun. It's just not true. A quick search on the internet or in my local paper, and I found lots of free activities. Exhibitions at museums and galleries, walks to places of interest, concerts given by local schools and clubs. In a month, I went out three or four times a week and every weekend. And it didn't cost me a thing. I tried everything from an opera performed by the Music Society to a demonstration of judo at the Sports Club. Then I decided to put all of these ideas on a website. I was amazed at the number of people who visited the site and left positive comments. But don't just take it from me. First, Amy. When I think about it, I was really boring. I did the same things day after day. I used to drive to work and get stuck in the same traffic jam all the time. How silly is that? So, I started to take a different route and I noticed things I'd never seen before. A lovely old church, a beautiful line of trees, for example. Now I walk or cycle whenever I can. I have to get up earlier, but it's worth it because I'm in a much better mood when I get to work. And also Jack. I'm into sport and I'm quite good at it, but I found that even something I enjoy could become boring. I was definitely a creature of habit. I used to train on the same days, at exactly the same time, and do exactly the same things. All my friends were playing the same sports, so I never met anyone new. Then someone mentioned Mike's website, and I decided to check it out. The advice there was beautifully simple. Add variety and you will get your motivation back. Now I do a different exercise routine every time, have taken up judo for the first time and I'm also helping local kids get into sport. I feel so much more positive. So there you have it. Simple changes for a more interesting day. Why not give it a try? What if you got loose?"
+  },
+  "4.3": {
+   "f": "wb/4-3.mp3",
+   "dur": 41.4,
+   "parts": [],
+   "text": "4.3 1. Like a lot of people, I used to have a pretty fixed routine. 2. I'm in a much better mood when I get to work. 3. I'm into sport and I'm quite good at it. 4. All my friends were playing the same sport. 5. What have you got to lose?",
+   "text2": "4.3 1 Like a lot of people, I used to have a pretty fixed routine. 2 I'm in a much better mood when I get to work. 3 I'm into sport and I'm quite good at it. 4 All my friends were playing the same sport. Five. What have you got to lose?"
+  },
+  "5.1": {
+   "f": "wb/5-1.mp3",
+   "dur": 278.6,
+   "parts": [
+    0.0,
+    49.42,
+    103.34,
+    153.65,
+    213.55
+   ],
+   "text": "5.1 Speaker 1 It was a friend's birthday, the day before the interview, and he invited a group of us to go for a meal. I was going to go for an hour and then head home to prepare for the interview. Well, we were having such a good time that when I looked at my watch, I couldn't believe it was 11.30. I went home and straight to bed, promising myself I would get up early and look for some information about the company on the internet. My alarm went off at 6.30, but I just ignored it and went back to sleep. I got to the interview in good time, but I wasn't feeling very confident because I hadn't had time to do any research on the company. Every time the interviewer asked me something, my mind just went blank. Speaker 2 I didn't get on well with my boss and I'd been fed up in my job for a while, so I was really pleased when I saw a vacancy at a local advertising agency. I spent quite a lot of time finding out about the agency and thinking of questions to ask the interviewer. I booked the day off and I had my suit dry cleaned. On the morning of the interview I was feeling quite confident. I left the house in plenty of time and got a bus but then we hit a traffic jam. We were stuck there for ages before I decided to walk. It was further than I thought, so when I arrived for the interview, another candidate had taken my place. I was so annoyed that I was a bit rude to the receptionist, which isn't really like me. Not a great start. Speaker 3 Being interviewed is my idea of hell. I get so nervous that I can't think straight. I saw the job ad in the local paper and it sounded really good, so I decided to go for it. I thought I would prepare well and list all my skills and positive points. I was determined to make a good impression. I got into the interview room and my nerves took over. I didn't listen to the interviewer's questions. I just went on about how brilliant I am. Then one of them asked me, what are your weaknesses? And I actually said, I don't have any. I think I am the candidate you are looking for. They all looked at each other in surprise, and then suddenly the interview was over. I can't believe I was so stupid. I'd done the same design job for quite a while, so I was ready for a change. I quite liked working in the department, but my boss wasn't particularly creative. I spotted the vacancy on the staff notice board, so I thought I'd apply. I didn't need to spend too long preparing as it was a similar job, just in a different department. I don't get too nervous in interviews, and I knew how the organisation works, so I just had a few questions up my sleeve. Then the interviewer asked, so why do you want to move departments? and stupidly I said that I didn't think my boss was much good at design and that I couldn't learn anything from her. The room went silent and the interviewers just stared at me. Needless to say, I didn't get that job and now I need to move companies. Speaker 5 I work in sales. I wasn't really looking to change jobs but then a friend sent me some information about a rep's job where she works. It was a role with more responsibility so I thought, why not? She filled me in on what the company was like and helped me think about what to say on the day. I arrived on time and met the interviewers. It all seemed to be going OK. Then I spotted some croissants on the desk and I remembered I'd skipped breakfast. so I asked for a coffee and croissant. The head of sales looked a bit surprised but he handed them both over. I was enjoying my late breakfast when my mobile rang. I answered it because it was one of my co-workers. Then suddenly the head of sales stopped the interview. He said he thought I was wasting their time which was a bit odd.",
+   "text2": "5.1 Speaker 1 It was a friend's birthday the day before the interview and He invited a group of us to go for a meal. I was going to go for an hour and then head home to prepare for the interview Well, we were having such a good time that when I looked at my watch, I couldn't believe it was 11 30 I went home and straight to bed promising myself I would get up early and look for some information about the company on the internet. My alarm went off at 6.30 but I just ignored it and went back to sleep. I got to the interview in good time but I wasn't feeling very confident because I hadn't had time to do any research on the company. Every time the interviewer asked me something, my mind just went blank. Speaker 2 I didn't get on well with my boss and I'd been fed up in my job for a while, so I was really pleased when I saw a vacancy at a local advertising agency. I spent quite a lot of time finding out about the agency and thinking of questions to ask the interviewer. I booked the day off and I had my suit dry cleaned. On the morning of the interview I was feeling quite confident. I left the house in plenty of time and got a bus, but then we hit a traffic jam. We were stuck there for ages before I decided to walk. It was further than I thought, so when I arrived for the interview another candidate had taken my place. I was so annoyed that I was a bit rude to the receptionist, which isn't really like me. Not a great start. Speaker 3 Being interviewed is my idea of hell. I get so nervous that I can't think straight I saw the job ad in the local paper and it sounded really good. So I decided to go for it I thought I would prepare well and list all my skills and positive points. I was determined to make a good impression I got into the interview room and my nerves took over. I didn't listen to the interviewers questions I just went on about how brilliant I am then one of them asked me What are your weaknesses and I actually said I don't have any I think I am the candidate you are looking for They all looked at each other in surprise and then suddenly the interview was over. I can't believe I was so stupid Speaker Four I'd done the same design job for quite a while, so I was ready for a change. I quite liked working in the department, but my boss wasn't particularly creative. I spotted the vacancy on the staff notice board, so I thought I'd apply. I didn't need to spend too long preparing as it was a similar job, just in a different department. I don't get too nervous in interviews and I knew how the organisation works so I just had a few questions up my sleeve. Then the interviewer asked, so why do you want to move departments? And stupidly I said that I didn't think my boss was much good at design and that I couldn't learn anything from her. The room went silent and the interviewers just stared at me. Needless to say, I didn't get that job and now I need to move companies. Speaker 5 I work in sales. I wasn't really looking to change jobs, but then a friend sent me some information about a rep's job where she works. It was a role with more responsibility, so I thought, why not? She filled me in on what the company was like and helped me think about what to say on the day. I arrived on time and met the interviewers. It all seemed to be going okay. Then I spotted some croissants on the desk and I remembered I'd skip breakfast. So I asked for a coffee and croissant. The head of sales looked a bit surprised but he handed them both over. I was enjoying my late breakfast when my mobile rang. I answered it because it was one of my co-workers. Then suddenly the head of sales stopped the interview. He said he thought I was wasting their time, which was a bit odd."
+  },
+  "5.2": {
+   "f": "wb/5-2.mp3",
+   "dur": 69.5,
+   "parts": [],
+   "text": "5.2 1. He invited a group of us to go for a meal. 2. When I looked at my watch, I couldn't believe it was 11.30. 3. My alarm went off at 6.30, but I just ignored it and went back to sleep. 4. Every time the interviewer asked me something, my mind just went blank. Five. It sounded really good, so I decided to go for it. Six. I remembered I'd skip breakfast. Seven. The head of sales looked a bit surprised, but he handed them both over. I answered it because it was one of my coworkers.",
+   "text2": "5.2 1 He invited a group of us to go for a meal. 2 When I looked at my watch, I couldn't believe it was 11.30. 3 My alarm went off at 6.30, but I just ignored it and went back to sleep. 4 Every time the interviewer asked me something, my mind just went blank. Five. It sounded really good, so I decided to go for it. Six. I remembered I'd skip breakfast. Seven. The head of sales looked a bit surprised but he handed them both over. 8. I answered it because it was one of my co-workers."
+  },
+  "6.1": {
+   "f": "wb/6-1.mp3",
+   "dur": 137.4,
+   "parts": [],
+   "text": "6.1 Hi, Jodie, and welcome back. It's great to see you after such a long time. Thanks, Emma. Good to see you too. Oh, we had a wonderful time, but it's great to be home. You were away for about six weeks, weren't you? That's right. Touring Malaysia, Singapore and Hong Kong. I've got tons of photos. You must come and see them when I've put them onto my laptop. In the meantime, I've got a few prezzies for you. Jodie, you haven't bought us presents, have you? Of course. I like to bring things back for people. It's kind of a way of sharing the experience. So, this is for you. I thought the colours would suit you. A silk scarf. Oh, it's beautiful. Thank you. You shouldn't have. Did you buy one for yourself? No, but don't worry, I did loads of shopping. I had to buy an extra suitcase for all my stuff. I got a fantastic silk shirt in Singapore. I wanted Nick to get a suit made by a local tailor, but he didn't seem interested. Men hate shopping for clothes, don't they? Oh, I know. But Nick made up for it in Hong Kong with all the techno shops. He bought a new laptop and an iPod. He didn't buy one of those amazing designer watches, did he? No, but only because we ran out of money. Anyway, back to your presents. I wasn't sure what to bring for Eddie, so I went for Chinese herbs and spices and some sauces. I know that he loves cooking. Perfect, thank you. Oh, and four sets of chopsticks to eat with. You know how to eat with chopsticks, don't you? well Eddie and I do but the kids have never tried so that will be fun for them and not forgetting the kids flying kites is very popular in Asia so I bought them each a kite I hope that's okay that's great they'll love going out with them on a windy day thanks so much it's really kind of you well that's what friends are for isn't it",
+   "text2": "6.1 Hi Jodie and welcome back. It's great to see you after such a long time Thanks Emma. Good to see you, too. Oh, we had a wonderful time, but it's great to be home You were away for about six weeks. Weren't you that's right touring Malaysia? Singapore and Hong Kong I've got tons of photos You must come and see them when I've put them onto my laptop In the meantime, I've got a few presents for you. Jodie, you haven't bought us presents, have you? Of course. I like to bring things back for people. It's kind of a way of sharing the experience. So, this is for you. I thought the colours would suit you. A silk scarf. It's beautiful. Thank you, you shouldn't have. Did you buy one for yourself? No, but don't worry, I did loads of shopping. I had to buy an extra suitcase for all my stuff. I got a fantastic silk shirt in Singapore. I wanted Nick to get a suit made by a local tailor but he didn't seem interested. Men hate shopping for clothes, don't they? Oh, I know. But Nick made up for it in Hong Kong with all the techno shops. He bought a new laptop and an iPod. He didn't buy one of those amazing designer watches, did he? No, but only because we ran out of money. Anyway, back to your presence. I wasn't sure what to bring for Eddie, so I went for Chinese herbs and spices and some sauces. I know that he loves cooking. Perfect, thank you. Oh, and four sets of chopsticks to eat with. You know how to eat with chopsticks, don't you? Well Eddie and I do but the kids have never tried so that will be fun for them. And not forgetting the kids. Flying kites is very popular in Asia so I bought the meet your kite. I hope that's OK. That's great. They'll love going out with them on a windy day. Thanks so much it's really kind of you. Well that's what friends are for isn't it?"
+  },
+  "6.2": {
+   "f": "wb/6-2.mp3",
+   "dur": 48.3,
+   "parts": [],
+   "text": "6.2 1. You were away for about six weeks, weren't you? 2. Jodie, you haven't bought us presents, have you? 3. Men hate shopping for clothes, don't they? 4. He didn't buy one of those amazing designer watches, did he? Five You know how to eat with chopsticks, don't you? Six Well, that's what friends are for, isn't it?",
+   "text2": "6.2 1 You were away for about six weeks, weren't you? 2 Jodie, you haven't bought us presents, have you? 3 Men hate shopping for clothes, don't they? 4 He didn't buy one of those amazing designer watches did he? Five. You know how to eat with chopsticks don't you? Six. Well that's what friends are for isn't it?"
+  },
+  "7.1": {
+   "f": "wb/7-1.mp3",
+   "dur": 225.5,
+   "parts": [],
+   "text": "7.1 With news of record-breaking exam results, but also problems with failing schools, we're here on the streets of London to ask, what makes a good school? Sir, can I ask you, what makes a good school? Well, I'm retired now, but boarding school certainly worked for me. It taught me to be independent. There's too much talk of feelings and looking after pupils in school nowadays. Okay, thanks for that. Excuse me, madam. We're asking people what they think makes a good school. For me, it's discipline. I'm glad I went to school in Ghana because everyone paid attention in class and respected the teacher. Here, schools need more teachers who are good at controlling the class because the kids think they know it all. I'm sure many of our viewers will share that opinion. Thank you. Ah, a couple of teenagers. Can I ask you a very relevant question? What makes a good school? Sure. Well, I think it's all down to the teachers. Good teachers can be an inspiration to their class and encourage them to do well. And if they make the classes lively and interesting, then most of the students will pay attention. How about you? Well, I don't actually go to school. What do you mean? You skip classes every day? No, nothing like that. I'm home educated. My mum and dad are my tutors and I study at home. That's very unusual. Do you mind if I ask why? No, it's fine. I went to the local school for two years, but the teachers didn't push us much and I got bored. So my mum and dad decided to teach me themselves. It's kind of cool. I can plan my own learning, but I still have to take exams. Interesting experiences there. Thank you both. Sure, no problem. Let's get another opinion. Sir, would you mind if I asked you a question about education? What makes a good school? Well, I went to a Montessori school in Holland. A Montessori school? Can you explain what that means? Of course. Maria Montessori was an Italian woman who developed an approach to educate the whole child, rather than just giving information. The teachers see each child in the class as an individual and encourage learning in lots of different ways, inside and outside the classroom. Sounds interesting. Thanks for that. Let's see what this lady thinks. Excuse me, can I ask you a question on education? What do you think makes a good school? I'm glad you asked me that. I'm a head teacher of a school here in London. Well, you're the person to ask. You could say that. Well, schools are only really as good as their students. If students have a positive attitude, then they will learn. Of course, the teacher can give encouragement and try to inspire the class, but if a child won't cooperate, then there's little we can do. Parents, too, need to support and motivate their children. There should be a partnership between the school, the child and the parents. So it's all about cooperation between teachers and families. Thank you for that. If you have any views on what you've just heard, contact our message board and have your say.",
+   "text2": "7.1 With news of record-breaking exam results, but also problems with failing schools, we're here on the streets of London to ask, what makes a good school? Sir, can I ask you, what makes a good school? Well, I'm retired now, but boarding school certainly worked for me. It taught me to be independent. There's too much talk of feelings and looking after pupils in school nowadays. Okay, thanks for that. Excuse me, madam. We're asking people what they think makes a good school. For me it's discipline. I'm glad I went to school in Ghana because everyone paid attention in class and respected the teacher. Here, schools need more teachers who are good at controlling the class, because the kids think they know it all. I'm sure many of our viewers will share that opinion, thank you. Ah, a couple of teenagers. Can I ask you a very relevant question? What makes a good school? Sure. Well, I think it's all down to the teachers. Good teachers can be an inspiration to their class and encourage them to do well. And if they make the classes lively and interesting, then most of the students will pay attention. How about you? Well, I don't actually go to school. What do you mean? You skip classes every day? No, nothing like that. I'm home educated. My mum and dad are my tutors and I study at home. That's very unusual. Do you mind if I ask why? No, it's fine. I went to the local school for two years but the teachers didn't push us much and I got bored. So my mum and dad decided to teach me themselves. It's kind of cool. I can plan my own learning but I still have to take exams. Interesting experiences there. Thank you both. Sure, no problem. Let's get another opinion. Sir, would you mind if I asked you a question about education? What makes a good school? Well, I went to a Montessori school in Holland. A Montessori school? Can you explain what that means? Of course. Maria Montessori was an Italian woman who developed an approach to educate the whole child, rather than just giving information. The teachers see each child in the class as an individual and encourage learning in lots of different ways inside and outside the classroom. Sounds interesting. Thanks for that. Let's see what this lady thinks. Excuse me, can I ask you a question on education? What do you think makes a good school? I'm glad you asked me that. I'm a head teacher of a school here in London. Well, you're the person to ask. You could say that. Well, schools are only really as good as their students. If students have a positive attitude, then they will learn. Of course, the teacher can give encouragement and try to inspire the class, but if a child won't cooperate, then there's little we can do. Parents, too, need to support and motivate their children. There should be a partnership between the school, the child and the parents. So, it's all about cooperation between teachers and families. Thank you for that. If you have any views on what you've just heard, contact our message board and have your say."
+  },
+  "7.2": {
+   "f": "wb/7-2.mp3",
+   "dur": 55.5,
+   "parts": [],
+   "text": "7.2 1. Good teachers can be an inspiration to their class and encourage them to do well. 2. Sir, would you mind if I asked you a question about education? 3. Maria Montessori was an Italian woman who developed an approach to educate the whole child. Four Of course, the teacher can give encouragement and try to inspire the class, but if a child won't cooperate, then there's little we can do. Five So it's all about cooperation between teachers and families.",
+   "text2": "7.2 1 Good teachers can be an inspiration to their class and encourage them to do well. 2 Sir, would you mind if I asked you a question about education? 3 Maria Montessori was an Italian woman who developed an approach to educate the whole child. 4. Of course, the teacher can give encouragement and try to inspire the class, but if a child won't cooperate, then there's little we can do. 5. So it's all about cooperation between teachers and families."
+  },
+  "8.1": {
+   "f": "wb/8-1.mp3",
+   "dur": 211.5,
+   "parts": [],
+   "text": "8.1 Hello and welcome to 15 Minutes to Fabulous, the cookery show that tells you how to prepare a dish in just a quarter of an hour. Just because you're in a rush, it doesn't mean you have to live on ready meals. This is fast food, but home style. I'm Marcus Flint and our guest chef today is Annie Mitchell, with a quick dish that's suitable for all the family. Annie. Thanks, Marcus. Yes, today we have cheesy pasta with spinach. Mmm, sounds good. So, what do we need and how many people will it feed? OK, this is a dish for four people and here's what you need. One medium onion, peeled and chopped. 200 grams of spinach, washed and finely chopped. 450 grams of pasta. about two tablespoons extra virgin olive oil a little butter a handful of basil leaves and about 100 grams of grated cheese. Right, so what do we do first? First thing is to get the pasta cooking. So we need a large saucepan of boiling salted water. In with the pasta. and that will take about 12 minutes to cook. Remember, don't overcook pasta or it will be soggy and horrible. Next, we heat the oil and butter in a frying pan over a medium heat and add the onions. Fry gently for about five minutes until soft and golden. Now our spinach. Turn the heat down and then add the spinach to the frying pan. Mix it gently with the onions until it cooks down. It takes only a couple of minutes. So you don't need to boil or steam the spinach first? No, if you do that, you lose some of the flavour and the lovely green colour. And if you cook it straight in the pan, you don't lose any of the vitamins. OK, right. And finally, drain the pasta really well. You don't want it to be watery. Add the pasta to the onion and spinach. And mix well. Finally, add in the cheese and the basil leaves and give one final stir. And there you have it, cheesy pasta with spinach. Come and try it, Marcus. Mmm, that's really tasty. A great dish for vegetarians too. That's right. Of course, you could change some of the ingredients. Add a few olives and some garlic. And if you can't live without meat or fish, add a bit of chicken or maybe some prawns to the onions and fry gently. It's just so versatile. Great to see you, Annie, and thanks for your recipe, which you can find on the 15 Minutes to Fabulous website. Thank you.",
+   "text2": "8.1 Hello and welcome to 15 Minutes to Fabulous, the cookery show that tells you how to prepare a dish in just a quarter of an hour. Just because you're in a rush, it doesn't mean you have to live on ready meals. This is fast food, but home style. I'm Marcus Flint and our guest chef today is Annie Mitchell with a quick dish that's suitable for all the family. Annie. Thanks, Marcus. Yes, today we have cheesy pasta with spinach. Mmm, sounds good. So, what do we need and how many people will it feed? OK, this is a dish for four people and here's what you need. One medium onion, peeled and chopped. 200 grams of spinach, washed and finely chopped. 450 grams of pasta. about two tablespoons extra virgin olive oil, a little butter, a handful of basil leaves, and about 100 grams of grated cheese. Right, so what do we do first? First thing is to get the pasta cooking. So we need a large saucepan of boiling salted water. In with the pasta. And that will take about 12 minutes to cook. Remember don't overcook pasta or it will be soggy and horrible. Next we heat the oil and butter in a frying pan over a medium heat. And add the onions. Fry gently for about 5 minutes until soft and golden. Now our spinach. Turn the heat down and then add the spinach to the frying pan. Mix it gently with the onions until it cooks down. It takes only a couple of minutes. So you don't need to boil or steam the spinach first? No, if you do that you lose some of the flavour and the lovely green colour. And if you cook it straight in the pan you don't lose any of the vitamins. Okay, right. And finally drain the pasta really well. You don't want it to be watery. Add the pasta to the onion and spinach and mix well. Finally add in the cheese and the basil leaves and give one final stir and there you have it, cheesy pasta with spinach. Come and try it Marcus. Mmm, that's really tasty. A great dish for vegetarians too. That's right. Of course you could change some of the ingredients, add a few olives and some garlic. And if you can't live without meat or fish, add a bit of chicken, or maybe some prawns to the onions and fry gently. It's just so versatile. Great to see you Annie, and thanks for your recipe, which you can find on the 15 Minutes to Fabulous website. Thank you."
+  },
+  "8.2": {
+   "f": "wb/8-2.mp3",
+   "dur": 21.3,
+   "parts": [],
+   "text": "8.2 E R OO UR OR",
+   "text2": "8.2 e r o u o"
+  },
+  "8.3": {
+   "f": "wb/8-3.mp3",
+   "dur": 72.9,
+   "parts": [],
+   "text": "8.3 1. Prawn Corn Portion Foreign 2. Starving Overcharged Marinate Half Three. Cheese. Steam. Rich. Peanut. Four. Dacor. Turn. Stir. Deserted. Five. tablespoon soup tough food",
+   "text2": "8.3 1 Prawn Corn Portion Foreign 2 Starving Overcharged Marinate Half half three cheese steam rich peanut four decor turn stir deserted five tablespoon soup tough food"
+  },
+  "9.1": {
+   "f": "wb/9-1.mp3",
+   "dur": 82.2,
+   "parts": [],
+   "text": "9.1 Part 1 Clarkson and Lyle, good morning. Oh, hi there. I saw your ad for a flat on Oak Street. Ah yes, number 29. It's just come on the market. It's nice and compact and very conveniently located. Only about ten minutes from the tube. Sure. But I need to know how much the rent is. I'm on a tight budget. Oh, very affordable. Very affordable. So, the flat needs a bit of work. You know, a good clean and maybe a new coat of paint. OK, but everything depends on the rent. I understand. So, when would you like to see the flat? Um, I can make two o'clock today, but can you tell me about the rent? And the name is...? Paul. Paul Mitchell. Splendid, Mr Mitchell. I'm William Lyle. That's L-Y-L-L-E. And I shall see you at 29 Oak Street at 2 today. Yes, OK, but I do need to know how much the rent is. Oh.",
+   "text2": "9.1 Part 1 Clarkson and Lyle, good morning. Oh, hi there. I saw your ad for a flat on Oak Street. Ah yes, number 29. It's just come on the market. It's nice and compact and very conveniently located. Only about 10 minutes from the tube. Sure, but I need to know how much the rent is. I'm on a tight budget. Oh, very affordable. Very affordable. So, the flat needs a bit of work. You know, a good clean and maybe a new coat of paint. OK, but everything depends on the rent. I understand. So, when would you like to see the flat? Erm, I can make two o'clock today, but can you tell me about the rent? And the name is... Paul, Paul Mitchell. Splendid, Mr Mitchell. I'm William Lyle. That's L-Y-double-L-E. And I shall see you at 29 Oak Street at 2 today. Yes, OK, but I do need to know how much the rent is. Oh."
+  },
+  "9.2": {
+   "f": "wb/9-2.mp3",
+   "dur": 94.9,
+   "parts": [],
+   "text": "9.2 Part 2 So, any luck with a flat? What was it like? It was a complete waste of time. How come? Well, you expect flats to be compact, but this was a joke. You couldn't call it compact, it was just cramped. The kitchen was about half the size of a cupboard. Yes, but you have to start somewhere. I know, but it wasn't just the size. There wasn't any central heating. Hmm, a bit chilly then. It wasn't chilly, it was freezing. And it's only April. What would it be like in winter? Hmm, you're right. What about the location? Where is Oak Street? Down by the park. It's quite a nice area, but not very conveniently located. The agent said it was ten minutes from the tube, but it was more like twenty. And that's not all. The state of the place. The agent said it needed a bit of work, but it was completely run down The roof needed fixing and the bathroom and kitchen were really dirty So, how much was the rent on this place? The agent didn't tell me until I'd actually seen it £550 a month It was supposed to be affordable, but that's just overpriced It's not worth it No wonder you're not going to take it Hmm. It's a shame, because I wanted to live by myself, but I think I'm going to have to try a shared flat. Hmm.",
+   "text2": "9.2 Part 2 So any luck with the flat? What was it like? It was a complete waste of time. How come? Well, you expect flats to be compact, but this was a joke. You couldn't call it compact, it was just cramped. The kitchen was about half the size of a cupboard. Yes, but you have to start somewhere. I know, but it wasn't just the size. There wasn't any central heating. Hmm, a bit chilly then. It wasn't chilly, it was freezing. And it's only April. What would it be like in winter? You're right. What about the location? Where is Oak Street? Down by the park. It's quite a nice area, but not very conveniently located. The agent said it was 10 minutes from the tube, but it was more like 20. And that's not all... The state of the place. The agent said it needed a bit of work, but it was completely run down. The roof needed fixing and the bathroom and kitchen were really dirty. So how much was the rent on this place? The agent didn't tell me until I'd actually seen it. £550 a month. It was supposed to be affordable, but that's just overpriced. It's not worth it. No wonder you're not going to take it. to take it. Hmm. It's a shame, because I wanted to live by myself, but I think I'm going to have to try a shared flat. Hmm."
+  },
+  "9.3": {
+   "f": "wb/9-3.mp3",
+   "dur": 36.9,
+   "parts": [],
+   "text": "9.3 1. You couldn't call it compact, it was just cramped. 2. It wasn't chilly, it was freezing. 3. The agent said it was 10 minutes from the tube, but it was more like 20. 4. It was supposed to be affordable, but that's just overpriced.",
+   "text2": "9.3 1 You couldn't call it compact, it was just cramped. 2 It wasn't chilly, it was freezing. 3 The agent said it was 10 minutes from the tube, but it was more like 20. 4 It was supposed to be affordable, but that's just overpriced."
+  },
+  "9.4": {
+   "f": "wb/9-4.mp3",
+   "dur": 48.7,
+   "parts": [],
+   "text": "9.4 1. It's too far to walk to the shops, so you have to get the bus. 2. The flat isn't on the first floor. It's in the basement. 3. We didn't meet the landlord, just the other tenants. 4. We can't help you move on Friday, but we'll come round at the weekend. I expected the decor to be quite trendy, but it was really old-fashioned.",
+   "text2": "9.4 1 It's too far to walk to the shops, so you have to get the bus. 2 The flat isn't on the first floor, it's in the basement. 3 We didn't meet the landlord, just the other tenants. 4. We can't help you move on Friday, but we'll come round at the weekend. 5. I expected the decor to be quite trendy, but it was really old fashioned."
+  },
+  "10.1": {
+   "f": "wb/10-1.mp3",
+   "dur": 181.1,
+   "parts": [
+    0.0,
+    34.43,
+    66.77,
+    96.5,
+    125.6,
+    158.64
+   ],
+   "text": "Ten point one. One. We haven't been to the cinema for ages. Do you fancy going tonight? Um, not really. I checked earlier and there's nothing on. Oh. Well, how about something to eat? We could try that new steakhouse on the high street. Actually, I'd rather go at the weekend if that's OK with you. There's quite a good film on later tonight. OK, another night in front of the TV then. 2 Mum, the new Batman film starts this week. Tom from school is going to the 9 o'clock showing tomorrow. Can I go too? Not at 9 o'clock on a school day. What other showings are there? Um, 4.30 and 7 o'clock. Well, there won't be time to make the 4.30 after school, so if you go tomorrow it will have to be seven o'clock. OK, I'll text Tom and ask him to go at seven too. Three. I just love his work, don't you? Oh, yeah. It's the second time I've been to this exhibition. Apparently he's really talented. He does photography and videos as well. Really? That's interesting. But come and look at this landscape. The use of colour is amazing and his technique is really different I know, wouldn't it be fantastic to have that hanging in your own front room? So, did you enjoy it? That was the best thing I've seen in ages It was good, wasn't it? I couldn't believe the ending The whole idea was so clever, it kept me guessing right to the end I know. And no silly special effects for a change. Just an interesting story. The only problem for me was the soundtrack. Bit too loud. Five. It will be so nice to go into London together. Shall we meet for a coffee near the station first? I'd rather we didn't, Mum. That part of town is a bit rough nowadays. Oh dear, I didn't know that. What about in the main square? That always used to be quite posh. Well, it's a bit far to walk to the station from there. Listen, I'll pick you up from home and we can have a coffee on the train. Six. You know where the ice rink is, don't you? Erm, is it down from the station? No, that was the old one. They closed it years ago. The new one is at the back of the shopping centre. Is it right opposite the internet cafe? Yes, that's the one. I'll see you there at six.",
+   "text2": "10.1 1 We haven't been to the cinema for ages. Do you fancy going tonight? Erm... not really. I checked earlier and there's nothing on. Oh... well, how about something to eat? We could try that new steakhouse on the high street. Actually, I'd rather go at the weekend if that's OK with you. There's quite a good film on later tonight. Okay, another night in front of the TV then. Mum, the new Batman film starts this week. Tom from school is going to the 9 o'clock showing tomorrow. Can I go too? Not at 9 o'clock on a school day. What other showings are there? Um, 4.30 and 7 o'clock. Well, there won't be time to make the 4.30 after school, so if you go tomorrow it will have to be 7 o'clock. Okay, I'll text Tom and ask him to go at 7-2. Three. I just love his work, don't you? Oh yeah. It's the second time I've been to this exhibition. Apparently he's really talented. He does photography and videos as well. Really? That's interesting. But come and look at this landscape. The use of colour is amazing and his technique is really different. I know. Wouldn't it be fantastic to have that hanging in your own front room? Four. So, did you enjoy it? That was the best thing I've seen in ages. It was good, wasn't it? I couldn't believe the ending. The whole idea was so clever. It kept me getting right to the end. I know. And no silly special effects for a change. Just an interesting story. The only problem for me was the soundtrack. Bit too loud. Five. It will be so nice to go into London together. Shall we meet for a coffee near the station first? I'd rather we didn't, Mum. That part of town is a bit rough nowadays. Oh dear, I didn't know that. What about in the main square? That always used to be quite posh. Well, it's a bit far to walk to the station from there. Listen, I'll pick you up from home and we can have a coffee on the train. Six. You know where the ice rink is, don't you? Erm... is it down from the station? No, that was the old one. They closed it years ago. The new one is at the back of the shopping centre. Is it right opposite the Internet cafe? Yes, that's the one. I'll see you there at six."
+  },
+  "10.2": {
+   "f": "wb/10-2.mp3",
+   "dur": 71.2,
+   "parts": [],
+   "text": "10.2 1. Do you fancy going tonight? Come and look at this landscape. 2. There's nothing on. That always used to be quite posh. 3. What other showings are there? That part of town is a bit rough nowadays. Four. He does videos as well. No silly special effects for a change. Five. It's the second time I've been to this exhibition. He does photography as well. 6. Is it right opposite the Internet Café? What about in the main square?",
+   "text2": "10.2 1 Do you fancy going tonight? Come and look at this landscape 2 There's nothing on That always used to be quite posh 3 What other showings are there? That part of town is a bit rough nowadays. Four. He does videos as well. No silly special effects for a change. Five. It's the second time I've been to this exhibition. He does photography as well. 6. Is it right opposite the Internet cafe? What about in the main square?"
+  },
+  "11.1": {
+   "f": "wb/11-1.mp3",
+   "dur": 86.5,
+   "parts": [],
+   "text": "11.1 1 2 3 Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Gostar Pim Dest Dest And S S S S S S S S S S S S S S S S S S Six.",
+   "text2": "11.1 1 2 3 4. Woooooo! Woooooo! 5. Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Quack! Big"
+  },
+  "11.2": {
+   "f": "wb/11-2.mp3",
+   "dur": 181.6,
+   "parts": [],
+   "text": "11.2 You'll never guess what happened to me last weekend. Go on. What? I was thrown out of the local safari park. Why? And what were you doing there anyway? You're not really an animal person. No, I know, but I'd been promising to take a friend's son, Jake, to the safari park for ages, and it was his birthday on Sunday. Everything started well, the weather was great, and we arrived at the park at about 11. The first section had local animals. There were red deer and squirrels, things like that. Then we moved on to the interesting stuff, like lions and tigers. Well, by this time, it had got really hot and the air conditioning in the car wasn't working, so I decided to open the sunroof. Only a couple of inches. But you're not supposed to do that, are you? No, and the next thing I knew there was a big angry warden in a jeep next to us shouting, Close your sunroof! So I did, and we moved on to the hippo lake. So what happened next? Well, it was so hot that all the hippos were under the water and we couldn't see anything. Jake wanted a drink, but I'd left our picnic in the boot. So I just got out of the car for a second to get some water. Then the same warden appeared out of nowhere shouting, get back in your car immediately. I didn't think that hippos were that dangerous. Mark, everyone knows you're not allowed to get out of your car. Yeah, but Jake needed a drink and there were no animals nearby. Anyway, we drove on for a bit to the monkey reserve. They're one of Jake's favourite animals, so I stopped for him to have a good look. Then one of the baboons sat on the front of the car. It didn't break anything, but we had to wait for ages for it to move. So I started the car and drove a bit faster than the speed limit. Jake thought it was so funny to be driving along with a baboon on the car and then... Don't tell me. The warden. Yeah. I was so shocked to see him that I had to brake quickly and the baboon slid off the car. It wasn't hurt or anything. Then I saw that the weight of the animal had left a big dent on the bonnet. I was so annoyed. I said I was going to write to the manager and complain, but the warden said all visitors drive through the park at their own risk. That can't be right, can it? I think it is. You should have read the rules before you went in. So what happened in the end? Well, I asked for my money back. They refused, and then they asked me to leave the park. They said I was a bad example to other visitors. Oh dear. Do you know whether you'll be allowed to go back? To be honest, I'd rather not go again. I'll take Jake to the zoo next time.",
+   "text2": "11.2 You'll never guess what happened to me last weekend. Go on. What? I was thrown out of the local safari park. Why? And what were you doing there anyway? You're not really an animal person. No, I know, but I'd been promising to take a friend's son, Jake, to the safari park for ages, and it was his birthday on Sunday. Everything started well, the weather was great and we arrived at the park at about 11. The first section had local animals, there were red deer and squirrels, things like that. Then we moved on to the interesting stuff like lions and tigers. Well, by this time it had got really hot and the air conditioning in the car wasn't working so I decided to open the sunroof, only a couple of inches. But you're not supposed to do that are you? No. And the next thing I knew there was a big angry warden in a Jeep next to us shouting Close your sunroof! So I did and we moved on to the hippo lake. So what happened next? Well, it was so hot that all the hippos were under the water and we couldn't see anything. Jake wanted a drink but I'd left our picnic in the boot. So I just got out of the car for a second to get some water. the same warden appeared out of nowhere shouting, Get back in your car immediately! I didn't think that hippos were that dangerous. Mark, everyone knows you're not allowed to get out of your car. Yeah, but Jake needed a drink and there were no animals nearby. Anyway, we drove on for a bit to the monkey reserve. They're one of Jake's favourite animals, so I stopped for him to have a good look. Then one of the baboons sat on the front of the car. It didn't break anything, but we had to wait for ages for it to move. So I started the car and drove a bit faster than the speed limit. Jake thought it was so funny to be driving along with a baboon on the car and then… Don't tell me. The warden. Yeah. I was so shocked to see him that I had to brake quickly and the baboon slid off the car. It wasn't hurt or anything. Then I saw that the weight of the animal had left a big dent on the bonnet. I was so annoyed. I said I was going to write to the manager and complain, but the warden said all visitors drive through the park at their own risk. That can't be right, can it? I think it is. You should have read the rules before you went in. So what happened in the end? Well, I asked for my money back. They refused and then they asked me to leave the park. They said I was a bad example to other visitors. Oh dear! Do you know whether you'll be allowed to go back? To be honest, I'd rather not go again. I'll take Jake to the zoo next time."
+  },
+  "11.3": {
+   "f": "wb/11-3.mp3",
+   "dur": 68.8,
+   "parts": [],
+   "text": "Eleven point three. One. I'd been promising to take a friend's son. I decided to open the sunroof. Two. The weather was great. Do you know whether you'll be allowed to go back? Three. It didn't break anything. I had to break quickly. There were red deer and squirrels, things like that. You should have read the rules. I said I was going to write to the manager. That can't be right, can it? 6. We had to wait for ages for it to move. The weight of the animal had left a big dent.",
+   "text2": "11.3 1 I'd been promising to take a friend's son. I decided to open the sunroof. 2 The weather was great. Do you know whether you'll be allowed to go back? 3 It didn't break anything. I had to break quickly. Four. There were red deer and squirrels, things like that. You should have read the rules. Five. I said I was going to write to the manager. That can't be right, can it? Six. We had to wait for ages for it to move. The weight of the animal had left a big dent."
+  },
+  "12.1": {
+   "f": "wb/12-1.mp3",
+   "dur": 66.9,
+   "parts": [],
+   "text": "12.1 Part 1 We all have contact with a wide range of people every day, family, friends, colleagues, but is friendship changing in the 21st century? According to research from the early 1990s, people have an average of 150 contacts in their social network. This includes about five close friends. But thanks to the internet, some people claim to have hundreds or even thousands of friends on social networking sites like Facebook and Myspace. These friends may even include famous people who join the sites. However, a recent survey has shown that the actual number of true online friends is just five. So, it seems that maintaining friendships in cyberspace is similar to real life.",
+   "text2": "12.1. Part 1. We all have contact with a wide range of people every day, family, friends, colleagues, but is friendship changing in the 21st century? According to research from the early 1990s, people have an average of 150 contacts in their social network. This includes about five close friends. But thanks to the internet, some people claim to have hundreds or even thousands of friends on social networking sites like Facebook and MySpace. These friends may even include famous people who join the sites. However, a recent survey has shown that the actual number of true online friends is just five. So, it seems that maintaining friendships in cyberspace is similar to real life."
+  },
+  "12.2": {
+   "f": "wb/12-2.mp3",
+   "dur": 141.7,
+   "parts": [],
+   "text": "12.2 Part 2 So, we asked a few people about their network of friends. Here's what they had to say. My name's Natalie and I'm 17. I'm really into Facebook and MySpace and I have hundreds of friends all over the world. People say that they aren't real friends, but I don't agree. I went to visit two of them in New York last year and they are coming here to visit me. So I made new friends I would never have met without the internet. Of course, I have friends at college that I meet up with every day. I'm William and in my fifties. I'm a company director so I have a lot of colleagues and a big circle of acquaintances. You know, people I see once in a while for business, or people I say hello to on the train or at the golf club. In terms of close friends, there are two guys I went to school with. We keep in touch as much as possible, but I don't see them very often. Of course, my best friend is my wife. My name's Adrian, and I'm just 24. Friends? Well, I'm a bit of a loner, so my circle of friends is quite small. If you ask me, it's better to have two or three friends you can trust than to be in a big group. I'm not much of a computer person, so I never go on Facebook or MySpace. I use emails to stay in touch with family and close friends, but I'd rather see people face to face than sit at a computer. I'm Trisha and I'm in my mid-forties. I'm a mature student doing a degree in graphic design. I'm quite outgoing and chatty, so I have quite a big circle of friends. A group of about 12 school friends and I meet up once a month for a drink. I've also made a lot of new friends on my course. I'm into social networking too, and I must have a few hundred cyber friends in different parts of the world. It all makes life a bit more fun.",
+   "text2": "12.2 Part 2 So we asked a few people about their network of friends. Here's what they had to say My name's Natalie and I'm 17 I'm really into Facebook and myspace and I have hundreds of friends all over the world People say that they aren't real friends, but I don't agree I went to visit two of them in New York last year and they are coming here to visit me. So I made new friends I would never have met without the internet. Of course, I have friends at college that I meet up with every day. I'm William and in my fifties. I'm a company director so I have a lot of colleagues in a big circle of acquaintances. sentences. You know, people I see once in a while for business, or people I say hello to on the train or at the golf club. In terms of close friends, there are two guys I went to school with. We keep in touch as much as possible, but I don't see them very often. Of course, my best friend is my wife. My name's Adrian and I'm just 24. Friends? Well, I'm a bit of a loner, so my circle of friends is quite small. If you ask me, it's better to have two or three friends you can trust than to be in a big group. I'm not much of a computer person, so I never go on Facebook or MySpace. I use emails to stay in touch with family and close friends, but I'd rather see people face to face than sit at a computer. I'm Tricia and I'm in my mid-40s. I'm a mature student doing a degree in graphic design. I'm quite outgoing and chatty, so I have quite a big circle of friends. A group of about 12 school friends and I meet up once a month for a drink. I've also made a lot of new friends on my course. I'm into social networking too, and I must have a few hundred cyber friends in different parts of the world. It all makes life a bit more fun."
+  },
+  "12.3": {
+   "f": "wb/12-3.mp3",
+   "dur": 66.1,
+   "parts": [],
+   "text": "Twelve point three. One. I have hundreds of friends all over the world. Two. I have friends at college that I meet up with every day. Three. I have a lot of colleagues and a big circle of acquaintances. Four. We keep in touch as much as possible. Five. Well, I'm a bit of a loner. Six. My circle of friends is quite small. Seven. I'm quite outgoing and chatty. Eight. I've also made a lot of new friends on my course.",
+   "text2": "12.3 1 I have hundreds of friends all over the world. 2 I have friends at college that I meet up with every day. 3 I have a lot of colleagues in a big circle of acquaintances. 4 We keep in touch as much as possible. Five. Well, I'm a bit of a loner. Six. My circle of friends is quite small. Seven. I'm quite outgoing and chatty. Eight. I've also made a lot of new friends on my course."
+  },
+  "13.1": {
+   "f": "wb/13-1.mp3",
+   "dur": 31.2,
+   "parts": [],
+   "text": "13.1 Welcome back to Lifelines, the programme that tries to make everyday life just a bit more manageable. Today we have with us Penny Marshall, professional life coach in the business sector. She's joined us to talk about commuting and how to survive it. Penny, nice to have you on the show. So, how long do people spend commuting each day? 3. 4. 5. 6. 7. 8. 9. 10. 10. 11. 11. 11. 12. 12. 12. 13. 13. 14. 14. 15. 15. 15. 15. 15. 16. 16. 16. 16. 16.",
+   "text2": "13.1 Welcome back to Life Lines, the programme that tries to make everyday life just a bit more manageable. Today we have with us Penny Marshall, professional life coach in the business sector. She's joined us to talk about commuting and how to survive it. Penny, nice to have you on the show. So, how long do people spend commuting each day? You"
+  },
+  "13.2": {
+   "f": "wb/13-2.mp3",
+   "dur": 200.6,
+   "parts": [],
+   "text": "13.2 Welcome back to Lifelines, the programme that tries to make everyday life just a bit more manageable. Today we have with us Penny Marshall, professional life coach in the business sector. She's joined us to talk about commuting and how to survive it. Penny, nice to have you on the show. So, how long do people spend commuting each day? Well, people in the UK spend an average of 45 minutes travelling to and from work. That's longer than in other European countries and works out at about 139 hours a year or 19 working days. Of course, transport problems like train delays and cancellations or traffic jams can make your commute considerably longer. So what can people do? Well, of course people use different forms of transport to get to work. So let's start with travellers by train. It sounds simple, but if your usual train is always packed, why not try an earlier or later one? Many bosses are flexible about hours, provided they know when to expect you. Setting off half an hour earlier or later might mean you get a seat in a quieter carriage. It's worth a try. But what about if all the morning trains are full or if there is a delay? Sure, and this is the reality for hundreds of people every day. My advice is to plan your journey. Take something to do, preferably something you enjoy rather than work. So, reading a book or magazine, doing a puzzle or writing a letter to a friend. Or why not try something creative? Several of my clients take knitting on the train. Try anything that keeps your mind off the journey and has some positive result. Good advice. But what if you can't get a seat? A lot of commuters have to stand on the train. Of course, you're right. And that can be very uncomfortable. People don't like losing their personal space and can get very stressed. In these cases, try accepting the situation and relaxing your mind. Focus on your breathing and think of something nice. A place that you love, a happy experience or a funny conversation, and try not to talk to other commuters for too long. That's surprising. Why is that? Well, it's OK to chat for a few minutes, but talking for a long time can be tiring. And if you are in a group of stressed people who are all complaining about the trains, you will end up in a really bad mood yourself. Yes, I see. That makes sense. one other tip is to try a bit of exercise not aerobics of course but if you tense and then relax every muscle in your body from your head to your toes it can get rid of stress car drivers can try that too thanks for that penny stay tuned and we'll be back in a second with more interesting advice for commuters but first here's a taste of what's",
+   "text2": "13.2 Welcome back to Lifelines, the programme that tries to make everyday life just a bit more manageable. Today we have with us Penny Marshall, professional life coach in the business sector. She's joined us to talk about commuting and how to survive it. Penny, nice to have you on the show. So, how long do people spend commuting each day? Well, people in the UK spend an average of 45 minutes travelling to and from work. That's longer than in other European countries and works out at about 139 hours a year or 19 working days. Of course, transport problems like train delays and cancellations or traffic jams can make your commute considerably longer. So what can people do? Well, of course people use different forms of transport to get to work. So let's start with travellers by train. It sounds simple, but if your usual train is always packed, why not try an earlier or later one? Many bosses are flexible about hours, provided they know when to expect you. Setting off half an hour earlier or later might mean you get a seat in a quieter carriage. It's worth a try. But what about if all the morning trains are full, or if there is a delay? Sure, and this is the reality for hundreds of people every day. My advice is to plan your journey, take something to do, preferably something you enjoy rather than work. So reading a book or magazine, doing a puzzle or writing a letter to a friend. Or why not try something creative? of my clients take knitting on the train. Try anything that keeps your mind off the journey and has some positive result. Good advice. But what if you can't get a seat? A lot of commuters have to stand on the train. Of course, you're right. And that can be very uncomfortable. People don't like losing their personal space and can get very stressed. In these cases, try accepting the situation and relaxing your mind. Focus on your breathing and think of something nice, a place that you love, a happy experience or a funny conversation, and try not to talk to other commuters for too long. That's surprising. Why is that? Well, it's okay to chat for a few minutes, but talking for a long time can be tiring, and if you are in a group of stressed people who are all complaining about the trains, You will end up in a really bad mood yourself. Yes, I see. That makes sense. One other tip is to try a bit of exercise. Not aerobics, of course, but if you tense and then relax every muscle in your body, from your head to your toes, it can get rid of stress. Car drivers can try that too. Thanks for that, Penny. Stay tuned and we'll be back in a second with more interesting advice for commuters. But first, here's a taste of what's to come."
+  },
+  "13.3": {
+   "f": "wb/13-3.mp3",
+   "dur": 41.2,
+   "parts": [],
+   "text": "13.3 1. You get a seat in a quieter carriage. 2. Preferably something you enjoy rather than work. 3. Several of my clients take knitting on the train. 4. That can be very uncomfortable. 5. More interesting advice for commuters.",
+   "text2": "13.3 1 You get a seat in a quieter carriage. 2 Preferably something you enjoy rather than work. 3 Several of my clients take knitting on the train. 4 That can be very uncomfortable. More interesting advice for commuters."
+  },
+  "14.1": {
+   "f": "wb/14-1.mp3",
+   "dur": 243.0,
+   "parts": [
+    0.0,
+    79.65,
+    175.67
+   ],
+   "text": "14.1 Part 1 Right, I've set up the sat-nav. I think I've got everything I need for my presentation. There's plenty of time before my interview, so off we go. At the end of the road, turn right. Okay, turning right. Cross the roundabout. Second exit. Then take the first right. Okay. Round the roundabout. Second exit. Take the first right. Take the first right. What? Stupid machine. I can't take the first right. It's pedestrianised. Off route. Recalculating. Why didn't you know that I couldn't drive down that road? You're supposed to make my life easier. Take the third right. Okay, third road on the right. Oh, I don't believe it. A huge traffic jam. And I've only got 40 minutes before my interview. Part Two Good morning. My name's Richard Blake. I'm being interviewed this morning and I need to set up my stuff to give a presentation. Yes, you're in room 211. All the equipment should be in there. I'll ask someone from IT to pop over to check everything is okay. Great, thanks. Okay, here we are. I've plugged in my laptop. That seems fine. Just need to check the microphone. Testing, testing. One, two, three. Oh, hell. The mic doesn't work. Oh, it's such a big room, they'll never hear me. Good morning. Richard Blake? Oh, great. You're here. Now, I need a new microphone, as this thing doesn't work. Have you got one with you? I'm very short of time. I'm being interviewed in ten minutes. Yes, Mr Blake, I know. I'm not from IT. I'm Clive Marshall, MD of this company. Oh, I'm so sorry. The receptionist said someone from IT would be here, and I just assumed... Yes, I see. Let me ring IT for you. Thanks. Thank you, Mr Marshall. That's very good of you. Sorry. Part 3. OK, starting with my analysis of the current market. As you can see, the market for organic food has risen steadily in the last five years. And if we break this down further, we can see that fruit and vegetables are growing steadily, but the biggest change can be seen in this graphic. Mr Blake, there seems to be a problem with the images on the screen. There are photos of a young child on the beach, not developments in market share for organic food. No, I don't believe it. I must have picked up the wrong CD from home. I've got the one for my daughter's holiday project. I'm so sorry. Could we reschedule the presentation for later this week? I have some very interesting ideas. I think we'll leave it there, actually, Mr Blake. We have a number of other people to see.",
+   "text2": "14.1 Part 1 Right, I've set up the sat-nav. I think I've got everything I need for my presentation. There's plenty of time before my interview, so... off we go. At the end of the road, turn right. Okay, turning right. Cross the roundabout. Second exit. Then take the first right. Okay, round the roundabout, second exit. Take the first right. Take the first right. What? Stupid machine, I can't take the first right, it's pedestrianised. Off route. Recalculating. Calculating why didn't you know that I couldn't drive down that road? You're supposed to make my life easier Take the third right Okay third road on the right. Oh I don't believe it a huge traffic jam, and I've only got 40 minutes before my interview Part 2 Good morning. My name's Richard Blake. I'm being interviewed this morning and I need to set up my stuff to give a presentation. Yes, you're in room 211. All the equipment should be in there. I'll ask someone from IT to pop over to check everything is okay. Great, thanks. Okay, here we are. I've plugged in my laptop, that seems fine. Just need to check the microphone. Testing, testing, one, two, three... Oh hell, the mic doesn't work. It's such a big room, they'll never hear me. Good morning, Richard Blake. Oh, great, you're here. Now, I need a new microphone, as this thing doesn't work. Have you got one with you? I'm very short of time. I'm being interviewed in ten minutes. Yes, Mr Blake, I know. I'm not from IT. I'm Clive Marshall, MD of this company. Oh, I'm so sorry. The receptionist said someone from IT would be here, and I just assumed... Yes, I see. Let me ring IT for you. Thanks. Thank you, Mr Marshall. That's very good of you. Sorry. Part 3. Okay, starting with my analysis of the current market. As you can see, the market for organic food has risen steadily in the last five years. And if we break this down further, we can see that fruit and vegetables are growing steadily, but the biggest change can be seen in this graphic. Mr Blake, there seems to be a problem with the images on the screen. There are photos of a young child on the beach, not developments in market share for organic food. No, I don't believe it. I must have picked up the wrong CD from home. I've got the one for my daughter's holiday project. I'm so sorry. Could we reschedule the presentation for later this week? I have some very interesting ideas. I think we'll leave it there actually, Mr Blake. We have a number of other people to see."
+  },
+  "14.2": {
+   "f": "wb/14-2.mp3",
+   "dur": 78.2,
+   "parts": [],
+   "text": "14.2 1 Yes, you're in room 211. That's very good of you. 2 I've got everything I need for my presentation. The market for organic food has risen steadily. 3 At the end of the road, turn right. Take the third right. 4 You're supposed to make my life easier. I've plugged in my laptop. 5 Starting with my analysis of the current market. Now I need a new microphone. 6. There seems to be a problem with the images on the screen. There are photos of a young child on the beach.",
+   "text2": "14.2 1 Yes, you're in room 211. That's very good of you. 2 I've got everything I need for my presentation. The market for organic food has risen steadily. 3 At the end of the road, turn right. Take the third right. Four. You're supposed to make my life easier. I've plugged in my laptop. Five. Starting with my analysis of the current market. Now I need a new microphone. 6. There seems to be a problem with the images on the screen. There are photos of a young child on the beach."
+  },
+  "15.1": {
+   "f": "wb/15-1.mp3",
+   "dur": 183.5,
+   "parts": [
+    0.0,
+    37.51,
+    70.95,
+    115.38
+   ],
+   "text": "15.1 1 Oh, Sue, are you okay? Let me help you up. Thanks. Ow! Careful. Have you hurt your wrist? No, I don't think so. Ouch! Put your arm round my shoulder. Can you stand? Yes, but I can't put any weight on it. I think I might have broken my ankle. Sit down. I'll get Mike to take you to the hospital. Two. I think I need some antibiotics, Doctor. Why? What seems to be the problem? I can't stop coughing. I was up most of last night. Have you had a high temperature at all? No, but my head really hurts. I can't really give you antibiotics unless you have some sort of infection. Just rest, take some painkillers and plenty of fluids. I'm sure you'll be fine in a couple of days. I'm just preparing the vegetables for dinner. Ow! What have you done? I've cut myself really badly. Let me have a look. I think I'll need some stitches. Emma, don't be such a baby. It's a tiny cut. Just wash it under the tap. Can I have a bandage? You don't need a bandage. OK, but can you finish the dinner? I feel a bit dizzy. I think I need to lie down. Four You know I've been under the weather recently Yes, you said you were getting a nasty rash and that you were sneezing a lot Well, I got the doctor to check me out and he sent me for some tests It turns out I have an allergy Don't tell me you're allergic to milk or wheat or nuts There's this woman at work who eats hardly anything I'm sure it's all in her imagination No, nothing like that I can still eat fish, cheese and prawns In fact, all my favourite foods So what's up then? Why do you keep getting a rash? It turns out I've developed an allergy to cats and dogs You're kidding! But you're a vet You're supposed to love animals I do love animals. It's not funny. No, I know. Sorry. It's just so weird. I bet you would prefer a food allergy, wouldn't you? It must be very difficult.",
+   "text2": "15.1 1 Oh, Sue! Are you okay? Let me help you up. Thanks. Ow! Careful. Have you hurt your wrist? No, I don't think so. Ouch! Put your arm round my shoulder. Can you stand? Yes, but I can't put any weight on it. I think I might have broken my ankle. Sit down. I'll get Mike to take you to the hospital. Oh. Two. I think I need some antibiotics, Doctor. Why, what seems to be the problem? I can't stop coughing. I was up most of last night. Have you had a high temperature at all? No, but my head really hurts. I can't really give you antibiotics unless you have some sort of infection. Just rest, take some painkillers and plenty of fluids. I'm sure you'll be fine in a couple of days. Three I'm just preparing the vegetables for dinner. Oh What have you done? I've cut myself really badly Let me have a look. I think I'll need some stitches Emma don't be such a baby It's a tiny cut just wash it under the tap Can I have a bandage? You don't need a bandage. Okay, but can you finish the dinner? I feel a bit dizzy. I think I need to lie down. Four. You know I've been under the weather recently. Yes. You said you were getting a nasty rash and that you were sneezing a lot. Well, I got the doctor to check me out and he sent me for some tests. It turns out I have an allergy. Don't tell me you're allergic to milk or wheat or nuts. There's this woman at work who eats hardly anything. I'm sure it's all in her imagination. No, nothing like that. I can still eat fish, cheese and prawns, in fact all my favourite foods. So what's up then? Why do you keep getting a rash? It turns out I've developed an allergy to cats and dogs. You're kidding! But you're a vet! You're supposed to love animals. I do love animals. It's not funny. No, I know. Sorry. It's just so weird. I bet you would prefer a food allergy, wouldn't you? It must be very difficult for you to..."
+  },
+  "15.2": {
+   "f": "wb/15-2.mp3",
+   "dur": 53.0,
+   "parts": [],
+   "text": "Fifteen point two. One. I can't stop coughing. Two. Let me have a look. Three. It's a tiny cut. Four. You don't need a bandage. 5. He sent me for some tests. 6. It turns out I have an allergy. 7. Why do you keep getting a rash?",
+   "text2": "15.2 1 I can't stop coughing. 2 Let me have a look. 3 It's a tiny cut. 4 You don't need a bandage. He sent me for some tests. Six. It turns out I have an allergy. Seven. Why do you keep getting a rash? You"
+  },
+  "15.3": {
+   "f": "wb/15-3.mp3",
+   "dur": 83.1,
+   "parts": [],
+   "text": "15.3 1. Dizzy. Antibiotics. Stiff. Itchy. 2. Bump. Cut. Blood. Pressure. 3. Stomach. Bandage Rash Allergy Four Cough Doctor Swollen Got Five Medicine Headache Feel Infection 6. Arthritis Temperature Broken Medication 7. Should Shoulder Good Pulled",
+   "text2": "15.3 1 dizzy antibiotics stiff itchy 2 bump cut blood pressure 3 stomach bandage, rash, allergy four, cough, doctor, swollen got, five medicine, headache, feel, infection 6. Arthritis Temperature Broken Medication 7. Should Shoulder Good Pulled"
+  },
+  "16.1": {
+   "f": "wb/16-1.mp3",
+   "dur": 26.7,
+   "parts": [],
+   "text": "16.1. It has been confirmed that a collision with a flock of birds caused US Airways Flight 1549 to crash land on the Hudson River in New York on January 15, 2009. All 155 passengers and crew survived the landing on the water, which made headlines round the world.",
+   "text2": "16.1. It has been confirmed that a collision with a flock of birds caused US Airways Flight 1549 to crash land on the Hudson River in New York on January 15, 2009. All 155 passengers and crews survived the landing on the water, which made headlines round the world."
+  },
+  "16.2": {
+   "f": "wb/16-2.mp3",
+   "dur": 188.3,
+   "parts": [],
+   "text": "16.2 It has been confirmed that a collision with a flock of birds caused US Airways Flight 1549 to crash land on the Hudson River in New York on January 15, 2009. All 155 passengers and crew survived the landing on the water, which made headlines round the world. The flight left New York's LaGuardia Airport at 1526 local time, headed for Charlotte in North Carolina. It was in the air for less than three minutes before the pilot, Captain Chesley B. Sullenberger, reported the collision with the birds and the loss of power to both engines of the aircraft. The plane had only managed to reach a top altitude of 3,200 feet, about 975 metres. At about 15.30, Captain Sullenberger took the decision to land the plane on the water that divides Manhattan from New Jersey. Apart from one person who had broken legs, none of the people on board suffered serious injuries. The passengers and crew were safely evacuated from the plane and picked up by commercial ferries and water rescue vehicles. Captain Sullenberger was the last person to leave the aircraft. The crew, and particularly Captain Sullenberger, were described as heroes for their actions by both the governor and mayor of New York. Former U.S. President George Bush praised the pilot for his Although this event may sound like just a freakish accident, birds represent an ongoing problem for the aviation industry. A spokesman from the US Federal Aviation Administration said, Aircraft are being struck every day by birds. The reason you don't hear so much about them is they are designed to take these impacts. But once you get to large flocks or large birds striking at a critical moment, that's where these events hit the news. It is thought that the loss of power to both engines on Flight 1549 was caused by hitting a flock of Canada geese, which can weigh from 1.5 to 5.5 kilos each. Overall, the FAA received almost 76,000 reports of bird strikes between 1990 and 2007. Statistics show that 219 people have died since 1988 in incidents involving animals colliding with planes, and the overall cost of damage to aircraft in the US is estimated at $600 million.",
+   "text2": "16.2 It has been confirmed that a collision with a flock of birds caused US Airways Flight 1549 to crash land on the Hudson River in New York on January 15, 2009. All 155 passengers and crew survived the landing on the water, which made headlines round the world. The flight left New York's LaGuardia Airport at 1526 local time, headed for Charlotte in North Carolina. It was in the air for less than three minutes before the pilot, Captain Chesley B. Sullenberger, reported the collision with the birds and the loss of power to both engines of the aircraft. The plane had only managed to reach a top altitude of 3,200 feet, about 975 metres. At about 1530, Captain Sullenberger took the decision to land the plane on the water that divides Manhattan from New Jersey. Apart from one person who had broken legs, none of the people on board suffered serious injuries. The passengers and crew were safely evacuated from the plane and picked up by commercial ferries and water rescue vehicles. Captain Sullenberger was the last person to leave the aircraft. The crew, and particularly Captain Sullenberger, were described as heroes for their actions by both the Governor and Mayor of New York. Former US President George Bush praised the pilot for his amazing skills in bringing his plane down safely, for his bravery and for his heroic efforts to ensure the safety of his passengers and the people in the area. Although this event may sound like just a freakish accident, birds represent an ongoing problem for the aviation industry. A spokesman from the US Federal Aviation Administration said aircraft are being struck every day by birds. The reason you don't hear so much about them is they are designed to take these impacts. But once you get to large flocks or large birds striking at a critical moment, that's where these events hit the news. It is thought that the loss of power to both engines on Flight 1549 was caused by hitting a flock of Canada geese, which can weigh from 1.5 to 5.5 kilos each. Overall, the FAA received almost 76,000 reports of bird strikes between 1990 and 2007. Statistics show that 219 people have died since 1988 in incidents involving animals colliding with planes, and the overall cost of damage to aircraft in the US is estimated at $600 million."
+  },
+  "16.3": {
+   "f": "wb/16-3.mp3",
+   "dur": 64.7,
+   "parts": [],
+   "text": "16.3 1 Flight 1549 2 155 passengers 3 3,200 feet 4 5 6 7 8 $600 million.",
+   "text2": "16.3 1 Flight 1549 2 155 passengers 3 3200 feet 4 975 metres. 5.5 kilos. 6.76 thousand reports. 7. since 1988. eight six hundred million dollars."
+  }
+ },
+ "video": {
+  "1": {
+   "f": "video/v1.mp4",
+   "dur": 234,
+   "src": "Outcomes Intermediate (1).flv"
+  },
+  "2": {
+   "f": "video/v2.mp4",
+   "dur": 162,
+   "src": "Outcomes Intermediate (2).flv"
+  },
+  "3": {
+   "f": "video/v3.mp4",
+   "dur": 344,
+   "src": "Outcomes Intermediate (3).flv"
+  },
+  "4": {
+   "f": "video/v4.mp4",
+   "dur": 261,
+   "src": "Outcomes Intermediate (4).flv"
+  },
+  "5": {
+   "f": "video/v5.mp4",
+   "dur": 223,
+   "src": "Outcomes Intermediate (5).flv"
+  }
+ }
+}

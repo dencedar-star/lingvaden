@@ -1,0 +1,11 @@
+handover-private/
+__pycache__/
+*.pyc
+.DS_Store
+transfer/
+
+# Результат сборки не храним, кроме изображений учебника (build.py их не создаёт)
+output/*
+!output/assets/
+output/assets/*
+!output/assets/img/
