@@ -253,7 +253,7 @@ def layout(title, desc, body, active=None, root="../", unit_nav=True, ctx=None, 
 </head>
 <body data-root="{root}"{data}>
 <header class="top"><div class="top-in">
-<a class="logo" href="{root}">{MARK}<span>Lingvaden<b>·</b>English</span></a>
+<a class="logo" href="http://lingvaden.ru/">{MARK}<span>Lingvaden<b>·</b>English - test</span></a>
 {tabs}
 <div class="who" id="who" hidden></div>
 <button class="theme" type="button" aria-label="Сменить тему"></button>
