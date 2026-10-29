@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Утилиты для сборки (pdftotext)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils > /dev/null
       - run: python3 -B build.py > /dev/null && echo "Сборка прошла"
 
   deploy:
@@ -39,6 +41,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Утилиты для сборки (pdftotext)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils > /dev/null
       - name: Доступ к FTP из секрета
         env:
           LINGVADEN_FTP: ${{ secrets.LINGVADEN_FTP }}
