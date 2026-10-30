@@ -143,14 +143,14 @@ def build():
         for f, n in pics) + "</div>"
     warm = SEC("Warm up", "",
                EX("rl1-w1", "1.1", "Do you know this animated film? Do you like it? Why/why not?",
-                  IMG(IMG_DIR + "poster.jpg", "Frozen II", cls="fig-poster") + SAY + writer("rl1-w1", "Yes, I know it. I like it because …")) +
+                  IMG(IMG_DIR + "poster.jpg", "Frozen II", cls="fig-poster") + SAY + writer("rl1-w1")) +
                EX("rl1-w2", "1.2", "Match the words with the pictures.", match), id="warm-up")
 
     # ---------- Video ----------
     vid = SEC("Video. Anna's birthday cake", "",
               EX("rl1-v1", "1.1", "Watch the video and answer the questions.",
                  video() + OL(["What is Elsa doing?", "What is Kristoff doing?", "What is Olaf doing?"]) + SAY +
-                 writer("rl1-v1", "Elsa is …\nKristoff is …\nOlaf is …")), id="video")
+                 writer("rl1-v1")), id="video")
 
     # ---------- Vocabulary ----------
     rows = ""
@@ -291,8 +291,8 @@ def build():
                   IMG(IMG_DIR + "courtyard.jpg", "Happy Birthday — the courtyard") +
                   EX("rl1-g3", "6", "Talk about Elsa and Anna. Make up affirmative (+), negative (−) and question (?) sentences "
                      "in Present Simple and Present Continuous.",
-                     '<div class="cols2"><div><h4>Present Simple</h4>' + writer("rl1-g3-ps", "+ Elsa …\n− Anna …\n? Does …", 4) +
-                     '</div><div><h4>Present Continuous</h4>' + writer("rl1-g3-pc", "+ Elsa is …\n− Anna isn't …\n? Is …", 4) +
+                     '<div class="cols2"><div><h4>Present Simple</h4>' + writer("rl1-g3-ps", "", 4) +
+                     '</div><div><h4>Present Continuous</h4>' + writer("rl1-g3-pc", "", 4) +
                      "</div></div>") +
                   EX("rl1-g4", "7", "Read the sentences, name the tense and explain it.",
                      OL([f"{s} {S(a, TENSES)}" for s, a in name]) + SAY), id="grammar")
@@ -310,7 +310,7 @@ def build():
                 EX("rl1-s2", "1.2", "Answer the questions.",
                    "".join(f'<p class="q"><b>{h}</b><br>{q}</p>' for h, q in qs) + SAY + writer("rl1-s2", "", 5)) +
                 EX("rl1-s3", "1.3", "Make up your own sentences with these phrases: <i>to keep an eye on</i>, <i>check this out</i>.",
-                   writer("rl1-s3", "Can you keep an eye on …\nCheck this out, …", 3) +
+                   writer("rl1-s3", "", 3) +
                    REVEAL("<b>To keep an eye on</b><br>Can you <b>keep an eye on</b> my bag while I go to the restroom?<br><br>"
                           "<b>Check this out</b><br>Hey, <b>check this out</b>! Did you see the new design I made? Can you check this "
                           "out and tell me what you think?", "Possible answers")), id="speaking")
