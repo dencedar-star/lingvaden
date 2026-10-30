@@ -4,7 +4,8 @@
  *
  * Общие:   login (единый вход по 6-значному коду: по коду понятно, учитель это или ученик), me (GET), consent, logout,
  *          log (пакет событий, sendBeacon), profile (ФИО, e-mail, Telegram), avatar_set|avatar_del, avatar (GET)
- * Ученик:  s_code (вход по коду или ссылке), forget (удаляет свои данные), s_hw_list|s_hw (GET), s_hw_submit
+ * Ученик:  s_code (вход по коду или ссылке), forget (удаляет свои данные), s_hw_list|s_hw (GET), s_hw_submit,
+ *          s_voice (голосовой ответ: тело запроса — аудио), voice (GET: послушать — ученик свой, учитель — своих учеников)
  * Учитель: t_data, t_student_add|update|delete|relink|mail, t_course (открыть/закрыть курс ученику или классу),
  *          t_space_add|update|delete, t_member, t_student, t_review,
  *          t_hw_add|t_hw_archive, t_hw_list|t_hw_result (GET)
@@ -25,7 +26,7 @@ if ($method === 'POST') {
     if ($origin !== '' && parse_url($origin, PHP_URL_HOST) !== preg_replace('/:\d+$/', '', (string)($_SERVER['HTTP_HOST'] ?? ''))) {
         fail('origin', 403);
     }
-} elseif (!in_array($a, ['me', 't_data', 't_student', 't_review', 'avatar', 's_hw_list', 's_hw', 't_hw_list', 't_hw_result'], true)) {
+} elseif (!in_array($a, ['me', 't_data', 't_student', 't_review', 'avatar', 's_hw_list', 's_hw', 't_hw_list', 't_hw_result', 'voice'], true)) {
     fail('method', 405);
 }
 
@@ -204,7 +205,7 @@ case 'me':
             foreach ($st as $r) {
                 $w[$r['wid']] = $r['text'];
             }
-            $out['state'] = ['p' => $p, 'w' => $w];
+            $out['state'] = ['p' => $p, 'w' => $w, 'v' => student_voices($pdo, (int)$s['id'], $cw, array_slice($cp, 1))];
         }
     }
     if ($t) {
@@ -372,6 +373,79 @@ case 'logout':
     json_out(['ok' => true]);
 
 // ---- ученик: удалить свои данные (отзыв согласия) --------------------------
+case 's_voice':   // голосовой ответ ученика: тело — аудио (webm/ogg/mp4), параметры — в адресе; повторная запись заменяет прежнюю
+    $s = need_student($pdo);
+    $sid = (int)$s['id'];
+    $course = preg_match($ID, (string)($_GET['course'] ?? '')) ? (string)$_GET['course'] : '';
+    $unit = preg_match($ID, (string)($_GET['unit'] ?? '')) ? (string)$_GET['unit'] : '';
+    $wid = preg_match('/^[a-z0-9_-]{1,60}$/', (string)($_GET['wid'] ?? '')) ? (string)$_GET['wid'] : '';
+    if ($wid === '' || $unit === '' || !in_array($course, EN_VOICE_COURSES, true) || !student_can($pdo, $sid, $course)) {
+        fail('voice', 403);
+    }
+    $types = ['audio/webm' => 'webm', 'audio/ogg' => 'ogg', 'audio/mp4' => 'm4a', 'audio/mpeg' => 'mp3', 'audio/aac' => 'aac'];
+    $mime = strtolower(trim(explode(';', (string)($_SERVER['CONTENT_TYPE'] ?? ''))[0]));
+    if (!isset($types[$mime])) {
+        fail('voicetype', 415);
+    }
+    $len = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+    if ($len > EN_VOICE_MAX_BYTES) {
+        fail('voicesize', 413);
+    }
+    $data = (string)file_get_contents('php://input', false, null, 0, EN_VOICE_MAX_BYTES + 1);
+    if (strlen($data) < 500 || strlen($data) > EN_VOICE_MAX_BYTES) {
+        fail('voicesize', 413);
+    }
+    $sec = max(1, min(EN_VOICE_MAX_SEC, (int)($_GET['sec'] ?? 0)));
+    $path = mb_substr((string)($_GET['path'] ?? ''), 0, 160);
+    try {
+        $dir = voice_dir();
+    } catch (Throwable $e) {
+        error_log('en voice dir: ' . $e->getMessage());
+        fail('voicedir', 503);
+    }
+    $file = $sid . '-' . bin2hex(random_bytes(12)) . '.' . $types[$mime];
+    if (file_put_contents($dir . '/' . $file, $data) !== strlen($data)) {
+        @unlink($dir . '/' . $file);
+        fail('voicedir', 503);
+    }
+    $st = $pdo->prepare('SELECT id, file FROM en_voice WHERE student_id = ? AND course = ? AND wid = ?');
+    $st->execute([$sid, $course, $wid]);
+    $old = $st->fetch();
+    if ($old) {
+        if ($old['file']) {
+            @unlink($dir . '/' . $old['file']);
+        }
+        $pdo->prepare('UPDATE en_voice SET unit = ?, path = ?, file = ?, mime = ?, bytes = ?, seconds = ?, created_at = ?, expired_at = NULL
+                       WHERE id = ?')->execute([$unit, $path, $file, $mime, strlen($data), $sec, now(), (int)$old['id']]);
+        $vid = (int)$old['id'];
+    } else {
+        $pdo->prepare('INSERT INTO en_voice (student_id, course, unit, wid, path, file, mime, bytes, seconds, created_at)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')->execute([$sid, $course, $unit, $wid, $path, $file, $mime, strlen($data), $sec, now()]);
+        $vid = (int)$pdo->lastInsertId();
+    }
+    log_event($pdo, 'student', $sid, (int)$s['teacher_id'], 'voice', ['course' => $course, 'page' => $path, 'ex' => $wid,
+        'data' => ['sec' => $sec, 'bytes' => strlen($data)]]);
+    voice_expire($pdo);
+    json_out(['ok' => true, 'id' => $vid, 'sec' => $sec, 'at' => now()]);
+
+case 'voice':   // послушать голосовой ответ: ученик — свой, преподаватель — своего ученика
+    $st = $pdo->prepare('SELECT v.*, s.teacher_id FROM en_voice v JOIN en_student s ON s.id = v.student_id WHERE v.id = ?');
+    $st->execute([(int)($_GET['id'] ?? 0)]);
+    $v = $st->fetch();
+    $t = current_user($pdo, 'teacher');
+    $s = $t ? null : current_user($pdo, 'student');
+    if (!$v || !$v['file'] || !(($t && (int)$t['id'] === (int)$v['teacher_id']) || ($s && (int)$s['id'] === (int)$v['student_id']))) {
+        http_response_code(404);
+        exit;
+    }
+    $f = voice_dir() . '/' . $v['file'];
+    if (!is_file($f)) {
+        http_response_code(404);
+        exit;
+    }
+    $pdo = null;
+    send_file($f, $v['mime'], 'private, no-cache');
+
 case 'forget':
     $s = current_user($pdo, 'student');
     if (!$s) {
@@ -815,10 +889,12 @@ case 't_student':
     }
     unset($r);
     $writings = $q('SELECT course, wid, page, text, words, updated_at FROM en_writing WHERE student_id = ? ORDER BY updated_at DESC', [$sid]);
+    $voices = $q('SELECT id, course, unit, wid, path, seconds, created_at FROM en_voice WHERE student_id = ? AND file IS NOT NULL
+                  ORDER BY created_at DESC', [$sid]);
     tlog($pdo, $t, 'student_view', ['student' => $sid]);
     unset($s['token']);
     json_out(['ok' => true, 'student' => $s, 'progress' => $progress, 'attempts' => $attempts, 'visits' => $visits,
-        'events' => $events, 'writings' => $writings]);
+        'events' => $events, 'writings' => $writings, 'voices' => $voices]);
 
 // ---- учитель: рабочее место разбора — всё по одной странице курса -----------------
 case 't_review':
@@ -853,10 +929,12 @@ case 't_review':
     foreach ($st as $r) {
         $w[$r['wid']] = $r;
     }
+    $v = student_voices($pdo, $sid, ' AND course = ? AND unit = ?', [$course, $unit]);
     if (empty($_GET['poll'])) {
         tlog($pdo, $t, 'student_review', ['student' => $sid, 'unit' => $unit, 'page' => $page]);
     }
     json_out(['ok' => true, 'student' => ['id' => $sid, 'name' => $s['name']], 'progress' => $prog, 'attempts' => $att, 'writings' => $w,
+        'voices' => $v,
         'live' => ['path' => $s['live_path'], 'ex' => $s['live_ex'], 'at' => $s['live_at'],
             'online' => $s['live_at'] !== null && strtotime($s['live_at']) > time() - 150], 'now' => now()]);
 

@@ -893,7 +893,8 @@
   var EVT = {
     login: "Вход", logout: "Выход", view: "Открыл(а) страницу", check: "Проверил(а) задание", show: "Показал(а) ответы",
     reset: "Сбросил(а) задание", write: "Писал(а) текст", audio: "Слушал(а) аудио", reveal: "Открыл(а) ответ/ключ", consent: "Дал(а) согласие",
-    hw_open: "Открыл(а) домашнюю работу", hw_submit: "Отправил(а) домашнюю работу", profile: "Изменил(а) профиль"
+    hw_open: "Открыл(а) домашнюю работу", hw_submit: "Отправил(а) домашнюю работу", profile: "Изменил(а) профиль",
+    voice: "Записал(а) голосовой ответ"
   };
   function exLink(id) {
     var x = EXMAP[id];
@@ -978,6 +979,13 @@
         h += '<section class="page"><h2>Письменные работы</h2>' + r.writings.map(function (w) {
           return '<div class="writing-v"><div class="w-meta"><b>' + esc(w.wid) + "</b> · " + w.words + " слов · " + esc(when(w.updated_at)) +
             ' · <a href="' + esc(w.page || "#") + '" target="_blank">страница</a></div><div class="w-text">' + esc(w.text).replace(/\n/g, "<br>") + "</div></div>";
+        }).join("") + "</section>";
+      }
+      if (r.voices && r.voices.length) {
+        h += '<section class="page"><h2>Голосовые ответы <small>хранятся 3 месяца</small></h2>' + r.voices.map(function (x) {
+          return '<div class="writing-v"><div class="w-meta"><b>' + esc(x.wid) + "</b> · " + Math.floor(x.seconds / 60) + ":" + ("0" + x.seconds % 60).slice(-2) + " · " + esc(when(x.created_at)) +
+            ' · <a href="' + esc((x.path || "#") + "?review=" + id + "#" + x.wid) + '" target="_blank">в задании</a></div>' +
+            '<audio controls preload="none" src="' + API + "voice&id=" + x.id + '"></audio></div>';
         }).join("") + "</section>";
       }
       h += '<section class="page"><h2>Входы и время</h2>' + (r.visits.length ? '<div class="scroll"><table class="tbl"><tr><th>Начало</th><th>Конец</th><th class="num">Время</th><th class="num">Страниц</th><th>Устройство</th></tr>' +

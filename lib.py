@@ -110,6 +110,12 @@ def ORDER(scrambled, answer):
             f'<div class="line"></div><div class="bank"></div><div class="ans" hidden>{escape(answer)}</div></div>')
 
 
+def VOICE(wid, max_sec=180):
+    """Голосовой ответ: ученик записывает (кнопка 🎙), преподаватель слушает в разборе. Сервер принимает запись
+    только в курсах из EN_VOICE_COURSES (api/_lib.php)."""
+    return f'<div class="voice" id="{wid}" data-id="{wid}" data-max="{max_sec}"></div>'
+
+
 def REVEAL(html, label="Показать ответ"):
     return f'<details class="reveal"><summary>{label}</summary><div class="key">{html}</div></details>'
 
