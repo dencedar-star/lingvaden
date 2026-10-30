@@ -96,8 +96,37 @@ def build_unit(pkg, ver):
     return m
 
 
-def catalog(metas):
-    """Каталог курса для кабинетов: модули → страницы → задания (id, число полей, подпись)."""
+def build_rl_lesson(folder, mod, n, block, ver):
+    """Урок курса English for Real Life: обзор (index.html) и страница урока со всеми разделами (lesson.html)."""
+    rl = importlib.import_module("efrl")
+    m = importlib.import_module(f"efrl.{mod}")
+    d = OUT / folder
+    d.mkdir(parents=True, exist_ok=True)
+    name = f"Урок {n} · {m.TITLE}"
+    crumbs = f'<div class="crumbs"><a href="../me/#courses">{rl.TITLE}</a> › {rl.BLOCKS[block]} › <a href="./">{name}</a></div>'
+    ctx = {"unit": folder, "page": "lesson", "label": f"урок {n}"}
+    lib.set_page(f"{folder}/lesson")
+    body = m.build()
+    lesson = layout(f"{m.TITLE} — {rl.TITLE}", m.LEAD, f'{crumbs}<h1 class="page-title">{m.TITLE}</h1><p class="lead">{m.LEAD}</p>' + body,
+                    unit_nav=False, ctx=ctx, course=rl.COURSE)
+    secs = "".join(f'<li><a href="lesson.html#{a}">{t}</a></li>' for a, t in m.SECTIONS)
+    prog = (f'<div data-progress="{progress_json([f"{folder}/lesson"])}"><div class="bar"><i></i></div><div class="bar-l"></div></div>')
+    over = (f'<div class="crumbs"><a href="../me/#courses">{rl.TITLE}</a> › {rl.BLOCKS[block]}</div>'
+            f'<section class="hero rl-hero"><div class="hero-txt"><div class="hero-num">{n}</div><h1>{m.TITLE}</h1><p>{m.LEAD}</p>'
+            f'<p class="tags">{m.TOPICS}</p><p><a class="btn" href="lesson.html">Начать урок →</a></p></div>'
+            f'<img src="../assets/img/{folder}/poster.jpg" alt=""></section>'
+            f'<section class="page"><h2>Разделы урока</h2><ol class="items">{secs}</ol>{prog}</section>')
+    index = layout(f"{name} · {rl.TITLE}", f"{rl.BLOCKS[block]}, урок {n} курса {rl.TITLE}.", over, unit_nav=False,
+                   ctx={"unit": folder, "page": "index", "label": f"урок {n}"}, course=rl.COURSE)
+    for f, h in (("lesson.html", lesson), ("index.html", index)):
+        (d / f).write_text(h.replace("{V}", ver), encoding="utf-8")
+    return {"id": folder, "n": n, "title": m.TITLE, "url": f"/{folder}/", "block": block,
+            "pages": [{"id": "lesson", "title": "Урок", "url": f"/{folder}/lesson.html",
+                       "ex": [[i, k, lib.EXINFO[i]["let"], lib.EXINFO[i]["ins"]] for i, k in lib.REGISTRY.get(f"{folder}/lesson", [])]}]}
+
+
+def catalog(metas, rl_units=()):
+    """Каталог курсов для кабинетов: модули → страницы → задания (id, число полей, подпись)."""
     units = []
     for pkg, m in metas:
         pages = []
@@ -105,8 +134,13 @@ def catalog(metas):
             ex = [[i, n, lib.EXINFO[i]["let"], lib.EXINFO[i]["ins"]] for i, n in lib.REGISTRY.get(f"{pkg}/{mod}", [])]
             pages.append({"id": mod, "title": label, "url": f"/unit{m.N}/{fname}", "ex": ex})
         units.append({"id": f"unit{m.N}", "n": m.N, "title": m.TITLE, "url": f"/unit{m.N}/", "pages": pages})
-    return {"courses": [{"id": COURSE, "title": COURSE_TITLE, "units": units, "planned": 16, "cover": f"/assets/covers/{COURSE}.jpg",
-                         "level": "B1+ · Student’s Book"}]}
+    courses = [{"id": COURSE, "title": COURSE_TITLE, "units": units, "planned": 16, "cover": f"/assets/covers/{COURSE}.jpg",
+                "level": "B1+ · Student’s Book"}]
+    if rl_units:
+        rl = importlib.import_module("efrl")
+        courses.append({"id": rl.COURSE, "title": rl.TITLE, "units": list(rl_units), "cover": f"/assets/img/{rl_units[0]['id']}/poster.jpg",
+                        "level": rl.LEVEL, "about": rl.ABOUT, "unit_word": ["урок", "урока", "уроков"], "blocks": {str(k): v for k, v in rl.BLOCKS.items()}})
+    return {"courses": courses}
 
 
 def main():
@@ -135,11 +169,12 @@ def main():
     ver = hashlib.md5(b"".join((assets / f).read_bytes() for f in ("app.css", "app.js", "teacher.js", "student.js"))).hexdigest()[:8]
 
     metas = [(pkg, build_unit(pkg, ver)) for pkg in UNITS]
+    rl_units = [build_rl_lesson(*x, ver) for x in importlib.import_module("efrl").LESSONS] if not os.environ.get("EN_UNITS") else []
     (OUT / "index.html").write_text(layout("Lingvaden English — вход по коду",
                                            "Интерактивные курсы английского: вход для преподавателей и учеников по личному коду.",
                                            home(), root="", unit_nav=False, app="home")
                                     .replace("{V}", ver), encoding="utf-8")
-    cat = catalog(metas)
+    cat = catalog(metas, rl_units)
     (assets / "catalog.json").write_text(json.dumps(cat, ensure_ascii=False), encoding="utf-8")
     for path, (title, desc, body, site, scripts) in platform_pages.pages(cat).items():
         f = OUT / path

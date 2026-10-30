@@ -1,6 +1,6 @@
 <?php
 /**
- * Страницы курсов — только для вошедших (учитель или ученик). .htaccess направляет сюда /unitNN/…;
+ * Страницы курсов — только для вошедших (учитель или ученик). .htaccess направляет сюда /unitNN/… и /efrl-lNN/…;
  * без входа — на главную, где спрашивается код.
  */
 
@@ -8,7 +8,7 @@ declare(strict_types=1);
 require __DIR__ . '/_lib.php';
 
 $f = (string)($_GET['f'] ?? '');
-if (!preg_match('~^unit[0-9]{2}/(index|book|writing|theory|tests|workbook)\.html$~', $f)) {
+if (!preg_match('~^(unit[0-9]{2}/(index|book|writing|theory|tests|workbook)|[a-z]+-[a-z][0-9]{2}/(index|lesson))\.html$~', $f)) {
     http_response_code(404);
     exit;
 }

@@ -625,12 +625,16 @@ function visit_touch(PDO $pdo, string $role, int $userId, int $teacherId, int $s
 }
 
 /** Все данные ученика — по требованию учителя, админа или самого ученика (отзыв согласия). */
-/** Курс страницы или файла: /unitNN/… и media/sb|wb|video/… — Outcomes Intermediate; иначе первая часть пути — id курса. */
+/** Курс страницы или файла: /unitNN/… и media/sb|wb|video/… — Outcomes Intermediate; папка урока «<курс>-<урок>»
+ *  (efrl-l01/…) — курс по префиксу; иначе первая часть пути — id курса. */
 function path_course(string $f): string
 {
     $f = ltrim($f, '/');
     if (preg_match('~^(unit[0-9]{2}|sb|wb|video)(/|$)~', $f)) {
         return 'outcomes-int';
+    }
+    if (preg_match('~^([a-z]+)-[a-z][0-9]{2}(/|$)~', $f, $m)) {
+        return $m[1];
     }
     return (string)strtok($f, '/');
 }

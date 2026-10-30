@@ -392,7 +392,7 @@
     var one = CAT.courses.length === 1;
     var cards = CAT.courses.map(function (c) {
       return '<details class="course-card"' + (one ? " open" : "") + '><summary>' + (c.cover ? '<img class="cc-cover" src="' + esc(c.cover) + '" alt="" loading="lazy">' : '<span class="cc-ic">' + EN.icon("book") + "</span>") + '<span class="cc-t"><b>' + esc(c.title) +
-        "</b><small>" + c.units.length + " модулей · " + courseStat(c) + ' упражнений с проверкой</small></span><span class="cc-chev" aria-hidden="true"></span></summary>' +
+        "</b><small>" + EN.plural(c.units.length, c.unit_word || ["модуль", "модуля", "модулей"]) + " · " + courseStat(c) + ' упражнений с проверкой</small></span><span class="cc-chev" aria-hidden="true"></span></summary>' +
         unitTiles(c) + "</details>";
     }).join("");
     var c = CAT.courses.filter(function (x) { return x.id === ((sp && sp.course) || CAT.courses[0].id); })[0] || CAT.courses[0];

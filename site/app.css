@@ -777,3 +777,38 @@ body[data-app="home"] .foot-in{padding:8px 16px 10px}
 @media (max-width:980px){.gr{grid-template-columns:minmax(0,1fr)}.gr-side{position:static;max-height:220px}.gr-bar{top:100px}}
 .gr-hint{display:inline-block;margin:0 6px 0 4px;font-size:12.5px;font-weight:700;color:var(--good);background:var(--good-bg);border-radius:6px;padding:0 6px;vertical-align:middle}
 .order+.gr-hint{display:block;margin:4px 0 0;width:max-content}
+
+/* ---------- English for Real Life: страница урока ---------- */
+.rl-hero img{object-position:center 20%}
+.rl-hero .tags{font-size:14px;color:var(--ink2);margin:10px 0 16px}
+.sec h3.sub{font-size:17px;margin:22px 0 8px}
+.fig-poster img{max-width:300px}
+.fig-small img{max-width:220px}
+.pic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:10px 0}
+.pic{margin:0;text-align:center}
+.pic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px}
+.pic figcaption{margin-top:6px}
+.yt-box{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000}
+.yt-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt figcaption{margin:10px 0 0}
+.scene p{margin:4px 0;line-height:2}
+.sp{font-weight:700}.sp-elsa{color:var(--blue)}.sp-kristoff{color:#1E9A5B}.sp-olaf{color:#A23E9B}
+.voc-list{display:grid;gap:10px}
+.voc{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--card)}
+.voc-w{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.voc-w b{font-size:18px;color:var(--accent)}
+.voc-w span{color:var(--ink2)}
+.say{border:0;background:none;cursor:pointer;font-size:16px;padding:0 4px;margin-left:auto}
+.voc-note{font-size:14px;font-style:italic;color:var(--ink2);margin:6px 0 0}
+.voc-ex{margin:6px 0 0;padding-left:18px}
+.voc-ex li{margin:3px 0}
+.tr{color:var(--ink2);font-size:14px}
+.rule{border-left:4px solid var(--blue);background:var(--surface-2);border-radius:0 10px 10px 0;padding:8px 14px;margin:14px 0}
+.rule h4{margin:0 0 4px;color:var(--blue)}
+.form-tbl{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:14.5px}
+.form-tbl th,.form-tbl td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+.form-tbl thead th{background:var(--accent-2)}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.q{margin:10px 0}
+@media (max-width:760px){.cols2{grid-template-columns:1fr}.form-tbl{font-size:13px}.form-tbl th,.form-tbl td{padding:6px}}
+.page>.sec:first-child{border-top:0;padding-top:0;margin-top:0}

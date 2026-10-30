@@ -76,7 +76,7 @@
         }).join("");
         var pct = tot ? Math.round(100 * got / tot) : 0;
         h += '<details class="course-card"' + (one ? " open" : "") + '><summary>' + (c.cover ? '<img class="cc-cover" src="' + esc(c.cover) + '" alt="" loading="lazy">' : '<span class="cc-ic">' + EN.icon("book") + "</span>") + '<span class="cc-t"><b>' + esc(c.title) +
-          "</b><small>" + c.units.length + " модулей · пройдено " + pct + '%</small></span><span class="cc-chev" aria-hidden="true"></span></summary><div class="u-tiles">' + tiles + "</div></details>";
+          "</b><small>" + EN.plural(c.units.length, c.unit_word || ["модуль", "модуля", "модулей"]) + " · пройдено " + pct + '%</small></span><span class="cc-chev" aria-hidden="true"></span></summary><div class="u-tiles">' + tiles + "</div></details>";
       });
       v.innerHTML = h;
     });
