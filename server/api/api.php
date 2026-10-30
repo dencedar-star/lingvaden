@@ -5,7 +5,8 @@
  * Общие:   login (единый вход по 6-значному коду: по коду понятно, учитель это или ученик), me (GET), consent, logout,
  *          log (пакет событий, sendBeacon), profile (ФИО, e-mail, Telegram), avatar_set|avatar_del, avatar (GET)
  * Ученик:  s_code (вход по коду или ссылке), forget (удаляет свои данные), s_hw_list|s_hw (GET), s_hw_submit
- * Учитель: t_data, t_student_add|update|delete|relink|mail, t_space_add|update|delete, t_member, t_student, t_review,
+ * Учитель: t_data, t_student_add|update|delete|relink|mail, t_course (открыть/закрыть курс ученику или классу),
+ *          t_space_add|update|delete, t_member, t_student, t_review,
  *          t_hw_add|t_hw_archive, t_hw_list|t_hw_result (GET)
  */
 
@@ -183,7 +184,8 @@ case 'me':
         $hw->execute([(int)$s['id']]);
         $out['student'] = ['id' => (int)$s['id'], 'name' => $s['name'], 'teacher' => $s['teacher_name'],
             'consent' => consent_missing($pdo, 'student', (int)$s['id']), 'email' => $s['email'], 'telegram' => $s['telegram'],
-            'code' => $s['code'], 'avatar' => avatar_url('student', $s), 'hw_open' => (int)$hw->fetchColumn()];
+            'code' => $s['code'], 'avatar' => avatar_url('student', $s), 'hw_open' => (int)$hw->fetchColumn(),
+            'courses' => student_courses($pdo, (int)$s['id'])];
         if (!empty($_GET['state'])) {
             // state=all — все курсы (id заданий уникальны), иначе — один курс
             $course = preg_match($ID, (string)$_GET['state']) ? (string)$_GET['state'] : '';
@@ -561,7 +563,14 @@ case 't_data':
         $r['avatar'] = avatar_url('student', $r);
         unset($r['token'], $r['avatar_at']);
         $r['spaces'] = [];
+        $r['courses'] = [];
         $students[$r['id']] = $r;
+    }
+    $st = $pdo->prepare('SELECT c.student_id, c.course FROM en_student_course c JOIN en_student s ON s.id = c.student_id
+                         WHERE s.teacher_id = ? AND c.revoked_at IS NULL ORDER BY c.granted_at');
+    $st->execute([$tid]);
+    foreach ($st as $r) {
+        $students[(int)$r['student_id']]['courses'][] = $r['course'];
     }
     $st = $pdo->prepare('SELECT id, name, kind, course, sort, created_at FROM en_space WHERE teacher_id = ? ORDER BY sort, id');
     $st->execute([$tid]);
@@ -656,6 +665,35 @@ case 't_student_relink':
     $pdo->prepare("DELETE FROM en_session WHERE role = 'student' AND user_id = ?")->execute([$s['id']]);
     tlog($pdo, $t, 'student_relink', ['student' => (int)$s['id']]);
     json_out(['ok' => true]);
+
+case 't_course':   // открыть (on) или закрыть курс ученику (id) или всем ученикам класса (space)
+    $t = need_teacher($pdo);
+    $b = body();
+    $course = preg_match($ID, (string)($b['course'] ?? '')) ? (string)$b['course'] : '';
+    if ($course === '') {
+        fail('course');
+    }
+    if (!empty($b['space'])) {
+        $sp = own_space($pdo, $t, $b['space']);
+        $st = $pdo->prepare('SELECT student_id FROM en_space_member WHERE space_id = ?');
+        $st->execute([(int)$sp['id']]);
+        $ids = array_map('intval', $st->fetchAll(PDO::FETCH_COLUMN));
+    } else {
+        $ids = [(int)own_student($pdo, $t, $b['id'] ?? 0)['id']];
+    }
+    $on = !empty($b['on']);
+    foreach ($ids as $sid) {
+        if ($on) {
+            $pdo->prepare('INSERT INTO en_student_course (student_id, course, granted_at) VALUES (?, ?, ?)
+                           ON DUPLICATE KEY UPDATE granted_at = IF(revoked_at IS NULL, granted_at, VALUES(granted_at)), revoked_at = NULL')
+                ->execute([$sid, $course, now()]);
+        } else {
+            $pdo->prepare('UPDATE en_student_course SET revoked_at = ? WHERE student_id = ? AND course = ? AND revoked_at IS NULL')
+                ->execute([now(), $sid, $course]);
+        }
+    }
+    tlog($pdo, $t, $on ? 'course_open' : 'course_close', ['course' => $course, 'students' => count($ids)]);
+    json_out(['ok' => true, 'n' => count($ids)]);
 
 case 't_student_mail':
     $t = need_teacher($pdo);

@@ -38,7 +38,7 @@
   var ERR = { name: "Укажите имя.", email: "E-mail указан с ошибкой.", noemail: "У ученика нет e-mail — укажите его.",
     mail: "Письмо не отправилось. Попробуйте позже или отправьте в Telegram.", maillimit: "Слишком много писем за сутки.",
     limit: "Достигнут предел учеников.", notfound: "Не найдено — обновите страницу.", title: "Назовите домашнюю работу.",
-    items: "Выберите хотя бы одно задание.", nobody: "Выберите учеников или класс (в классе должны быть ученики)." };
+    items: "Выберите хотя бы одно задание.", course: "Выберите курс.", nobody: "Выберите учеников или класс (в классе должны быть ученики)." };
   function act(a, data, okMsg) {
     if (busy) return Promise.resolve({ ok: false });
     busy = true;
@@ -176,7 +176,7 @@
     return '<div class="st-card" data-sid="' + s.id + '">' + EN.avatar(s.name, s.avatar) +
       '<div class="st-main">' + online(s) + '<a class="st-name" href="#s=' + s.id + '">' + esc(s.name) + "</a>" +
       '<span class="st-mail">код <b class="code">' + esc(s.code || "—") + "</b>" + (s.email ? " · " + esc(s.email) : "") + (s.telegram ? " · " + esc(s.telegram) : "") + "</span>" +
-      '<div class="st-meta">' + status(s) + (s.total_seconds ? ' <span class="tag">⏱ ' + dur(s.total_seconds) + "</span>" : "") +
+      '<div class="st-meta">' + status(s) + (s.courses && !s.courses.length ? ' <span class="tag off" title="Откройте курс на странице ученика">курс не открыт</span>' : "") + (s.total_seconds ? ' <span class="tag">⏱ ' + dur(s.total_seconds) + "</span>" : "") +
       s.spaces.map(function (id) { var sp = spaceById(id); return sp ? ' <span class="tag sp">' + esc(sp.name) + "</span>" : ""; }).join("") + "</div>" +
       '<div class="mini-bar" title="Прогресс по курсу"><i class="' + pctCls(p) + '" style="width:' + p + '%"></i></div></div>' +
       '<div class="st-acts">' + shareBtns(s) + '<span class="ic-btns"><button class="ic-btn" type="button" data-ed="' + s.id + '" title="Изменить" aria-label="Изменить">' + EN.icon("edit") +
@@ -339,11 +339,23 @@
       '<label>Тип<select name="kind">' + Object.keys(KIND).map(function (k) { return '<option value="' + k + '"' + (k === p.kind ? " selected" : "") + ">" + KIND[k] + "</option>"; }).join("") + "</select></label>" +
       '<label>Курс<select name="course">' + courseOptions(p.course || "") + "</select></label>" +
       '<div class="modal-btns"><button class="btn" type="submit">Сохранить</button><button class="btn danger-o" type="button" data-del>Удалить класс</button></div>' +
-      '<p class="note-s">Удаление класса не удаляет учеников и их результаты.</p></form>');
+      '<p class="note-s">Удаление класса не удаляет учеников и их результаты.</p></form>' +
+      '<form id="sp-co" class="stack"><h3>Доступ к курсу для всех в классе</h3><label>Курс<select name="course">' +
+      CAT.courses.map(function (c) { return '<option value="' + esc(c.id) + '"' + (c.id === p.course ? " selected" : "") + ">" + esc(c.title) + "</option>"; }).join("") +
+      '</select></label><div class="modal-btns"><button class="btn" type="button" data-on="1">Открыть всем</button><button class="btn ghost" type="button" data-on="0">Закрыть всем</button></div>' +
+      '<p class="note-s">Учеников в классе: ' + p.members.length + ". Тем, кто попадёт в класс позже, курс нужно открыть отдельно.</p></form>");
     var f = m.box.querySelector("#sp-ed");
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       act("t_space_update", { id: id, name: f.name.value, kind: f.kind.value, course: f.course.value }, "Сохранено").then(function (r) { if (r.ok) { m.close(); refresh(); } });
+    });
+    var fc = m.box.querySelector("#sp-co");
+    fc.querySelectorAll("[data-on]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var on = b.getAttribute("data-on") === "1";
+        if (!p.members.length) { toast("В классе пока нет учеников.", true); return; }
+        act("t_course", { space: id, course: fc.course.value, on: on ? 1 : 0 }, (on ? "Курс открыт" : "Курс закрыт") + " · учеников: " + p.members.length).then(function (r) { if (r.ok) refresh(); });
+      });
     });
     f.querySelector("[data-del]").addEventListener("click", function (e) {
       var b = e.target;
@@ -925,6 +937,10 @@
         '<p class="rv-state">' + (s.online ? '<span class="tag live">● ученик онлайн</span> ' : '<span class="tag">не в сети</span> ') +
         (s.live_path ? "последнее место: " + esc(s.live_path.replace(/^\//, "")) : "") + "</p></div>" +
         '<div class="row-btns"><a class="btn" href="' + esc(openUrl) + '">Открыть разбор</a><a class="btn ghost" href="' + esc(followUrl) + '">Следовать за учеником онлайн</a></div></section>';
+      // курсы ученика: видит только отмеченные
+      h += '<section class="page"><h2>Курсы</h2><p class="note-s">Ученик видит только отмеченные курсы.</p><div class="sp-toggles">' + CAT.courses.map(function (c) {
+        return '<label class="sp-tg"><input type="checkbox" data-co="' + esc(c.id) + '"' + ((s.courses || []).indexOf(c.id) >= 0 ? " checked" : "") + "> " + esc(c.title) + "</label>";
+      }).join("") + "</div></section>";
       // пространства ученика: можно отметить несколько
       h += '<section class="page"><h2>Классы</h2>' + (D.spaces.length ? '<div class="sp-toggles">' + D.spaces.map(function (p) {
         return '<label class="sp-tg"><input type="checkbox" data-sp="' + p.id + '"' + (s.spaces.indexOf(p.id) >= 0 ? " checked" : "") + "> " +
@@ -987,6 +1003,12 @@
         '<button class="btn danger-o" type="button" data-del>Удалить ученика</button></section>';
       v.innerHTML = h;
       bindSend(v);
+      $$("[data-co]", v).forEach(function (c) {
+        c.addEventListener("change", function () {
+          act("t_course", { id: id, course: c.getAttribute("data-co"), on: c.checked ? 1 : 0 }, c.checked ? "Курс открыт" : "Курс закрыт")
+            .then(function (x) { if (!x.ok) c.checked = !c.checked; else load(); });
+        });
+      });
       $$("[data-sp]", v).forEach(function (c) {
         c.addEventListener("change", function () {
           act("t_member", { space: +c.getAttribute("data-sp"), student: id, on: c.checked ? 1 : 0 }, c.checked ? "Добавлен(а) в класс" : "Убран(а) из класса")

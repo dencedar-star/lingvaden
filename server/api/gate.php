@@ -15,13 +15,23 @@ if (!preg_match('~^unit[0-9]{2}/(index|book|writing|theory|tests|workbook)\.html
 $path = dirname(__DIR__) . '/' . $f;
 try {
     $pdo = en_db();
-    $ok = current_user($pdo, 'teacher') || current_user($pdo, 'student');
+    $ok = (bool)current_user($pdo, 'teacher');
+    $s = $ok ? null : current_user($pdo, 'student');
+    $ok = $ok || $s;
+    // ученику — только открытые ему курсы
+    $denied = $s && !student_can($pdo, (int)$s['id'], path_course($f));
 } catch (Throwable $e) {
     $ok = false;
+    $denied = false;
 }
 if (!$ok) {
     header('Cache-Control: no-store');
     header('Location: /?next=' . rawurlencode('/' . preg_replace('~index\.html$~', '', $f)), true, 302);
+    exit;
+}
+if ($denied) {
+    header('Cache-Control: no-store');
+    header('Location: /me/#courses', true, 302);
     exit;
 }
 if (!is_file($path)) {
