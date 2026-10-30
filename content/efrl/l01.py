@@ -1,5 +1,6 @@
 """English for Real Life · Блок 1 · Урок 1: Anna's birthday cake (Frozen Fever). Перенесён из ProgressMe."""
-from lib import G, S, EX, OL, SEC, IMG, REVEAL, DLG
+import re
+from lib import G, S, EX, OL, SEC, IMG, REVEAL
 
 N = "1.1"
 TITLE = "Anna's birthday cake"
@@ -225,7 +226,46 @@ def build():
              'играть</b> на гитаре. Это его хобби или навык в жизни вообще. Сейчас гитара может просто висеть на стене.<br>'
              '<b>b) Mark is playing the guitar.</b><br><b>Значение:</b> Марк играет на гитаре <b>прямо сейчас, в эту самую '
              'секунду</b>. Вы слышите музыку из его комнаты.</p>')
-    name = [("Everybody knows that Elsa <b>sings</b> beautifully.", PS), ("Look! Olaf <b>is eating</b> the cake! Stop him!", PC),
+    sort2 = [("Everybody knows that Elsa sings beautifully.", PS), ("Hey! Olaf is eating the cake! Stop him!", PC),
+             ("Kristoff checks the list of guests every hour.", PS),
+             ("Anna is busy at the moment. She is helping Kristoff with his homework.", PC),
+             ("Elsa uses her powers to create snow.", PS), ("Elsa is practicing her ice powers this week.", PC),
+             ("Anna drinks hot chocolate on Saturdays.", PS), ("Elsa is decorating the statue at the moment.", PC)]
+    # выбор формы: [вариант/вариант] — правильный помечен *
+    choose = ["Look outside! Olaf [builds/is building*] a snowman.",
+              "Kristoff usually [is buying/buys*] supplies from the same shop.",
+              "Sven [helps/is helping*] Kristoff with the birthday sign today.",
+              "[Does/Is*] Sven [wait/waiting*] patiently for Kristoff now?",
+              "Elsa [transforms/is transforming*] the ice sculpture at the moment.",
+              "[Does*/Is] Olaf [love*/loving] warm hugs?",
+              "Kristoff [isn't checking/doesn't check*] the boat every morning.",
+              "Anna [sings/is singing*] a new song now.",
+              "Elsa [doesn't like*/isn't liking] hot weather."]
+    # глагол в нужной форме: [подсказка/ответ|ответ]; пустая подсказка — вспомогательный глагол
+    verbs = ["Elsa always [use/uses] her powers to make snow.", "Olaf [like/likes] summer.",
+             "Anna [go/goes] to the market every Saturday.", "Kristoff [not enjoy/doesn't enjoy|does not enjoy] cold weather.",
+             "Elsa [prepare/is preparing] for a big winter festival now.",
+             "The princesses and Olaf [sit/are sitting] near the fire at the moment.",
+             "Anna [help/is helping] her sister with the decorations currently.",
+             "Kristoff [carry/is carrying] a large bag of supplies today.",
+             "Sometimes, Elsa [not use/doesn't use|does not use] her powers to avoid revealing herself.",
+             "[/Does] Olaf [understand/understand] why everyone loves summer?",
+             "[/Do] Elsa and Anna [visit/visit] their friends often?",
+             "[/Are] Kristoff and Sven [work/working] together right now?",
+             "Elsa [not/doesn't|does not] usually [sing/sing] in public.",
+             "[/Is] Olaf [talk/talking] to a new snow friend today?",
+             "Anna never [come/comes] late.", "[/Are] they [enjoy/enjoying] this party?"]
+
+    def pick(m):
+        opts = m.group(1).split("/")
+        return S(next(o[:-1] for o in opts if o.endswith("*")), [o.rstrip("*") for o in opts])
+
+    def gap(m):
+        hint, ans = m.group(1).split("/", 1)
+        g = G(ans)
+        return g.replace("<input ", f'<input placeholder="{hint}" ', 1) if hint else g
+
+    name = [("Everybody knows that Elsa <b>sings</b> beautifully.", PS), ("Hey! Olaf <b>is eating</b> the cake! Stop him!", PC),
             ("Kristoff <b>checks</b> the list of guests every hour.", PS),
             ("Anna is busy at the moment. She <b>is helping</b> Kristoff with his homework.", PC),
             ("Elsa <b>uses</b> her powers to create snow.", PS), ("Elsa <b>is practicing</b> her ice powers this week.", PC),
@@ -235,18 +275,24 @@ def build():
                      OL([f"{s} {S(a, TENSES)}" for s, a in sort1])) +
                   theory +
                   '<h3 class="sub">Present Simple vs Present Continuous: form</h3>' + form +
-                  EX("rl1-g2", "2", "Explain the difference between sentences a and b in each pair.",
+                  EX("rl1-g5", "2", "Sort out the sentences in the correct category.",
+                     OL([f"{s} {S(a, TENSES)}" for s, a in sort2])) +
+                  EX("rl1-g6", "3", "Choose the correct form from the box.",
+                     OL([re.sub(r"\[([^\]]+)\]", pick, x) for x in choose])) +
+                  EX("rl1-g2", "4", "Explain the difference between sentences a and b in each pair.",
                      '<p>a) I\'m doing my homework after school.<br>b) I do my homework after school.</p>'
                      '<p>a) Joe is learning to drive.<br>b) Many teenagers learn to drive when they are seventeen.</p>'
-                     '<p>a) Mark plays the guitar.<br>b) Mark is playing the guitar.</p>' + SAY + writer("rl1-g2") +
-                     REVEAL(pairs, "Разбор пар предложений")) +
+                     '<p>a) Mark plays the guitar.<br>b) Mark is playing the guitar.</p>' + SAY + writer("rl1-g2")) +
+                  EX("rl1-g7", "5", "Put the verb in the Present Simple or Present Continuous form.",
+                     OL([re.sub(r"\[([^\]]*)\]", gap, x) for x in verbs])) +
+                  REVEAL(pairs, "Разбор пар предложений (к заданию 4)") +
                   IMG(IMG_DIR + "courtyard.jpg", "Happy Birthday — the courtyard") +
-                  EX("rl1-g3", "3", "Talk about Elsa and Anna. Make up affirmative (+), negative (−) and question (?) sentences "
+                  EX("rl1-g3", "6", "Talk about Elsa and Anna. Make up affirmative (+), negative (−) and question (?) sentences "
                      "in Present Simple and Present Continuous.",
                      '<div class="cols2"><div><h4>Present Simple</h4>' + writer("rl1-g3-ps", "+ Elsa …\n− Anna …\n? Does …", 4) +
                      '</div><div><h4>Present Continuous</h4>' + writer("rl1-g3-pc", "+ Elsa is …\n− Anna isn't …\n? Is …", 4) +
                      "</div></div>") +
-                  EX("rl1-g4", "4", "Read the sentences, name the tense and explain it.",
+                  EX("rl1-g4", "7", "Read the sentences, name the tense and explain it.",
                      OL([f"{s} {S(a, TENSES)}" for s, a in name]) + SAY), id="grammar")
 
     # ---------- Speaking ----------
