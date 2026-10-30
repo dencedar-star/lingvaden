@@ -143,14 +143,14 @@ def build():
         for f, n in pics) + "</div>"
     warm = SEC("Warm up", "",
                EX("rl1-w1", "1.1", "Do you know this animated film? Do you like it? Why/why not?",
-                  IMG(IMG_DIR + "poster.jpg", "Frozen II", cls="fig-poster") + SAY + writer("rl1-w1", "Yes, I know it. I like it because …")) +
+                  IMG(IMG_DIR + "poster.jpg", "Frozen II", cls="fig-poster") + SAY + writer("rl1-w1")) +
                EX("rl1-w2", "1.2", "Match the words with the pictures.", match), id="warm-up")
 
     # ---------- Video ----------
     vid = SEC("Video. Anna's birthday cake", "",
               EX("rl1-v1", "1.1", "Watch the video and answer the questions.",
                  video() + OL(["What is Elsa doing?", "What is Kristoff doing?", "What is Olaf doing?"]) + SAY +
-                 writer("rl1-v1", "Elsa is …\nKristoff is …\nOlaf is …")), id="video")
+                 writer("rl1-v1")), id="video")
 
     # ---------- Vocabulary ----------
     rows = ""
@@ -310,7 +310,7 @@ def build():
                 EX("rl1-s2", "1.2", "Answer the questions.",
                    "".join(f'<p class="q"><b>{h}</b><br>{q}</p>' for h, q in qs) + SAY + writer("rl1-s2", "", 5)) +
                 EX("rl1-s3", "1.3", "Make up your own sentences with these phrases: <i>to keep an eye on</i>, <i>check this out</i>.",
-                   writer("rl1-s3", "Can you keep an eye on …\nCheck this out, …", 3) +
+                   writer("rl1-s3", "", 3) +
                    REVEAL("<b>To keep an eye on</b><br>Can you <b>keep an eye on</b> my bag while I go to the restroom?<br><br>"
                           "<b>Check this out</b><br>Hey, <b>check this out</b>! Did you see the new design I made? Can you check this "
                           "out and tell me what you think?", "Possible answers")), id="speaking")
