@@ -8,6 +8,7 @@ LEAD = ("Сцена из мультфильма «Frozen Fever»: Эльза у�
         "повторяем Present Simple и Present Continuous и говорим.")
 TOPICS = "Video · Vocabulary · Listening · Present Simple vs Present Continuous · Speaking"
 IMG_DIR = "../assets/img/efrl-l01/"
+VK = "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239140&hash=8d111684590fc355&hd=3"   # основной плеер: открывается у всех
 YOUTUBE = "Zfj1ACkjAJc"
 MAILRU = "https://cloud.mail.ru/public/bz53/yrnwdqu1D"
 
@@ -120,11 +121,12 @@ SAY = '<p class="note-s">🎙 Ответьте вслух на занятии и
 
 
 def video():
-    return (f'<figure class="vid yt"><div class="yt-box"><iframe src="https://www.youtube-nocookie.com/embed/{YOUTUBE}?rel=0" '
+    return (f'<figure class="vid yt"><div class="yt-box"><iframe src="{VK.replace("&", "&amp;")}" '
             'title="Elsa Decorates for Anna\'s Birthday Surprise | Frozen Fever" loading="lazy" allowfullscreen '
-            'allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe></div>'
+            'allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock"></iframe></div>'
             '<figcaption>Elsa Decorates for Anna\'s Birthday Surprise | Frozen Fever (Disney Kids). '
-            f'Не открывается YouTube? <a href="{MAILRU}" target="_blank" rel="noopener">Смотреть на Облаке Mail.ru ↗</a></figcaption></figure>')
+            f'Не открывается? Смотреть на <a href="https://www.youtube.com/watch?v={YOUTUBE}" target="_blank" rel="noopener">YouTube ↗</a> '
+            f'или на <a href="{MAILRU}" target="_blank" rel="noopener">Облаке Mail.ru ↗</a></figcaption></figure>')
 
 
 def dialogue(lines):
