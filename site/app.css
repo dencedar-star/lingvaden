@@ -812,3 +812,12 @@ body[data-app="home"] .foot-in{padding:8px 16px 10px}
 .q{margin:10px 0}
 @media (max-width:760px){.cols2{grid-template-columns:1fr}.form-tbl{font-size:13px}.form-tbl th,.form-tbl td{padding:6px}}
 .page>.sec:first-child{border-top:0;padding-top:0;margin-top:0}
+/* голосовой ответ */
+.voice{margin:10px 0;padding:10px 12px;border:1px dashed var(--line);border-radius:12px;background:var(--surface-2)}
+.voice:empty{display:none}
+.vc-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.vc-time{font-variant-numeric:tabular-nums;font-weight:700;color:var(--bad)}
+.vc-on .vc-time::before{content:"● ";animation:vcblink 1s infinite}
+@keyframes vcblink{50%{opacity:.2}}
+.vc-msg{font-size:14px;color:var(--ink2)}
+.vc-play{margin-top:8px}.vc-play audio{width:100%;max-width:480px}

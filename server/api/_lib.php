@@ -13,18 +13,22 @@ ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 date_default_timezone_set('Europe/Moscow');
 
-const EN_SCHEMA_VERSION = 5;
+const EN_SCHEMA_VERSION = 6;
 const EN_DOCS = [
     // документ => версия; при изменении текста документа поднять версию — согласие спросят заново
     'terms' => '1.2',
-    'privacy' => '1.2',
+    'privacy' => '1.3',
     'cookies' => '1.2',
-    'teacher_terms' => '1.2',
-    'student_consent' => '1.2',
+    'teacher_terms' => '1.3',
+    'student_consent' => '1.3',
 ];
 const EN_STUDENT_DAYS = 180;   // срок жизни входа ученика (cookie)
 const EN_TEACHER_DAYS = 30;    // срок жизни входа учителя
 const EN_EVENT_KEEP_DAYS = 730; // журнал событий — 2 года
+const EN_VOICE_COURSES = ['efrl']; // курсы, где ученик может записать ответ голосом
+const EN_VOICE_KEEP_DAYS = 90;     // голосовые ответы хранятся 3 месяца, затем файл удаляется
+const EN_VOICE_MAX_SEC = 200;      // запись не длиннее (в заданиях — до 3 минут)
+const EN_VOICE_MAX_BYTES = 8000000;
 
 function en_config(): array
 {
@@ -339,6 +343,23 @@ function en_schema(PDO $pdo): void
         granted_at DATETIME NOT NULL,
         revoked_at DATETIME NULL,
         PRIMARY KEY (student_id, course)
+    )$T");
+    // v6 — голосовые ответы: файл лежит вне www (voice_dir), в базе — сведения о нём; один ответ на поле (wid)
+    $pdo->exec("CREATE TABLE IF NOT EXISTS en_voice (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        student_id INT UNSIGNED NOT NULL,
+        course VARCHAR(40) NOT NULL,
+        unit VARCHAR(40) NOT NULL,
+        wid VARCHAR(60) NOT NULL,
+        path VARCHAR(160) NOT NULL,
+        file VARCHAR(80) NULL,
+        mime VARCHAR(40) NOT NULL,
+        bytes INT UNSIGNED NOT NULL DEFAULT 0,
+        seconds SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+        created_at DATETIME NOT NULL,
+        expired_at DATETIME NULL,
+        UNIQUE KEY uq_field (student_id, course, wid),
+        KEY idx_age (file, created_at)
     )$T");
     $pdo->prepare("REPLACE INTO en_meta (k, v) VALUES ('schema', ?)")->execute([(string)EN_SCHEMA_VERSION]);
 }
@@ -657,10 +678,100 @@ function student_can(PDO $pdo, int $sid, string $course): bool
     return (bool)$st->fetchColumn();
 }
 
+/** Папка голосовых ответов — вне www (рядом с конфигом), чтобы файлы нельзя было открыть по прямой ссылке. */
+function voice_dir(): string
+{
+    $c = en_config();
+    $d = !empty($c['voice_dir']) ? rtrim((string)$c['voice_dir'], '/') : dirname(__DIR__, 2) . '/english_voice';
+    if (!is_dir($d) && !@mkdir($d, 0700, true)) {
+        throw new RuntimeException('voice_dir');
+    }
+    return $d;
+}
+
+/** Удалить файлы голосовых ответов старше EN_VOICE_KEEP_DAYS; в базе остаётся отметка expired_at. */
+function voice_expire(PDO $pdo): void
+{
+    $st = $pdo->prepare('SELECT id, file FROM en_voice WHERE file IS NOT NULL AND created_at < ? LIMIT 50');
+    $st->execute([date('Y-m-d H:i:s', time() - EN_VOICE_KEEP_DAYS * 86400)]);
+    foreach ($st->fetchAll() as $r) {
+        @unlink(voice_dir() . '/' . $r['file']);
+        $pdo->prepare('UPDATE en_voice SET file = NULL, expired_at = ? WHERE id = ?')->execute([now(), (int)$r['id']]);
+    }
+}
+
+/** Голосовые ответы ученика: wid => {id, sec, at}; $where — дополнительное условие по курсу/модулю. */
+function student_voices(PDO $pdo, int $sid, string $where = '', array $p = []): array
+{
+    $st = $pdo->prepare('SELECT id, wid, seconds, created_at FROM en_voice WHERE student_id = ? AND file IS NOT NULL' . $where);
+    $st->execute(array_merge([$sid], $p));
+    $out = [];
+    foreach ($st as $r) {
+        $out[$r['wid']] = ['id' => (int)$r['id'], 'sec' => (int)$r['seconds'], 'at' => $r['created_at']];
+    }
+    return $out;
+}
+
+/** Отдать файл с поддержкой Range (перемотка; Safari без неё не играет аудио). */
+function send_file(string $path, string $mime, string $cache = 'private, max-age=604800'): void
+{
+    $size = filesize($path);
+    $start = 0;
+    $end = $size - 1;
+    header('Content-Type: ' . $mime);
+    header('Accept-Ranges: bytes');
+    header('Cache-Control: ' . $cache);
+    header('X-Robots-Tag: noindex, nofollow');
+    if (preg_match('~^bytes=(\d*)-(\d*)$~', (string)($_SERVER['HTTP_RANGE'] ?? ''), $r)) {
+        if ($r[1] === '' && $r[2] !== '') {
+            $start = max(0, $size - (int)$r[2]);
+        } else {
+            $start = (int)$r[1];
+            if ($r[2] !== '') {
+                $end = min((int)$r[2], $size - 1);
+            }
+        }
+        if ($start > $end || $start >= $size) {
+            http_response_code(416);
+            header("Content-Range: bytes */$size");
+            exit;
+        }
+        http_response_code(206);
+        header("Content-Range: bytes $start-$end/$size");
+    }
+    $len = $end - $start + 1;
+    header('Content-Length: ' . $len);
+    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'HEAD') {
+        exit;
+    }
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+    $fp = fopen($path, 'rb');
+    fseek($fp, $start);
+    while ($len > 0 && !feof($fp) && !connection_aborted()) {
+        $chunk = fread($fp, (int)min(262144, $len));
+        echo $chunk;
+        flush();
+        $len -= strlen($chunk);
+    }
+    fclose($fp);
+    exit;
+}
+
 function delete_student_data(PDO $pdo, int $sid): void
 {
+    // файлы голосовых ответов — до удаления строк
+    $st = $pdo->prepare('SELECT file FROM en_voice WHERE student_id = ? AND file IS NOT NULL');
+    $st->execute([$sid]);
+    foreach ($st->fetchAll(PDO::FETCH_COLUMN) as $f) {
+        try {
+            @unlink(voice_dir() . '/' . $f);
+        } catch (Throwable $e) {
+        }
+    }
     foreach (['en_space_member' => 'student_id', 'en_attempt' => 'student_id', 'en_progress' => 'student_id',
-              'en_writing' => 'student_id', 'en_hw_student' => 'student_id', 'en_student_course' => 'student_id'] as $t => $col) {
+              'en_writing' => 'student_id', 'en_hw_student' => 'student_id', 'en_student_course' => 'student_id', 'en_voice' => 'student_id'] as $t => $col) {
         $pdo->prepare("DELETE FROM $t WHERE $col = ?")->execute([$sid]);
     }
     $pdo->prepare("DELETE FROM en_session WHERE role = 'student' AND user_id = ?")->execute([$sid]);

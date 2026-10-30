@@ -1,6 +1,6 @@
 """English for Real Life · Блок 1 · Урок 1: Anna's birthday cake (Frozen Fever). Перенесён из ProgressMe."""
 import re
-from lib import G, S, EX, OL, SEC, IMG, REVEAL
+from lib import G, S, EX, OL, SEC, IMG, REVEAL, VOICE
 
 N = "1.1"
 TITLE = "Anna's birthday cake"
@@ -118,7 +118,7 @@ def writer(wid, placeholder="", rows=4):
             '<div class="cnt"></div></div>')
 
 
-SAY = '<p class="note-s">🎙 Ответьте вслух на занятии или запишите ответ здесь — преподаватель его увидит.</p>'
+SAY = '<p class="note-s">🎙 Запишите ответ голосом или напишите его — преподаватель увидит и услышит.</p>'
 
 
 def video():
@@ -149,13 +149,13 @@ def build():
         for f, n in pics) + "</div>"
     warm = SEC("Warm up", "",
                EX("rl1-w1", "1.1", "Do you know this animated film? Do you like it? Why/why not?",
-                  IMG(IMG_DIR + "poster.jpg", "Frozen II", cls="fig-poster") + SAY + writer("rl1-w1")) +
+                  IMG(IMG_DIR + "poster.jpg", "Frozen II", cls="fig-poster") + SAY + VOICE("rl1-w1-v", 90) + writer("rl1-w1")) +
                EX("rl1-w2", "1.2", "Match the words with the pictures.", match), id="warm-up")
 
     # ---------- Video ----------
     vid = SEC("Video. Anna's birthday cake", "",
               EX("rl1-v1", "1.1", "Watch the video and answer the questions.",
-                 video() + OL(["What is Elsa doing?", "What is Kristoff doing?", "What is Olaf doing?"]) + SAY +
+                 video() + OL(["What is Elsa doing?", "What is Kristoff doing?", "What is Olaf doing?"]) + SAY + VOICE("rl1-v1-v") +
                  writer("rl1-v1")), id="video")
 
     # ---------- Vocabulary ----------
@@ -290,7 +290,7 @@ def build():
                   EX("rl1-g2", "4", "Explain the difference between sentences a and b in each pair.",
                      '<p>a) I\'m doing my homework after school.<br>b) I do my homework after school.</p>'
                      '<p>a) Joe is learning to drive.<br>b) Many teenagers learn to drive when they are seventeen.</p>'
-                     '<p>a) Mark plays the guitar.<br>b) Mark is playing the guitar.</p>' + SAY + writer("rl1-g2")) +
+                     '<p>a) Mark plays the guitar.<br>b) Mark is playing the guitar.</p>' + SAY + VOICE("rl1-g2-v") + writer("rl1-g2")) +
                   EX("rl1-g7", "5", "Put the verb in the Present Simple or Present Continuous form.",
                      OL([re.sub(r"\[([^\]]*)\]", gap, x) for x in verbs])) +
                   REVEAL(pairs, "Разбор пар предложений (к заданию 4)") +
@@ -301,7 +301,8 @@ def build():
                      '</div><div><h4>Present Continuous</h4>' + writer("rl1-g3-pc", "", 4) +
                      "</div></div>") +
                   EX("rl1-g4", "7", "Read the sentences, name the tense and explain it.",
-                     OL([f"{s} {S(a, TENSES)}" for s, a in name]) + SAY), id="grammar")
+                     OL([f"{s} {S(a, TENSES)}" for s, a in name]) +
+                     '<p class="note-s">🎙 Объясните голосом, почему здесь это время.</p>' + VOICE("rl1-g4-v")), id="grammar")
 
     # ---------- Speaking ----------
     qs = [("Stiff", "How do you relax your <b>stiff</b> muscles after a long day?"),
@@ -314,7 +315,7 @@ def build():
                    audio() +
                    dialogue(SCENE)) +
                 EX("rl1-s2", "1.2", "Answer the questions.",
-                   "".join(f'<p class="q"><b>{h}</b><br>{q}</p>' for h, q in qs) + SAY + writer("rl1-s2", "", 5)) +
+                   "".join(f'<p class="q"><b>{h}</b><br>{q}</p>' for h, q in qs) + SAY + VOICE("rl1-s2-v") + writer("rl1-s2", "", 5)) +
                 EX("rl1-s3", "1.3", "Make up your own sentences with these phrases: <i>to keep an eye on</i>, <i>check this out</i>.",
                    writer("rl1-s3", "", 3) +
                    REVEAL("<b>To keep an eye on</b><br>Can you <b>keep an eye on</b> my bag while I go to the restroom?<br><br>"

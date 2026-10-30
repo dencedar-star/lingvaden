@@ -419,6 +419,71 @@
     writers.push(w);
   });
 
+  /* ---------- голосовой ответ (только в курсах, где сервер разрешает запись): ученик записывает, учитель слушает ---------- */
+  var voices = [];
+  function mmss(t) { t = Math.round(t); return Math.floor(t / 60) + ":" + ("0" + t % 60).slice(-2); }
+  $$(".voice").forEach(function (v) {
+    var wid = v.getAttribute("data-id"), max = +v.getAttribute("data-max") || 180;
+    v.innerHTML = '<div class="vc-row"><button type="button" class="btn sm vc-rec" hidden>🎙 Записать ответ</button>' +
+      '<button type="button" class="btn sm danger-o vc-stop" hidden>■ Стоп</button><span class="vc-time" hidden></span>' +
+      '<span class="vc-msg"></span></div><div class="vc-play" hidden><audio controls preload="none"></audio></div>';
+    var rec = v.querySelector(".vc-rec"), stop = v.querySelector(".vc-stop"), time = v.querySelector(".vc-time"),
+      msg = v.querySelector(".vc-msg"), play = v.querySelector(".vc-play"), audio = play.querySelector("audio");
+    function show(x) {   // x — {id, sec, at} с сервера или null
+      play.hidden = !x;
+      if (x) audio.src = API + "voice&id=" + x.id + "&v=" + encodeURIComponent(x.at || "");
+      v.classList.toggle("rv-none", !x);
+      return x;
+    }
+    v._show = function (x) { if (!x || audio.src.indexOf("id=" + x.id + "&") < 0 || audio.src.indexOf(encodeURIComponent(x.at || "")) < 0) show(x); };
+    v._teacher = function (text) { rec.hidden = true; msg.textContent = text; };
+    v._student = function (x) {
+      rec.hidden = false; msg.textContent = "";
+      if (show(x)) rec.textContent = "🎙 Перезаписать";
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+        rec.disabled = true; msg.textContent = "Этот браузер не умеет записывать звук — откройте страницу в Chrome, Safari или Firefox.";
+      }
+    };
+    var mr = null, chunks = [], t0 = 0, tick = null, stream = null;
+    function finish() {
+      clearInterval(tick); stop.hidden = true; time.hidden = true; rec.hidden = false; v.classList.remove("vc-on");
+      if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
+    }
+    rec.addEventListener("click", function () {
+      if (play.hidden === false && !confirm("Записать заново? Прежняя запись заменится.")) return;
+      msg.textContent = "";
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (st) {
+        stream = st; chunks = [];
+        var type = ["audio/webm;codecs=opus", "audio/mp4", "audio/ogg;codecs=opus", "audio/webm"].filter(function (t) { return MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t); })[0];
+        mr = type ? new MediaRecorder(st, { mimeType: type, audioBitsPerSecond: 48000 }) : new MediaRecorder(st);
+        mr.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+        mr.onstop = function () {
+          var sec = Math.max(1, Math.round((Date.now() - t0) / 1000)), mime = (mr.mimeType || type || "audio/webm").split(";")[0];
+          finish();
+          var blob = new Blob(chunks, { type: mime });
+          msg.textContent = "Отправляю…"; rec.disabled = true;
+          fetch(API + "s_voice&course=" + encodeURIComponent(BD.course || "") + "&unit=" + encodeURIComponent(BD.unit || "") + "&wid=" + encodeURIComponent(wid) +
+            "&sec=" + sec + "&path=" + encodeURIComponent(location.pathname), { method: "POST", credentials: "same-origin", headers: { "Content-Type": mime }, body: blob })
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+              rec.disabled = false;
+              if (!d.ok) { msg.textContent = d.error === "voice" ? "Запись в этом курсе недоступна." : "Не получилось сохранить запись. Попробуйте ещё раз."; return; }
+              show(d); rec.textContent = "🎙 Перезаписать"; msg.textContent = "✓ Сохранено — преподаватель услышит ваш ответ";
+            }, function () { rec.disabled = false; msg.textContent = "Нет связи с сервером — запись не сохранилась. Попробуйте ещё раз."; });
+        };
+        mr.start(1000); t0 = Date.now();
+        rec.hidden = true; stop.hidden = false; time.hidden = false; v.classList.add("vc-on");
+        time.textContent = "0:00 / " + mmss(max);
+        tick = setInterval(function () {
+          var s = (Date.now() - t0) / 1000; time.textContent = mmss(s) + " / " + mmss(max);
+          if (s >= max && mr.state === "recording") mr.stop();
+        }, 250);
+      }, function () { msg.textContent = "Нет доступа к микрофону. Разрешите его в настройках браузера для lingvaden.ru и попробуйте снова."; });
+    });
+    stop.addEventListener("click", function () { if (mr && mr.state === "recording") mr.stop(); });
+    voices.push(v);
+  });
+
   var synth = window.speechSynthesis;
   // кнопка 🔊 у слова: произносит синтезатор речи браузера (американский английский)
   document.addEventListener("click", function (e) {
@@ -752,6 +817,7 @@
     }
     if (role === "teacher") {
       EN.role = "teacher"; EN.ctx.path = location.pathname;
+      voices.forEach(function (v) { v._teacher("Здесь ученик записывает ответ голосом. Послушать — в разборе ученика."); });
       var go = function () {
         if (!document.getElementById("t-app")) EN.log({ t: "view", title: document.title });
         if (window.EN_TEACHER) window.EN_TEACHER(d);
@@ -775,6 +841,7 @@
     try { sessionStorage.removeItem("en_rl"); } catch (e) {}
     WHO = nw; EN.role = "student";
     mergeState(d.state);
+    voices.forEach(function (v) { v._student(((d.state || {}).v || {})[v.getAttribute("data-id")] || null); });
     var go2 = function () {
       EN.log({ t: "view", title: document.title });
       if (/[?&]hello=1/.test(location.search)) { hello(st); history.replaceState(null, "", location.pathname + location.hash); }
@@ -861,6 +928,7 @@
         panel(r, att, pr);
         if (!first) { r.ex.classList.add("rv-flash"); setTimeout(function () { r.ex.classList.remove("rv-flash"); }, 1200); }
       });
+      voices.forEach(function (v) { var x = (d.voices || {})[v.getAttribute("data-id")] || null; v._teacher(x ? "🎙 Голосовой ответ ученика:" : "Голосового ответа пока нет"); v._show(x); });
       writers.forEach(function (w) {
         var x = d.writings[w.getAttribute("data-id")];
         w._set(x ? x.text : ""); w.classList.toggle("rv-none", !x);
