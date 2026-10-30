@@ -50,7 +50,7 @@ COURSE_TITLE = "Outcomes Intermediate"
 def home():
     """Главная без входа — только вопрос «кто вы»: код из 6 цифр (по нему понятно, учитель это или ученик)."""
     return ('<section class="gate"><div class="gate-box">' + lib.MARK.replace('class="mark"', 'class="mark big"') +
-            '<h1>Lingvaden English</h1><p class="lead">Введите ваш код</p>'
+            '<h1>Lingvaden English</h1><p class="lead">Введите код от преподавателя</p>'
             '<form id="login-form" class="gate-form" autocomplete="off"><input class="code-in" name="code" inputmode="numeric" '
             'autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" aria-label="Код из 6 цифр" required autofocus>'
             '<button class="btn" type="submit">Войти</button></form><div class="err" id="login-err" hidden></div>'
