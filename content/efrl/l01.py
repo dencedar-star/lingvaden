@@ -291,8 +291,8 @@ def build():
                   IMG(IMG_DIR + "courtyard.jpg", "Happy Birthday — the courtyard") +
                   EX("rl1-g3", "6", "Talk about Elsa and Anna. Make up affirmative (+), negative (−) and question (?) sentences "
                      "in Present Simple and Present Continuous.",
-                     '<div class="cols2"><div><h4>Present Simple</h4>' + writer("rl1-g3-ps", "+ Elsa …\n− Anna …\n? Does …", 4) +
-                     '</div><div><h4>Present Continuous</h4>' + writer("rl1-g3-pc", "+ Elsa is …\n− Anna isn't …\n? Is …", 4) +
+                     '<div class="cols2"><div><h4>Present Simple</h4>' + writer("rl1-g3-ps", "", 4) +
+                     '</div><div><h4>Present Continuous</h4>' + writer("rl1-g3-pc", "", 4) +
                      "</div></div>") +
                   EX("rl1-g4", "7", "Read the sentences, name the tense and explain it.",
                      OL([f"{s} {S(a, TENSES)}" for s, a in name]) + SAY), id="grammar")
