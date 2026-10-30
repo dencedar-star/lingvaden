@@ -160,7 +160,7 @@ def main():
         shutil.copy(ROOT / "site" / f, OUT / f)
     shutil.copytree(ROOT / "server", OUT, dirs_exist_ok=True)   # api/*.php
     # аудио и видео (готовит tools/media.py): жёсткие ссылки, без копирования; отдаёт api/media.php только вошедшим
-    for kind in ("sb", "wb", "video"):
+    for kind in ("sb", "wb", "video", "efrl"):
         src = ROOT / "media" / kind
         if src.is_dir():
             (OUT / "media" / kind).mkdir(parents=True, exist_ok=True)

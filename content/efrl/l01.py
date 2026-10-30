@@ -11,6 +11,7 @@ IMG_DIR = "../assets/img/efrl-l01/"
 VK = "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239140&hash=8d111684590fc355&hd=3"   # основной плеер: открывается у всех
 YOUTUBE = "Zfj1ACkjAJc"
 MAILRU = "https://cloud.mail.ru/public/bz53/yrnwdqu1D"
+AUDIO = "/media/efrl/l01.mp3"   # звук сцены (1:15); отдаёт api/media.php только ученикам с открытым курсом
 
 # разделы урока: (якорь, название) — оглавление страницы
 SECTIONS = [("warm-up", "Warm up"), ("video", "Video. Anna's birthday cake"), ("vocabulary", "Vocabulary"),
@@ -129,6 +130,11 @@ def video():
             f'или на <a href="{MAILRU}" target="_blank" rel="noopener">Облаке Mail.ru ↗</a></figcaption></figure>')
 
 
+def audio():
+    return (f'<div class="aud"><span class="aud-l">♪ Elsa Decorates for Anna\'s Birthday · 1:15</span>'
+            f'<audio controls preload="none" controlslist="nodownload" src="{AUDIO}"></audio></div>')
+
+
 def dialogue(lines):
     return '<div class="scene">' + "".join(
         f'<p><b class="sp sp-{sp.lower()}">{sp}:</b> {t}</p>' for sp, t in lines) + "</div>"
@@ -193,7 +199,7 @@ def build():
     ]
     listen = SEC("Listening", "",
                  EX("rl1-l1", "1.1", "Watch again and complete the gaps.",
-                    '<p class="note-s">Видео — в разделе <a href="#video">Video</a> выше.</p>' + dialogue(gaps) +
+                    audio() + dialogue(gaps) +
                     REVEAL(SCENE_NOTES, "Полный текст сцены с ремарками")), id="listening")
 
     # ---------- Grammar ----------
@@ -305,7 +311,7 @@ def build():
           ("Set", "Is there a <b>set</b> schedule for your classes, or does it change every week?")]
     speak = SEC("Speaking", "",
                 EX("rl1-s1", "1.1", "Listen and read the text.",
-                   '<p class="note-s">Включите видео из раздела <a href="#video">Video</a> и читайте вместе с героями.</p>' +
+                   audio() +
                    dialogue(SCENE)) +
                 EX("rl1-s2", "1.2", "Answer the questions.",
                    "".join(f'<p class="q"><b>{h}</b><br>{q}</p>' for h, q in qs) + SAY + writer("rl1-s2", "", 5)) +

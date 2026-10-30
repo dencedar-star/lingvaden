@@ -1,6 +1,7 @@
 <?php
 /**
- * Аудио и видео курса (media/sb|wb|video) — только для вошедших (учитель или ученик), с поддержкой Range
+ * Аудио и видео курсов (media/sb|wb|video — Outcomes, media/efrl — English for Real Life) — только для вошедших
+ * (ученику — только открытых ему курсов), с поддержкой Range
  * (перемотка, iOS Safari). .htaccess направляет сюда все запросы /media/…
  */
 
@@ -8,7 +9,7 @@ declare(strict_types=1);
 require __DIR__ . '/_lib.php';
 
 $f = (string)($_GET['f'] ?? '');
-if (!preg_match('~^(sb|wb|video)/[a-z0-9-]+\.(mp3|mp4)$~', $f, $m)) {
+if (!preg_match('~^(sb|wb|video|efrl)/[a-z0-9-]+\.(mp3|mp4)$~', $f, $m)) {
     http_response_code(404);
     exit;
 }
