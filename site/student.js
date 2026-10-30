@@ -61,9 +61,13 @@
       var h = '<h1 class="page-title">Здравствуйте, ' + esc(String(ST.name).split(" ")[0]) + "!</h1><p class=\"lead\">Ваш преподаватель — <b>" + esc(ST.teacher || "") + "</b>." +
         (ST.offline ? " Нет связи с сервером — показан прогресс с этого устройства." : "") + "</p>";
       if (ST.hw_open) h += '<a class="hw-call" href="#homework">Домашних работ к выполнению: <b>' + ST.hw_open + "</b> — открыть →</a>";
-      if (last) h += '<p><a class="btn" href="' + esc(last.path) + '">Продолжить: ' + esc(last.title) + "</a></p>";
-      var one = cat.courses.length === 1;
-      cat.courses.forEach(function (c) {
+      // только курсы, открытые преподавателем (без связи с сервером список неизвестен — показываем все)
+      var list = ST.courses ? cat.courses.filter(function (c) { return ST.courses.indexOf(c.id) >= 0; }) : cat.courses;
+      var mine = function (path) { return list.some(function (c) { return c.units.some(function (u) { return path.indexOf(u.url) === 0; }); }); };
+      if (last && mine(last.path)) h += '<p><a class="btn" href="' + esc(last.path) + '">Продолжить: ' + esc(last.title) + "</a></p>";
+      if (!list.length) h += '<div class="page"><p class="empty">Преподаватель пока не открыл вам курсы. Когда откроет, они появятся здесь.</p></div>';
+      var one = list.length === 1;
+      list.forEach(function (c) {
         var tot = 0, got = 0;
         var tiles = c.units.map(function (u) {
           var r = unitStat(u); tot += r.t; got += r.s;
@@ -72,7 +76,7 @@
         }).join("");
         var pct = tot ? Math.round(100 * got / tot) : 0;
         h += '<details class="course-card"' + (one ? " open" : "") + '><summary>' + (c.cover ? '<img class="cc-cover" src="' + esc(c.cover) + '" alt="" loading="lazy">' : '<span class="cc-ic">' + EN.icon("book") + "</span>") + '<span class="cc-t"><b>' + esc(c.title) +
-          "</b><small>" + c.units.length + " модулей · пройдено " + pct + '%</small></span><span class="cc-chev" aria-hidden="true"></span></summary><div class="u-tiles">' + tiles + "</div></details>";
+          "</b><small>" + EN.plural(c.units.length, c.unit_word || ["модуль", "модуля", "модулей"]) + " · пройдено " + pct + '%</small></span><span class="cc-chev" aria-hidden="true"></span></summary><div class="u-tiles">' + tiles + "</div></details>";
       });
       v.innerHTML = h;
     });

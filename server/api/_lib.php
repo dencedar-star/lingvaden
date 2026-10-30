@@ -13,7 +13,7 @@ ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 date_default_timezone_set('Europe/Moscow');
 
-const EN_SCHEMA_VERSION = 4;
+const EN_SCHEMA_VERSION = 5;
 const EN_DOCS = [
     // документ => версия; при изменении текста документа поднять версию — согласие спросят заново
     'terms' => '1.2',
@@ -332,6 +332,14 @@ function en_schema(PDO $pdo): void
     foreach ($pdo->query('SELECT id FROM en_teacher WHERE token IS NULL')->fetchAll(PDO::FETCH_COLUMN) as $tid) {
         $pdo->prepare('UPDATE en_teacher SET token = ? WHERE id = ?')->execute([new_teacher_token($pdo), (int)$tid]);
     }
+    // v5 — доступ к курсам: ученик видит только курсы, которые открыл ему преподаватель (закрытие — отметка revoked_at)
+    $pdo->exec("CREATE TABLE IF NOT EXISTS en_student_course (
+        student_id INT UNSIGNED NOT NULL,
+        course VARCHAR(40) NOT NULL,
+        granted_at DATETIME NOT NULL,
+        revoked_at DATETIME NULL,
+        PRIMARY KEY (student_id, course)
+    )$T");
     $pdo->prepare("REPLACE INTO en_meta (k, v) VALUES ('schema', ?)")->execute([(string)EN_SCHEMA_VERSION]);
 }
 
@@ -617,10 +625,42 @@ function visit_touch(PDO $pdo, string $role, int $userId, int $teacherId, int $s
 }
 
 /** Все данные ученика — по требованию учителя, админа или самого ученика (отзыв согласия). */
+/** Курс страницы или файла: /unitNN/… и media/sb|wb|video/… — Outcomes Intermediate; папка урока «<курс>-<урок>»
+ *  (efrl-l01/…) — курс по префиксу; иначе первая часть пути — id курса. */
+function path_course(string $f): string
+{
+    $f = ltrim($f, '/');
+    if (preg_match('~^(unit[0-9]{2}|sb|wb|video)(/|$)~', $f)) {
+        return 'outcomes-int';
+    }
+    if (preg_match('~^([a-z]+)-[a-z][0-9]{2}(/|$)~', $f, $m)) {
+        return $m[1];
+    }
+    return (string)strtok($f, '/');
+}
+
+/** Курсы, открытые ученику. */
+function student_courses(PDO $pdo, int $sid): array
+{
+    $st = $pdo->prepare('SELECT course FROM en_student_course WHERE student_id = ? AND revoked_at IS NULL ORDER BY granted_at');
+    $st->execute([$sid]);
+    return $st->fetchAll(PDO::FETCH_COLUMN);
+}
+
+/** Ученик может открыть курс: преподаватель открыл ему курс или задал по нему домашнюю работу. */
+function student_can(PDO $pdo, int $sid, string $course): bool
+{
+    $st = $pdo->prepare('SELECT 1 FROM en_student_course WHERE student_id = ? AND course = ? AND revoked_at IS NULL
+                         UNION SELECT 1 FROM en_hw_student hs JOIN en_hw h ON h.id = hs.hw_id WHERE hs.student_id = ? AND h.course = ?
+                         LIMIT 1');
+    $st->execute([$sid, $course, $sid, $course]);
+    return (bool)$st->fetchColumn();
+}
+
 function delete_student_data(PDO $pdo, int $sid): void
 {
     foreach (['en_space_member' => 'student_id', 'en_attempt' => 'student_id', 'en_progress' => 'student_id',
-              'en_writing' => 'student_id', 'en_hw_student' => 'student_id'] as $t => $col) {
+              'en_writing' => 'student_id', 'en_hw_student' => 'student_id', 'en_student_course' => 'student_id'] as $t => $col) {
         $pdo->prepare("DELETE FROM $t WHERE $col = ?")->execute([$sid]);
     }
     $pdo->prepare("DELETE FROM en_session WHERE role = 'student' AND user_id = ?")->execute([$sid]);

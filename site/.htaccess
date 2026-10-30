@@ -11,6 +11,9 @@ RewriteRule ^t/([A-Za-z0-9]{6,16})/?$ api/enter.php?r=t&t=$1 [L,QSA]
 # страницы курсов — только после входа по коду (учитель или ученик)
 RewriteRule ^(unit[0-9]{2})/?$ api/gate.php?f=$1/index.html [L]
 RewriteRule ^(unit[0-9]{2}/[a-z]+\.html)$ api/gate.php?f=$1 [L]
+# уроки других курсов: папка «<курс>-<урок>», например /efrl-l01/
+RewriteRule ^([a-z]+-[a-z][0-9]{2})/?$ api/gate.php?f=$1/index.html [L]
+RewriteRule ^([a-z]+-[a-z][0-9]{2}/[a-z]+\.html)$ api/gate.php?f=$1 [L]
 # аудио и видео курса — тоже только после входа (api/media.php отдаёт с поддержкой Range)
 RewriteRule ^media/(.*)$ api/media.php?f=$1 [L,B]
 </IfModule>

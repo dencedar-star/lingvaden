@@ -14,11 +14,20 @@ if (!preg_match('~^(sb|wb|video)/[a-z0-9-]+\.(mp3|mp4)$~', $f, $m)) {
 }
 try {
     $pdo = en_db();
-    $ok = current_user($pdo, 'teacher') || current_user($pdo, 'student');
+    $ok = (bool)current_user($pdo, 'teacher');
+    $s = $ok ? null : current_user($pdo, 'student');
+    $ok = $ok || $s;
+    // ученику — только открытые ему курсы
+    $denied = $s && !student_can($pdo, (int)$s['id'], path_course($f));
 } catch (Throwable $e) {
     $ok = false;
+    $denied = false;
 }
 if (!$ok) {
+    http_response_code(403);
+    exit;
+}
+if ($denied) {
     http_response_code(403);
     exit;
 }

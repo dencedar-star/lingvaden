@@ -215,14 +215,16 @@ def footer(root):
             f'<a class="foot-brand" href="https://lingvaden.ru/">{MARK}<span>Lingvaden<b>·</b>English</span></a>'
             f'<nav class="foot-nav">{nav}</nav>'
             '<p class="foot-src">Материалы курса: <i>Outcomes Intermediate</i> Student’s Book (Hugh Dellar, Andrew Walkley; '
-            'Heinle, Cengage Learning) и ключи к нему; права на них принадлежат правообладателям. Занятия — только по личному '
+            'Heinle, Cengage Learning) и ключи к нему; в курсе <i>English for Real Life</i> — кадры и сцены из фильмов (в уроке 1.1 — «Frozen Fever», Disney). '
+            'Права на них принадлежат правообладателям. Занятия — только по личному '
             'коду: ответы ученика хранятся на сервере, и их видит его преподаватель.</p>'
             '<p class="foot-src">© 2026 lingvaden.ru · <a href="mailto:info@lingvaden.ru">info@lingvaden.ru</a></p>'
             '</div></footer>')
 
 
-def layout(title, desc, body, active=None, root="../", unit_nav=True, ctx=None, site=None, scripts=(), app=None):
-    """ctx — {'unit': 'unit01', 'page': 'book'} для страниц курса; app — home | teacher | student | info (для app.js)."""
+def layout(title, desc, body, active=None, root="../", unit_nav=True, ctx=None, site=None, scripts=(), app=None, course=COURSE):
+    """ctx — {'unit': 'unit01', 'page': 'book'} для страниц курса; course — id курса страницы;
+    app — home | teacher | student | info (для app.js)."""
     on = ' class="on"'
     if unit_nav:
         tabs = '<nav class="tabs">' + "".join(
@@ -230,7 +232,7 @@ def layout(title, desc, body, active=None, root="../", unit_nav=True, ctx=None, 
     else:
         tabs = '<nav class="tabs"></nav>'
     ctx = ctx or {}
-    data = f' data-course="{COURSE}"' if ctx else ""
+    data = f' data-course="{course}"' if ctx else ""
     data += "".join(f' data-{k}="{escape(v)}"' for k, v in ctx.items())
     if app:
         data += f' data-app="{app}"'

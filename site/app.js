@@ -14,6 +14,8 @@
 
   /* ---------- журнал действий (только для вошедших учеников и преподавателей) ---------- */
   var EN = window.EN = {
+    // 1 модуль, 2 модуля, 5 модулей
+    plural: function (n, f) { var a = n % 10, b = n % 100; return n + " " + (a === 1 && b !== 11 ? f[0] : a >= 2 && a <= 4 && (b < 12 || b > 14) ? f[1] : f[2]); },
     role: WHO && WHO.sid ? "student" : null,
     ctx: { course: BD.course || "", unit: BD.unit || "", page: BD.page || "", path: location.pathname },
     q: [],
@@ -418,6 +420,14 @@
   });
 
   var synth = window.speechSynthesis;
+  // кнопка 🔊 у слова: произносит синтезатор речи браузера (американский английский)
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-say]");
+    if (!b || !synth) return;
+    var u = new SpeechSynthesisUtterance(b.getAttribute("data-say"));
+    u.lang = "en-US"; u.rate = 0.9;
+    synth.cancel(); synth.speak(u);
+  });
   /* ---------- аудио и видео курса: одна запись за раз, переход к части, журнал прослушиваний ---------- */
   document.addEventListener("play", function (e) {
     var m = e.target;
@@ -771,7 +781,7 @@
       if (window.EN_ME) window.EN_ME(st, d);
     };
     if (st.consent && st.consent.length) EN.consent("student", st.consent, st.name, go2); else go2();
-    if (BD.unit && BD.page) lsSet("last", { path: location.pathname, title: "модуль " + BD.unit.replace("unit", "") + " · " + document.title.split(" — ")[0] });
+    if (BD.unit && BD.page) lsSet("last", { path: location.pathname, title: (BD.label || "модуль " + BD.unit.replace("unit", "")) + " · " + document.title.split(" — ")[0] });
   }
   /* =================== рабочее место разбора (преподаватель) =================== */
   function startReview(tc) {
