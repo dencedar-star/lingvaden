@@ -84,12 +84,15 @@ def script(mark):
     return f'<p class="script-p">{t}</p>'
 
 
+def vk_player(src, title, cap=""):
+    """Плеер VK Видео на странице; cap — подпись (например, запасная ссылка)."""
+    return (f'<figure class="vid yt"><div class="yt-box"><iframe src="{src.replace("&", "&amp;")}" title="{title}" loading="lazy" '
+            'allowfullscreen allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock"></iframe></div>'
+            + (f"<figcaption>{cap}</figcaption>" if cap else "") + "</figure>")
+
+
 def video():
-    if not VK:
-        return '<p class="note-s">▶ Видео к уроку появится здесь.</p>'
-    return (f'<figure class="vid yt"><div class="yt-box"><iframe src="{VK.replace("&", "&amp;")}" title="Desperate Housewives — Mary Alice" '
-            'loading="lazy" allowfullscreen allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock"></iframe>'
-            '</div></figure>')
+    return vk_player(VK, "Desperate Housewives — Mary Alice")
 
 
 def info(title, body, kind="i"):
@@ -287,6 +290,12 @@ def build():
 # ---------------- домашнее задание ----------------
 HW_LEAD = ("Домашнее задание к уроку 1: шоу The Grammar Gameshow про Past Perfect, поиск ошибок, произношение «had had» и "
            "практика. Ответы проверяются сразу.")
+# The Grammar Gameshow, Episode 13, части 1–5: плеер VK и запасная ссылка на Облако Mail.ru
+GAMESHOW_VK = {1: "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239134&hash=3e22ec4aff57fa96&hd=3",
+               2: "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239135&hash=090a32f9599975b0&hd=3",
+               3: "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239136&hash=940cd38dbc47a1ae&hd=3",
+               4: "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239137&hash=a778cad584920865&hd=3",
+               5: "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239138&hash=e6573d9c7b8d51d0&hd=3"}
 GAMESHOW = {1: "https://cloud.mail.ru/public/ZyUe/iSWBYr8Bs", 2: "https://cloud.mail.ru/public/6gny/v3qoqDSyt",
             3: "https://cloud.mail.ru/public/WyMf/wVcGmHU4e", 4: "https://cloud.mail.ru/public/hNPU/dKdjXzni2",
             5: "https://cloud.mail.ru/public/EZkg/ZZPgExJCx"}
@@ -309,8 +318,9 @@ PARAGRAPHS = [
 
 
 def watch(part):
-    return (f'<p><a class="btn ghost" href="{GAMESHOW[part]}" target="_blank" rel="noopener">▶ The Grammar Gameshow, '
-            f'Episode 13 · Part {part} ↗</a></p>')
+    return vk_player(GAMESHOW_VK[part], f"The Grammar Gameshow, Episode 13 · Part {part}",
+                     f"The Grammar Gameshow, Episode 13 · Part {part}. Не открывается? "
+                     f'<a href="{GAMESHOW[part]}" target="_blank" rel="noopener">Смотреть на Облаке Mail.ru ↗</a>')
 
 
 def build_homework():
