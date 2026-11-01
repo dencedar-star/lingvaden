@@ -145,7 +145,7 @@ def lesson_course(pkg, ver):
     if not units:
         return None
     return {"id": rl.COURSE, "title": rl.TITLE, "units": units, "cover": getattr(rl, "COVER", f"/assets/img/{units[0]['id']}/poster.jpg"),
-            "level": rl.LEVEL, "about": rl.ABOUT, "unit_word": ["урок", "урока", "уроков"], "planned": getattr(rl, "PLANNED", None),
+            "subtitle": getattr(rl, "SUBTITLE", ""), "level": rl.LEVEL, "about": rl.ABOUT, "unit_word": ["урок", "урока", "уроков"], "planned": getattr(rl, "PLANNED", None),
             "blocks": {str(k): v for k, v in getattr(rl, "BLOCKS", {}).items()}}
 
 
