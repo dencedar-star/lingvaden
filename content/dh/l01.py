@@ -7,7 +7,8 @@ LEAD = ("Начало сериала: Мэри Элис Янг рассказы�
         "Past Perfect, диктант и shadowing.")
 TOPICS = "Warm up · Vocabulary · Listening · Speaking · Past Perfect · Dictation · Shadowing"
 IMG_DIR = "../assets/img/dh-l01/"
-VK = None   # видео сцены (Listening): ссылка на плеер VK — от владельца
+VK = "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239208&hash=fb64423c961a056d&hd=3"   # видео сцены (Listening)
+AUDIO = "/media/dh/l01.mp3"     # звук сцены целиком (1:03)
 CLIP_A = "/media/dh/l01-a.mp3"   # «When you read this morning's paper …» (0:06)
 CLIP_B = "/media/dh/l01-b.mp3"   # «That's why it was so astonishing …» (0:16)
 
@@ -101,7 +102,8 @@ def build():
                     video() + f"<p>She took out {G('a revolver|revolver|a gun|gun')}.</p>") +
                  EX("dh1-l2", "1.3", "Watch the video again and answer the questions.",
                     qs + SAY + VOICE("dh1-l2-v", 30) + WRITER("dh1-l2") + REVEAL(ans13, "Suggested answers")) +
-                 EX("dh1-l3", "2.1", "Watch again and read the script below.", script("")) +
+                 EX("dh1-l3", "2.1", "Watch again and read the script below.",
+                    PLAYER(AUDIO, "Mary Alice · 1:03") + script("")) +
                  EX("dh1-l4", "2.2", "Vocabulary focus. Translate the underlined phrases.",
                     script("u") + SAY + VOICE("dh1-l4-v") + WRITER("dh1-l4")) +
                  EX("dh1-l5", "2.3", "Discuss the questions.",
