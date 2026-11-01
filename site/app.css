@@ -821,3 +821,9 @@ body[data-app="home"] .foot-in{padding:8px 16px 10px}
 @keyframes vcblink{50%{opacity:.2}}
 .vc-msg{font-size:14px;color:var(--ink2)}
 .vc-play{margin-top:8px}.vc-play audio{width:100%;max-width:480px}
+/* курсы из уроков: справки, монолог, цитата */
+.fig-small2 img{max-width:420px;width:100%}
+.rule-g{border-left-color:var(--good)}.rule-g h4{color:var(--good)}
+.rule-y{border-left-color:var(--shown)}.rule-y h4{color:var(--shown)}
+.script-p{line-height:1.9;background:var(--surface-2);border-radius:10px;padding:12px 14px}
+.quote{font-style:italic;font-weight:700;color:var(--good);font-size:17px}

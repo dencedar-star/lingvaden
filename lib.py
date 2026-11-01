@@ -110,6 +110,29 @@ def ORDER(scrambled, answer):
             f'<div class="line"></div><div class="bank"></div><div class="ans" hidden>{escape(answer)}</div></div>')
 
 
+def WRITER(wid, placeholder="", rows=4):
+    """Поле для письменного ответа (сохраняется на сервере, его видит преподаватель)."""
+    ph = escape(placeholder).replace("\n", "&#10;")
+    return (f'<div class="writer" data-id="{wid}" data-target=""><textarea rows="{rows}" placeholder="{ph}"></textarea>'
+            '<div class="cnt"></div></div>')
+
+
+def PLAYER(src, label):
+    """Аудиоплеер для файла курса (/media/<курс>/…): отдаёт api/media.php только тем, кому открыт курс."""
+    return (f'<div class="aud"><span class="aud-l">♪ {label}</span>'
+            f'<audio controls preload="none" controlslist="nodownload" src="{src}"></audio></div>')
+
+
+def GAPS(text, cls=""):
+    """Пропуски в тексте: [подсказка/ответ/другой ответ] или [ответ]; подсказка видна в пустом поле."""
+    def gap(m):
+        x = m.group(1).strip()
+        hint, ans = x.split("/", 1) if "/" in x else ("", x)
+        g = G(ans.strip().replace("/", "|"), cls)
+        return g.replace("<input ", f'<input placeholder="{escape(hint.strip())}" ', 1) if hint.strip() else g
+    return re.sub(r"\[([^\]]*)\]", gap, text)
+
+
 def VOICE(wid, max_sec=180):
     """Голосовой ответ: ученик записывает (кнопка 🎙), преподаватель слушает в разборе. Сервер принимает запись
     только в курсах из EN_VOICE_COURSES (api/_lib.php)."""
