@@ -36,6 +36,46 @@ VOCAB = [("to perform chores", "выполнять домашние дела", "
          ("to retrieve", "доставать, забирать", "to get back from a place where it was stored")]
 
 
+# упражнения на Past Perfect — в уроке и в домашнем задании: [подсказка/ответ]
+CORRECT = ["I didn’t eat by the time I had left home.<br>Correct: I [hadn’t eaten] by the time I [left] home.",
+           "When I had arrived home, my sister already made lunch.<br>Correct: When I [arrived] home, my sister [had] already "
+           "[made] lunch.",
+           "I had woken up late because I forgot to set my alarm clock.<br>Correct: I [woke] up late because I [/’d forgotten/had "
+           "forgotten] to set my alarm clock."]
+Q22 = ["[Had] he [live/lived] in New York before he [move/moved] to Los Angeles?",
+       "[Had] you [eat/eaten] anything before you [go/went] to the theatre?",
+       "[Had] the plane [arrive/arrived] by that time?",
+       "[Had] she [do/done] her homework before her sister [come/came] home?",
+       "[Had] they [sell/sold] everything before they [move/moved] to Manchester?",
+       "Why [not/hadn’t] you [clean/cleaned] the flat by the time the guests [arrive/arrived]?",
+       "What [had] you [do/done] by 6 o’clock?",
+       "Where [had] she [work/worked] before she [graduate/graduated] from University?",
+       "What [had] you [do/done] before you [go/went] to the supermarket?",
+       "What [had] Harry [know/known] about for a while?"]
+Q23 = ["You went to Sue’s house, but she wasn’t there. (she / go / out)<br><i>She had gone out.</i>",
+       "You went back to your home town after many years. It wasn’t the same as before. (it / change / a lot)<br>"
+       "It [had changed] a lot.",
+       "I invited Rachel to the party, but she couldn’t come. (she / arrange / to do something else)<br>"
+       "She [/’d arranged/had arranged] to do something else.",
+       "You went to the cinema last night. You got to the cinema late. (the film / already / begin)<br>"
+       "The film [had already begun].",
+       "It was nice to see Dan again after such a long time. (I / not / see / him for five years)<br>"
+       "I [hadn’t seen/had not seen] him for five years.",
+       "I offered Sue something to eat, but she wasn’t hungry. (she / just / have / breakfast)<br>"
+       "She [/’d just had/had just had] breakfast."]
+Q24 = ["The man sitting next to you on the plane was very nervous. It was his first flight. (fly)<br><i>He’d never flown "
+       "before.</i>",
+       "A woman walked into the room. She was a complete stranger to me. (see)<br>I [/’d never seen/had never seen] her before.",
+       "Sam played tennis yesterday. He wasn’t very good at it because it was his first game. (play)<br>"
+       "He [/’d never played/had never played] tennis before.",
+       "Last year we went to Denmark. It was our first time there. (be there)<br>We [/’d never been/had never been] there "
+       "before."]
+Q25 = ["‘Was Paul at the party when you arrived?’ ‘No, he <i>had gone</i> (go) home.’",
+       "I felt very tired when I got home, so I [go/went] straight to bed.",
+       "The house was very quiet when I got home. Everybody [go/had gone] to bed.",
+       "Sorry I’m late. The car [break/broke] down on my way here.",
+       "We were driving along the road when we [see/saw] a car which [break/had broken] down, so we [stop/stopped] to help."]
+
 def script(mark):
     """Монолог; mark — как выделить слова урока: 'b' (жирным), 'u' (подчеркнуть) или '' (без выделения)."""
     t = SCRIPT
@@ -169,44 +209,6 @@ def build():
                "<span class=\"tr\">Я не смог <u>тогда</u> войти, потому что потерял ключи (<i>до этого</i>).</span><br>"
                "<i>She had already eaten dinner when I arrived.</i> <span class=\"tr\">Она поужинала <u>до</u> моего прихода.</span></p>")
     sentence = "That's why it was so astonishing when I decided to go to my hallway closet and retrieve a revolver that "
-    correct = ["I didn’t eat by the time I had left home.<br>Correct: I [hadn’t eaten] by the time I [left] home.",
-               "When I had arrived home, my sister already made lunch.<br>Correct: When I [arrived] home, my sister [had] already "
-               "[made] lunch.",
-               "I had woken up late because I forgot to set my alarm clock.<br>Correct: I [woke] up late because I [/’d forgotten/had "
-               "forgotten] to set my alarm clock."]
-    q22 = ["[Had] he [live/lived] in New York before he [move/moved] to Los Angeles?",
-           "[Had] you [eat/eaten] anything before you [go/went] to the theatre?",
-           "[Had] the plane [arrive/arrived] by that time?",
-           "[Had] she [do/done] her homework before her sister [come/came] home?",
-           "[Had] they [sell/sold] everything before they [move/moved] to Manchester?",
-           "Why [not/hadn’t] you [clean/cleaned] the flat by the time the guests [arrive/arrived]?",
-           "What [had] you [do/done] by 6 o’clock?",
-           "Where [had] she [work/worked] before she [graduate/graduated] from University?",
-           "What [had] you [do/done] before you [go/went] to the supermarket?",
-           "What [had] Harry [know/known] about for a while?"]
-    q23 = ["You went to Sue’s house, but she wasn’t there. (she / go / out)<br><i>She had gone out.</i>",
-           "You went back to your home town after many years. It wasn’t the same as before. (it / change / a lot)<br>"
-           "It [had changed] a lot.",
-           "I invited Rachel to the party, but she couldn’t come. (she / arrange / to do something else)<br>"
-           "She [/’d arranged/had arranged] to do something else.",
-           "You went to the cinema last night. You got to the cinema late. (the film / already / begin)<br>"
-           "The film [had already begun].",
-           "It was nice to see Dan again after such a long time. (I / not / see / him for five years)<br>"
-           "I [hadn’t seen/had not seen] him for five years.",
-           "I offered Sue something to eat, but she wasn’t hungry. (she / just / have / breakfast)<br>"
-           "She [/’d just had/had just had] breakfast."]
-    q24 = ["The man sitting next to you on the plane was very nervous. It was his first flight. (fly)<br><i>He’d never flown "
-           "before.</i>",
-           "A woman walked into the room. She was a complete stranger to me. (see)<br>I [/’d never seen/had never seen] her before.",
-           "Sam played tennis yesterday. He wasn’t very good at it because it was his first game. (play)<br>"
-           "He [/’d never played/had never played] tennis before.",
-           "Last year we went to Denmark. It was our first time there. (be there)<br>We [/’d never been/had never been] there "
-           "before."]
-    q25 = ["‘Was Paul at the party when you arrived?’ ‘No, he <i>had gone</i> (go) home.’",
-           "I felt very tired when I got home, so I [go/went] straight to bed.",
-           "The house was very quiet when I got home. Everybody [go/had gone] to bed.",
-           "Sorry I’m late. The car [break/broke] down on my way here.",
-           "We were driving along the road when we [see/saw] a car which [break/had broken] down, so we [stop/stopped] to help."]
     grammar = SEC("Grammar", "Past Perfect",
                   IMG(IMG_DIR + "mary-alice.jpg", "Mary Alice Young", cls="fig-small2") +
                   EX("dh1-g1", "1.1", "Listen and complete the rule.",
@@ -223,12 +225,12 @@ def build():
                               "момента никто никогда не использовал.</i></p>")) +
                   '<h3 class="sub">1.4 Past Simple vs Past Perfect</h3>' + ps_pp +
                   '<h3 class="sub">1.5 Present Perfect vs Past Perfect</h3>' + pres_pp +
-                  EX("dh1-g4", "2.1", "Correct the mistakes.", OL([GAPS(x) for x in correct])) +
-                  EX("dh1-g5", "2.2", "Complete the gaps with the correct form of the verb in brackets.", OL([GAPS(x) for x in q22])) +
-                  EX("dh1-g6", "2.3", "Read the situations and make up sentences with the prompts.", OL([GAPS(x) for x in q23])) +
-                  EX("dh1-g7", "2.4", "Write a sentence with <i>never … before</i>. Use the verb in brackets.", OL([GAPS(x) for x in q24])) +
+                  EX("dh1-g4", "2.1", "Correct the mistakes.", OL([GAPS(x) for x in CORRECT])) +
+                  EX("dh1-g5", "2.2", "Complete the gaps with the correct form of the verb in brackets.", OL([GAPS(x) for x in Q22])) +
+                  EX("dh1-g6", "2.3", "Read the situations and make up sentences with the prompts.", OL([GAPS(x) for x in Q23])) +
+                  EX("dh1-g7", "2.4", "Write a sentence with <i>never … before</i>. Use the verb in brackets.", OL([GAPS(x) for x in Q24])) +
                   EX("dh1-g8", "2.5", "Put the verb into the correct form, past perfect (I had done) or past simple (I did).",
-                     OL([GAPS(x) for x in q25])), id="grammar")
+                     OL([GAPS(x) for x in Q25])), id="grammar")
 
     # ---------- Dictation ----------
     dict_ = SEC("Dictation", "",
@@ -280,3 +282,114 @@ def build():
 
     toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in SECTIONS) + "</nav>"
     return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, vocab, listen, practice, grammar, dict_, shadow))
+
+
+# ---------------- домашнее задание ----------------
+HW_LEAD = ("Домашнее задание к уроку 1: шоу The Grammar Gameshow про Past Perfect, поиск ошибок, произношение «had had» и "
+           "практика. Ответы проверяются сразу.")
+GAMESHOW = {1: "https://cloud.mail.ru/public/ZyUe/iSWBYr8Bs", 2: "https://cloud.mail.ru/public/6gny/v3qoqDSyt",
+            3: "https://cloud.mail.ru/public/WyMf/wVcGmHU4e", 4: "https://cloud.mail.ru/public/hNPU/dKdjXzni2",
+            5: "https://cloud.mail.ru/public/EZkg/ZZPgExJCx"}
+HW_SECTIONS = [("hw-warm-up", "Warm up"), ("hw-grammar", "Grammar"), ("hw-mistakes", "Find the mistake"),
+               ("hw-pronunciation", "Pronunciation"), ("hw-practice", "Practice")]
+# упражнение 1.6: события (a), (b), (c&zwnj;) по порядку; абзац начинается с подчёркнутого
+PARAGRAPHS = [
+    ("(a) Somebody broke into the office during the night.<br>(b) <u>We arrived at work in the morning.</u><br>(c&zwnj;) We called the police.",
+     "We arrived at work in the morning and found that somebody <i>had broken</i> into the office during the night. So we "
+     "[called the police]."),
+    ("(a) Laura went out this morning.<br>(b) <u>I tried to phone her.</u><br>(c&zwnj;) There was no answer.",
+     "I tried to phone Laura this morning, but [there was] no answer. She [had gone/’d gone] out."),
+    ("(a) Jim came back from holiday a few days ago.<br>(b) <u>I met him the same day.</u><br>(c&zwnj;) He looked very well.",
+     "I met Jim a few days ago. He [had just come/had come/’d just come/’d come] back from holiday. He [looked] very well."),
+    ("(a) Kevin sent Sally lots of emails.<br>(b) She never replied to them.<br>(c&zwnj;) <u>Yesterday he got a phone call from her.</u>"
+     "<br>(d) He was very surprised.",
+     "Yesterday Kevin [got a phone call/had a phone call] from Sally. He [was] very surprised. He [had sent/’d sent] her lots of "
+     "emails, but she [had never replied/’d never replied/hadn’t replied/had not replied] to them."),
+]
+
+
+def watch(part):
+    return (f'<p><a class="btn ghost" href="{GAMESHOW[part]}" target="_blank" rel="noopener">▶ The Grammar Gameshow, '
+            f'Episode 13 · Part {part} ↗</a></p>')
+
+
+def build_homework():
+    warm = SEC("Warm up", "",
+               EX("dhh1-w1", "1.1", "What's going on in the picture? Have you ever been to such shows? If yes, what was that? "
+                  "If no, would you like to try?",
+                  IMG(IMG_DIR + "hw-show.jpg", "TV game show", cls="fig-small2") + SAY + VOICE("dhh1-w1-v") + WRITER("dhh1-w1")),
+               id="hw-warm-up")
+
+    examples = [("When we got home last night, we found that somebody <b>had broken</b> into the flat.",
+                 "Когда мы вернулись домой прошлой ночью, мы обнаружили, что кто-то побывал в квартире."),
+                ("Karen didn’t want to go to the cinema with us because she<b>’d already seen</b> the film.",
+                 "Карен не хотела ехать в кино с нами, потому что она уже видела этот фильм."),
+                ("At first I thought I<b>’d done</b> the right thing, but I soon realised that I<b>’d made</b> a big mistake.",
+                 "Сначала я думал, что сделал правильную вещь, но вскоре понял, что сделал большую ошибку."),
+                ("The man sitting next to me on the plane was very nervous. He <b>hadn’t flown</b> before. <i>or</i> He <b>had "
+                 "never flown</b> before.", "Человек, который сидел рядом со мной в самолёте, очень нервничал. Он (никогда) не "
+                 "летал раньше.")]
+    rule = f'<p>I/we/they/you/he/she/it {S("had", ["had", "past participle"])} + {S("past participle", ["had", "past participle"])}</p>'
+    grammar = SEC("Grammar", "The Grammar Gameshow",
+                  EX("dhh1-g1", "1.1", "Watch the first part of the show and answer the questions.",
+                     watch(1) + OL([f"What's the name of the host? {G('Will')}", f"What's the name of the voice? {G('Leslie')}",
+                                    f"What is this game about? {G('Past Perfect|the Past Perfect')}"])) +
+                  EX("dhh1-g2", "2.1", "Study the example and answer the question: Which of the events happened first?",
+                     IMG(IMG_DIR + "sequence.jpg", "Past Perfect: sequence of events") +
+                     f'<p>{C("I had lost the ticket", "I missed the train", "I had lost the ticket")}</p>') +
+                  EX("dhh1-g3", "2.2", "Study the example and complete the rules.",
+                     IMG(IMG_DIR + "hw-paul-sarah.jpg", "Paul and Sarah", cls="fig-small") +
+                     "<p>Sarah went to a party last week. Paul went to the party too, but they didn’t see each other. Paul left the "
+                     "party at <u>10.30</u> and Sarah arrived at <u>11 o’clock</u>. So when Sarah arrived at the party, Paul wasn’t "
+                     "there.</p><p><b>He had gone home.</b></p>" + rule +
+                     f"<p>He had gone home = He<b>’d gone</b> home</p><p>had = ’{G('d')}</p>") +
+                  '<h3 class="sub">2.3 Past Perfect</h3>' + IMG(IMG_DIR + "hw-table.jpg", "Past Perfect: утверждение, отрицание, вопрос") +
+                  '<h3 class="sub">3.1 Past Perfect use</h3>' + IMG(IMG_DIR + "hw-use.jpg", "Past Perfect use") +
+                  info("", "<p>Иногда мы говорим о событиях, случившихся в прошлом:</p><p><i>Sarah arrived at the party.</i></p>"
+                           "<p>Это начальная точка отсчёта нашей истории. Затем, если мы хотим поговорить о событиях, случившихся "
+                           "<i>до</i> этого времени, используем past perfect (had …):</p><p><i>When Sarah arrived at the party, Paul "
+                           "had already gone home.</i><br><span class=\"tr\">Когда Сара прибыла на вечеринку, Пол уже ушёл домой."
+                           "</span></p>", "g") +
+                  '<h3 class="sub">3.2 More examples</h3>' +
+                  OL([f'{e}<br><span class="tr">{r}</span>' for e, r in examples]) +
+                  '<h3 class="sub">4.1 Compare the past simple and the past perfect</h3>' +
+                  IMG(IMG_DIR + "hw-ps-pp.jpg", "Past Simple vs Past Perfect") +
+                  '<h3 class="sub">4.2 Compare the present perfect and the past perfect</h3>' +
+                  IMG(IMG_DIR + "hw-pres-pp.jpg", "Present Perfect vs Past Perfect") +
+                  IMG(IMG_DIR + "hw-pres-pp-2.jpg", "Present Perfect vs Past Perfect: timeline"), id="hw-grammar")
+
+    mistakes = SEC("Find the mistake", "",
+                   '<p class="note-s">Our first round is a <b>find the mistake</b> round. Can you correct the mistake in each of '
+                   'these sentences?</p>' +
+                   "".join(EX(f"dhh1-m{i + 1}", f"1.{i + 1}", "Watch this round and correct the mistake." if i else
+                              "Watch this round and correct the mistakes.", watch(i + 2) + f"<p>{GAPS(x)}</p>")
+                           for i, x in enumerate(CORRECT)), id="hw-mistakes")
+
+    pron = SEC("Pronunciation", "",
+               EX("dhh1-pr1", "1.1", "Watch Part 5 and say the phrase correctly.",
+                  watch(5) + '<p class="quote">I had had lunch.</p>' + IMG(IMG_DIR + "hw-weak-strong.jpg", "Weak and strong had") +
+                  info("", "<p>When ‘had’ is pronounced as an auxiliary verb, it takes its weak form /həd/.<br>If the main verb is "
+                           "also ‘had’, we pronounce the first one weak and the second one strong /hæd/.</p>") +
+                  VOICE("dhh1-pr1-v", 30)) +
+               EX("dhh1-pr2", "2.1", "Listen to the native speakers.",
+                  '<p><a class="btn ghost" href="https://youglish.com/pronounce/had_had/english" target="_blank" rel="noopener">'
+                  "YouGlish: how to pronounce “had had” ↗</a></p>"), id="hw-pronunciation")
+
+    ww = lambda rid, t: (f'<p><a class="btn ghost" href="https://wordwall.net/ru/resource/{rid}/past-perfect" target="_blank" '
+                         f'rel="noopener">{t} — на Wordwall ↗</a></p>')
+    practice = SEC("Practice", "",
+                   EX("dhh1-p1", "1.1", "Put the verbs in the past simple or the past perfect form.", ww(26526731, "Флеш-карты")) +
+                   EX("dhh1-p2", "1.2", "Put the words in the correct order to make sentences.", ww(3550573, "Привести в порядок")) +
+                   EX("dhh1-p3", "1.3", "Complete the gaps with the correct form of the verb in brackets.", OL([GAPS(x) for x in Q22])) +
+                   EX("dhh1-p4", "1.4", "Read the situations and make up sentences with the prompts.", OL([GAPS(x) for x in Q23])) +
+                   EX("dhh1-p5", "1.5", "For each situation write a sentence with <i>never … before</i>. Use the verb from the "
+                      "brackets.", OL([GAPS(x) for x in Q24])) +
+                   EX("dhh1-p6", "1.6", "Use the sentences on the left to complete the paragraphs on the right. These sentences are "
+                      "in the order in which they happened — so (a) happened before (b), (b) before (c&zwnj;) etc. But your paragraph "
+                      "begins with the <u>underlined</u> sentence, so sometimes you need the past perfect.",
+                      OL([f'<div class="cols2"><div class="tr">{a}</div><div>{GAPS(b)}</div></div>' for a, b in PARAGRAPHS])) +
+                   EX("dhh1-p7", "1.7", "Put the verb into the correct form, past perfect (I had done) or past simple (I did).",
+                      OL([GAPS(x) for x in Q25])), id="hw-practice")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in HW_SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, grammar, mistakes, pron, practice))
