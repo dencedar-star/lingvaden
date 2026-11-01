@@ -300,7 +300,79 @@ GAMESHOW = {1: "https://cloud.mail.ru/public/ZyUe/iSWBYr8Bs", 2: "https://cloud.
             3: "https://cloud.mail.ru/public/WyMf/wVcGmHU4e", 4: "https://cloud.mail.ru/public/hNPU/dKdjXzni2",
             5: "https://cloud.mail.ru/public/EZkg/ZZPgExJCx"}
 HW_SECTIONS = [("hw-warm-up", "Warm up"), ("hw-grammar", "Grammar"), ("hw-mistakes", "Find the mistake"),
-               ("hw-pronunciation", "Pronunciation"), ("hw-practice", "Practice")]
+               ("hw-pronunciation", "Pronunciation"), ("hw-practice", "Practice"), ("hw-story", "Story"),
+               ("hw-vocabulary", "Vocabulary"), ("hw-games", "Games")]
+PARIS = ("I had never seen such beautiful sights before I visited Paris in 2012. I had saved money for 5 years before I booked my "
+         "trip to Paris. I was very excited! Before my trip to Paris, I had never been out of the United States.</p><p>When I went "
+         "to Paris, I spent many days touring the city. The city was big. Sometimes I got lost and asked for directions. I asked for "
+         "directions in French. That was easy because I had studied French for 2 years before I visited Paris.</p><p>By the time I "
+         "left Paris, I had toured many beautiful places. The Eiffel Tower, Notre Dame Cathedral, and Luxembourg Gardens were just a "
+         "few of the places I saw. Before I visited Paris, I had only seen those places on television.")
+PARIS_GAPS = ("I [never see/had never seen/’d never seen] such beautiful sights before I [visit/visited] Paris in 2012. I "
+              "[save/had saved/’d saved] money for 5 years before I [book/booked] my trip to Paris. I was very excited! Before my "
+              "trip to Paris, I [never be/had never been/’d never been] out of the United States.</p><p>When I [go/went] to Paris, I "
+              "[spend/spent] many days touring the city. The city was big. Sometimes I [get/got] lost and asked for directions. I "
+              "[ask/asked] for directions in French. That [be/was] easy because I [study/had studied/’d studied] French for 2 years "
+              "before I [come/came] to Paris.</p><p>By the time I [leave/left] Paris, I [tour/had toured/’d toured] many beautiful "
+              "places. The Eiffel Tower, Notre Dame Cathedral, and Luxembourg Gardens [be/were] just a few of the places I [see/saw]. "
+              "Before I [visit/visited] Paris, I [only see/had only seen/’d only seen] those places on television.")
+BOSTON = ("Five years ago, I was invited for a job interview in Boston after I graduated from the university. And this was something "
+          "which I'd never experienced before. But, I really wanted to get the job, so I was quite excited about going to Boston.</p>"
+          "<p>I got in my car and started driving. I was thinking about what I would say in the interview. I was thinking of how "
+          "important this job for me. When I had just lost my attention while driving, something terrible happened. I had to stop. I "
+          "couldn't understand what was the matter until I looked out of my window: there had been a terrible accident on the road. A "
+          "car had just collided with a motorcycle before I arrived there. I got almost paralyzed because I’d never seen such a "
+          "terrible situation before. Three people had been lying down in the middle of a blood bath. So I thought they had been all "
+          "dead. I looked in my handbag to find my mobile phone, but I couldn't find it. Why? Because I'd left it at home. So even "
+          "though I was so terrified and there was nobody around, I had to get out of my car, walk to the people lying down and find a "
+          "mobile phone. The ambulance arrived in 20 minutes after I had called 911. I said I had already taken their pulse before "
+          "they came. They were all dead. By which time I was nearly 2 hours late for the interview. However, I was not that worried "
+          "about missing the interview. After I had turned back home, I hugged my little son. This disaster teach me a life lesson: "
+          "there are more important things in life than a job.")
+# слова урока: определение и примеры (Cambridge Dictionary)
+HW_WORDS = [
+    ("Can't face something / doing something", "to not want to do or deal with something unpleasant",
+     ["I can't face walking up all those steps again.", "I know I've got to tell her but I can't face it.",
+      "I simply couldn't face the prospect of life in another country.",
+      "After making such a horrible mistake, I can't face going back to work.",
+      "He couldn't face telling his wife that he'd lost his job."]),
+    ("Gleam", "to produce or reflect a small, bright light",
+     ["He polished the table until it gleamed.", "Her eyes were gleaming with amusement.", "His eyes gleamed in triumph.",
+      "Her flesh gleamed in the morning sunlight like varnished cherrywood.",
+      "In the post-war period we have had too many gleams and too few projects.",
+      "They may see a couple of eyes gleaming at them through the darkness; but they may not necessarily be the eyes of deer.",
+      "They were well turned out, and their boots gleamed.",
+      "We must be determined that in this case the redness that has gleamed in the sky must not be allowed to go back again.",
+      "There were certain gleams of that point of view coming from his speech.",
+      "The prospects of agriculture are gloomy to-day, but there are fitful gleams of light and hope."]),
+    ("Newsworthy", "interesting enough to be described in a news report",
+     ["Nothing newsworthy ever happens around here. It's so boring.", "This leads us to consider what makes something newsworthy.",
+      "It thus is newsworthy when constituency and personal preferences force a departure from the norm of party voting.",
+      "This was not newsworthy, and therefore was unlikely to have motivated him to call the press briefing.",
+      "It is, of course, less newsworthy that genetic influences are substantial for most domains of adjustment that are the foci "
+      "of developmental studies.",
+      "When judgments consistent with a norm of rationality are considered uninformative, only irrationality is newsworthy.",
+      "The musical moments that we remember are the ones that disrupt the flow, that become newsworthy."]),
+    ("Retrieve", "to find and bring back something",
+     ["We taught our dog to retrieve a ball.", "Computers are used to store and retrieve information efficiently.",
+      "The device was retrieved to the right femoral vein where it was removed surgically.",
+      "In laboratory settings they occur on about 10–20% of attempts to retrieve low-frequency targets.",
+      "Unambiguous scans within family are most useful for retrieving just the highest order of analysis.",
+      "There may be serious issues of successfully storing all the knowledge and retrieving the relevant knowledge in reasonable time.",
+      "Designers need more tools that assist in searching and retrieving analogous design solutions, especially far-field solutions.",
+      "In one instance the device was successfully retrieved after it had been released from its deployment cable."]),
+    ("Come across something", "to find something by chance. Typical nouns: website, person, video / image / picture, book / article",
+     ["He came across some of his old love letters in his wife's desk.",
+      "I've come across this Greek word and I don't know what it means. Are you able to help me?",
+      "I was going through my emails today and I came across an important one from my boss that I had missed from last week.",
+      "Whilst Roger was studying English grammar earlier, he came across this interesting blog all about phrasal verbs!",
+      "I've lost my wallet somewhere in the office today. If you come across it, please can you let me know.",
+      "After my father died, my mother and I were clearing out his things and we came across some old photos of him from when he "
+      "was a young man.", "She came across a beautiful painting in a small antique shop.",
+      "While hiking in the forest, we came across a hidden waterfall.",
+      "I've never come across this kind of situation at work before and I don't know what to do.",
+      "Have you ever come across this question in a job interview?"]),
+]
 # упражнение 1.6: события (a), (b), (c&zwnj;) по порядку; абзац начинается с подчёркнутого
 PARAGRAPHS = [
     ("(a) Somebody broke into the office during the night.<br>(b) <u>We arrived at work in the morning.</u><br>(c&zwnj;) We called the police.",
@@ -401,5 +473,50 @@ def build_homework():
                    EX("dhh1-p7", "1.7", "Put the verb into the correct form, past perfect (I had done) or past simple (I did).",
                       OL([GAPS(x) for x in Q25])), id="hw-practice")
 
+    rewrite = [("He had written three books and he was working on another one.", "Negative"),
+               ("When George died, he and Anne had been married for nearly fifty years.", "Negative"),
+               ("She didn't want to move. She had lived in Liverpool all her life.", "Negative")]
+    story = SEC("Story", "",
+                EX("dhh1-s1", "1.1", "Read the text and answer the questions. Where had I gone? What had I done? What had I seen?",
+                   f'<div class="script-p"><p>{PARIS}</p></div>' + SAY + VOICE("dhh1-s1-v") + WRITER("dhh1-s1")) +
+                EX("dhh1-s2", "1.2", "Read the text again. Which of the events happened on the trip and which had happened before?",
+                   SAY + VOICE("dhh1-s2-v") + WRITER("dhh1-s2")) +
+                EX("dhh1-s3", "1.3", "Complete the gaps with the correct form of the verb.", f"<p>{GAPS(PARIS_GAPS)}</p>") +
+                EX("dhh1-s4", "1.4", "Read the story and answer the questions. Use the Past Perfect.",
+                   f'<div class="script-p"><p>{BOSTON}</p></div>' +
+                   OL(["What did the author see when she looked out of the car window?", "What had happened when the author arrived there?",
+                       "Why couldn’t the author find her mobile phone?", "Why didn’t the author feel worried about missing the interview?",
+                       "Have you ever had such a terrible experience before?"]) + SAY + VOICE("dhh1-s4-v") + WRITER("dhh1-s4", "", 6)) +
+                EX("dhh1-s5", "1.5", "Rewrite the following sentences as negative sentences, yes/no questions and Wh-questions.",
+                   info("Example", "<p>Teresa wasn't at home. She had gone shopping.<br>Negative: She hadn't gone shopping.<br>"
+                                   "Yes/No question: Had she gone shopping?<br>Wh-question: When had she gone shopping?</p>") +
+                   OL([f"{x}" + WRITER(f"dhh1-s5-{i + 1}", f"{k}: …\nYes/No question: …\nWh-question: …", 3)
+                       for i, (x, k) in enumerate(rewrite)])) +
+                EX("dhh1-s6", "1.6", "Let's compose a story using the Past Perfect. It needs to be at least 6 sentences long. Look at "
+                   "the example below.",
+                   info("Example", "<p>Yesterday evening I was at home watching TV after I had had my dinner. I heard a terrible noise "
+                                   "before I had fallen asleep. I was shocked when I had heard the scary noise. I didn’t believe my eyes "
+                                   "after I had looked out of the window. There was a huge alien aircraft!</p>") +
+                   WRITER("dhh1-s6", "", 8)), id="hw-story")
+
+    vocab = SEC("Vocabulary", "",
+                "".join(EX(f"dhh1-v{i + 1}", f"1.{i + 1}", w,
+                           f'<p><i>{d}</i></p><ul class="voc-ex">' + "".join(f"<li>{e}</li>" for e in ex) + "</ul>")
+                        for i, (w, d, ex) in enumerate(HW_WORDS)), id="hw-vocabulary")
+
+    words = "".join(f'<div class="voc"><div class="voc-w"><b>{w}</b><span>{tr}</span>'
+                    f'<button type="button" class="say" data-say="{w}" title="Послушать" aria-label="Послушать">🔊</button></div></div>'
+                    for w, tr, _ in VOCAB)
+    games = SEC("Games", "",
+                EX("dhh1-gm1", "1.1", "20 Questions",
+                   "<p>This guessing game is not only an entertaining way to pass the time, but also an excellent exercise for "
+                   "developing language skills. One player thinks of an English word, and the others take turns asking up to 20 yes-no "
+                   "questions to try to guess what it is. This helps develop critical thinking and the use of descriptive language.</p>") +
+                EX("dhh1-gm2", "1.2", "Story Building",
+                   "<p>Gather a group of friends and start creating a story. One person begins with a sentence, and then each person in "
+                   "turn adds their own sentence to the story. The sentences must be grammatically correct and make sense in the context "
+                   "of the narrative. This game helps improve grammar and storytelling skills.</p>"
+                   f'<p class="note-s">Используйте слова урока:</p><div class="voc-list">{words}</div>'), id="hw-games")
+
     toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in HW_SECTIONS) + "</nav>"
-    return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, grammar, mistakes, pron, practice))
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, grammar, mistakes, pron, practice, story, vocab, games))
