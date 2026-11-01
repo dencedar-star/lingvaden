@@ -9,7 +9,7 @@ declare(strict_types=1);
 require __DIR__ . '/_lib.php';
 
 $f = (string)($_GET['f'] ?? '');
-if (!preg_match('~^(sb|wb|video|efrl)/[a-z0-9-]+\.(mp3|mp4)$~', $f, $m)) {
+if (!preg_match('~^(sb|wb|video|efrl|dh)/[a-z0-9-]+\.(mp3|mp4)$~', $f, $m)) {
     http_response_code(404);
     exit;
 }
