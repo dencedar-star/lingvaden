@@ -1,0 +1,436 @@
+"""Desperate Housewives · Урок 2: At the wake (поминки Мэри Элис). Модальные глаголы в прошлом. Перенесён из ProgressMe."""
+from lib import G, S, EX, OL, SEC, IMG, REVEAL, VOICE, WRITER, PLAYER, GAPS
+from .l01 import SAY, info, vk_player, shadow_intro
+
+N = "2"
+TITLE = "At the wake"
+LEAD = ("Соседки собираются на поминках Мэри Элис и пытаются понять, что с ней случилось. Слова go over, go through, "
+        "can't face doing; модальные глаголы в прошлом: should have, must have, would have, could have.")
+TOPICS = "Warm up · Vocabulary · Listening · Should have / Must have · Would have / Could have · Speaking · Dictation · Shadowing"
+IMG_DIR = "../assets/img/dh-l02/"
+VK = "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239207&hash=7c40b182f9f202c1&hd=3"
+AUDIO = "/media/dh/l02.mp3"   # звук сцены целиком (0:49)
+CLIP = {n: f"/media/dh/l02-{n}.mp3" for n in range(1, 6)}   # пять реплик сцены — для грамматики, диктанта и shadowing
+
+SECTIONS = [("warm-up", "Warm up"), ("vocabulary", "Vocabulary"), ("listening", "Listening"), ("grammar", "Grammar: should / must have"),
+            ("grammar-2", "Grammar 2: would / could have"), ("speaking", "Speaking"), ("dictation", "Dictation"), ("shadowing", "Shadowing")]
+
+LINES = ["Susan, I was just saying Paul wants to go over on Friday.",
+         "If Mary Alice was having problems she should have come to us, she should have let us help her.",
+         "What kind of problems could she have had?",
+         "No. If Mary Alice was having some sort of crisis we'd have known.",
+         "Gabby, the woman killed herself. Something must have been going on."]
+
+SCENE = [("Bree", "Susan! I was just saying Paul wants us to {go over} on Friday. He needs us to {go through} Mary Alice's {closet} "
+                  "and help pack up her things. He said he {can't face doing} it by himself."),
+         ("Gabby", "Sure, that's fine."),
+         ("Bree", "Are you okay?"),
+         ("Susan", "Yeah. I'm just so angry. If Mary Alice was having problems, she should have come to us. She should have let us "
+                   "help her."),
+         ("Gabby", "What kind of problems could she have had? She was healthy, had a great home, a nice family. Her life was…"),
+         ("Lynette", "Our life."),
+         ("Gabby", "No, if Mary Alice was having some sort of crisis, we'd have known. She lives 50 feet away, {for God's sakes}."),
+         ("Susan", "Gabby, the woman killed herself. Something must have been going on.")]
+
+VOCAB = [("to go over", "пойти к кому-то, зайти в гости", "I'm <b>going over</b> to Eddie's house, Mom — see you later!", "to visit some place"),
+         ("to go through", "внимательно изучать, просматривать вещи",
+          "I need to <b>go through</b> these old boxes in the attic to find my childhood photos.",
+          "to look at or examine something thoroughly, often in a careful or methodical way"),
+         ("closet", "шкаф", "He hung his jacket in the <b>closet</b> next to his shirts and trousers.",
+          "a small room or enclosed space used for storing clothes or other items"),
+         ("can't face doing", "не быть в состоянии заставить себя делать что-то",
+          "After such a long day, I just <b>can’t face doing</b> the dishes tonight.",
+          "to be unable to mentally or emotionally handle or accept the idea of doing something"),
+         ("for God's sakes", "ради бога", "<b>For God’s sakes</b>, turn down the music! It’s midnight!",
+          "an exclamation used to express frustration, surprise, or emphasis, often asking someone to do something urgently or "
+          "pleadingly")]
+
+
+def scene(mark):
+    """Сцена; mark — 'u' (подчеркнуть слова урока), 'b' (жирным) или '' (без выделения)."""
+    out = ""
+    for sp, t in SCENE:
+        for w in [x.split("}")[0] for x in t.split("{")[1:]]:
+            t = t.replace("{" + w + "}", f"<{mark}>{w}</{mark}>" if mark else w)
+        out += f'<p><b class="sp sp-{sp.lower()}">{sp}:</b> {t}</p>'
+    return f'<div class="scene script-p">{out}</div>'
+
+
+def rule(modal):
+    opts = [modal, "past participle"]
+    return f'<p>I/we/they/you/he/she/it {S(modal, opts)} + {S("past participle", opts)}</p>'
+
+
+ANSWERS = ("1. Susan initially says, “Yeah. I’m just so angry,” rather than admitting she’s not okay. <i>(She masks her grief with "
+           "anger.)</i><br>2. Paul, Mary Alice's husband, wants to organize packing the woman’s things on Friday. <i>(Evidence: “Paul "
+           "wants to go over on Friday… help pack up her things.”)</i><br>3. Paul needs help because he “can’t face doing it by "
+           "himself.” <i>(He’s emotionally unable to handle the task alone.)</i><br>4. Gabby says Mary Alice was “healthy, had a "
+           "great home, a nice family” and lived nearby, so they’d have known if she was in crisis. <i>(She assumes outward signs of "
+           "stability mean no hidden struggles.)</i><br>5. Susan concludes, “The woman killed herself. Something must have been going "
+           "on.” <i>(She insists Mary Alice’s suicide implies unseen problems.)</i>")
+
+# should have / must have: [подсказка/ответ]
+SM_FILL = ["Mary Alice [come/should have come] to her friends if she was struggling. They would’ve helped her.",
+           "The revolver was unused, so she [buy/must have bought] it recently. It looks old.",
+           "Paul is devastated. We [help/should have helped] him pack Mary Alice’s things sooner.",
+           "Gabby said, “We [know/should have known] about her crisis — we lived so close!”",
+           "Susan thinks Mary Alice [hide/must have hidden] her pain very well."]
+SM_REWRITE = [("Mary Alice didn’t ask for help, but it was the right thing to do.", "Mary Alice [should have asked] for help."),
+              ("It’s obvious that she was suffering in silence.", "She [must have suffered/must have been suffering] in silence."),
+              ("Paul didn’t check on her, and now he regrets it.", "Paul [should have checked] on her."),
+              ("The neighbors didn’t notice anything strange, which is surprising.", "The neighbors [should have noticed] something strange."),
+              ("The revolver was unused, so she probably bought it long ago.", "She [must have bought] the revolver long ago."),
+              ("Gabby and Susan feel guilty because they didn’t realize Mary Alice was in pain.",
+               "They [should have realized/should have realised] Mary Alice was in pain."),
+              ("The fact that she killed herself means she was extremely desperate.", "She [must have been] extremely desperate."),
+              ("It was irresponsible of them to ignore the warning signs.", "They [should have paid] attention to the warning signs."),
+              ("The way she hid her feelings suggests she was a very private person.", "She [must have been] a very private person."),
+              ("Her family didn’t support her, and that was a mistake.", "Her family [should have supported] her.")]
+# would have / could have: [подсказка/ответ]
+WC_TEXT = ("Mary Alice was feeling very lonely. She [reach/could have reached] out to a friend to feel better. She [call/could have called] "
+           "Bree or Gaby, but she didn’t do it. If she had asked for help earlier, she [be/would have been] able to prevent her heavy "
+           "feelings.</p><p>Paul also reflected a lot about the past. He knew he [do/could have done] something better to avoid problems, "
+           "but he didn’t decide to act. He [leave/could have left] town to escape the consequences of his decisions.")
+WSC = [("I [buy/could have bought] bread but I didn't know we needed it.", "past possibility"),
+       ("We [not invite/shouldn't have invited] so many people to our party! I'm worried that we won't have enough room for everyone.",
+        "past negative advice / regret"),
+       ("I [start/should have started] saving money years ago!", "past advice / regret"),
+       ("We [join/would have joined] you at the restaurant, but we couldn't get a babysitter.", "past willingness"),
+       ("The weather [not be/couldn't have been] any worse!", "past negative possibility"),
+       ("I [not arrive/couldn't have arrived] on time, even if I'd left earlier. There were dreadful traffic jams all the way.",
+        "past negative possibility"),
+       ("They [win/could have won] the football match, but John hurt his ankle.", "past possibility"),
+       ("Amanda [finish/would have finished] the work, but she felt ill and had to go home.", "past willingness"),
+       ("Lucy [leave/should have left] earlier. She missed her flight.", "past advice / regret"),
+       ("We [not finish/couldn't have finished] the game, even if we'd wanted to. It was raining very hard and we had to stop.",
+        "past negative possibility"),
+       ("I [not eat/shouldn't have eaten] so much chocolate! I feel sick!", "past negative advice / regret"),
+       ("Luke [pass/could have passed] the exam if he'd studied a bit more.", "past possibility"),
+       ("John [call/would have called] Amy, but he didn't have her number.", "past willingness"),
+       ("You [not be/shouldn't have been] rude to him. He's going to be really angry now.", "past negative advice / regret"),
+       ("She [come/could have come] to the restaurant if she'd left work earlier.", "past possibility"),
+       ("You [not take/shouldn't have taken] this job. I can see you're not enjoying it.", "past negative advice / regret"),
+       ("The race was really difficult. She [not win/couldn't have won] because she's not fit enough.", "past negative possibility"),
+       ("Our neighbours [not cut/shouldn't have cut] down the tree in their garden. It was a really beautiful tree.",
+        "past negative advice / regret"),
+       ("The children [do/should have done] their homework last night. Then they wouldn't be panicking on the way to school.",
+        "past advice / regret"),
+       ("I'm really cold! I [bring/should have brought] my coat.", "past advice / regret"),
+       ("I [come/would have come] to see you! I didn't know you were ill.", "past willingness"),
+       ("Andrew [go/could have gone] to Cambridge University, but he decided to travel instead.", "past possibility"),
+       ("They [not be/couldn't have been] kinder to me. They were absolutely lovely.", "past negative possibility"),
+       ("You [buy/should have bought] some milk at the shops. We don't have any milk.", "past advice / regret"),
+       ("They [come/would have come] to have breakfast with us, but they went to bed too late the night before.", "past willingness")]
+# Shadowing: подсказки к произношению каждой реплики
+SHADOW_NOTES = ["Фраза “I was just saying” произносится “Iwzjusayin”.",
+                "Зачёркнутые звуки: “was” — “wz”, “should have” — “shdev”. “To us” — две гласные соединяются между собой призвуком /w/.",
+                "“Kind of” произносится слитно. Зачёркнутые буквы редуцируются: “what” — “wt”, “could” — “kd”, “have” — “ev”.",
+                "Габи тоже говорит почти без пауз. “Sort of” произносится слитно. “Was” — “wz”, “we'd have” — “weedev”.",
+                "Зачёркнутые буквы редуцируются: “the” — “th”, “killed herself” — “kilderself”, “must have” — “mustev”, “going on” — "
+                "“goinon”."]
+
+
+def build():
+    # ---------- Warm up ----------
+    warm = SEC("Warm up", "",
+               '<div class="voc"><div class="voc-w"><b>wake</b><span>поминки</span><button type="button" class="say" data-say="wake" '
+               'title="Послушать" aria-label="Послушать">🔊</button></div></div>' +
+               EX("dh2-w1", "1.1", "Neighbors and friends come to Mary Alice's wake. How do you think they feel?",
+                  IMG(IMG_DIR + "poster.jpg", "At the wake") + SAY + VOICE("dh2-w1-v") + WRITER("dh2-w1")), id="warm-up")
+
+    # ---------- Vocabulary ----------
+    defs = sorted(d for *_, d in VOCAB)
+    words = "".join(f'<div class="voc"><div class="voc-w"><b>{w}</b><span>{tr}</span><button type="button" class="say" data-say="{w}" '
+                    f'title="Послушать" aria-label="Послушать">🔊</button></div><ul class="voc-ex"><li>{ex}</li></ul></div>'
+                    for w, tr, ex, _ in VOCAB)
+    fill = ["[For God's sakes/For God’s sakes/For God's sake/For God’s sake], be careful with that antique vase!",
+            "They want to [go over] to the office to check the documents.",
+            "She [can’t face/cannot face/couldn’t face] cleaning the messy garage today.",
+            "My shoes are in the [closet] next to the door.",
+            "She had to [go through] all her emails to find the important message."]
+    vocab = SEC("Vocabulary", "",
+                EX("dh2-v1", "1.1", "Study the examples. What do the words in bold mean?", f'<div class="voc-list">{words}</div>') +
+                EX("dh2-v2", "1.2", "Complete the boxes with the words from exercise 1.1.",
+                   '<div class="pic-grid">' +
+                   f'<figure class="pic"><img src="{IMG_DIR}closet.jpg" alt="" loading="lazy"><figcaption>{G("closet")}</figcaption></figure>' +
+                   f'<figure class="pic"><img src="{IMG_DIR}go-through.jpg" alt="" loading="lazy"><figcaption>'
+                   f'{G("go through|to go through")}</figcaption></figure></div>') +
+                EX("dh2-v3", "1.3", "Match the phrases with the definitions.", OL([f"<b>{w}</b> — {S(d, defs)}" for w, _, _, d in VOCAB])) +
+                EX("dh2-v4", "1.4", "Complete the sentences with phrases from 1.1.", OL([GAPS(x) for x in fill])), id="vocabulary")
+
+    # ---------- Listening ----------
+    listen = SEC("Listening", "",
+                 EX("dh2-l1", "1.1", "At the wake. Watch the video. Why does Susan feel angry?",
+                    vk_player(VK, "Desperate Housewives — At the wake") + SAY + VOICE("dh2-l1-v", 60) + WRITER("dh2-l1")) +
+                 EX("dh2-l2", "1.2", "Watch the video again and answer the questions.",
+                    OL(["Who is organizing the task of packing Mary Alice's things, and when?",
+                        "Why does that person need help with the task?"]) + SAY + VOICE("dh2-l2-v", 60) + WRITER("dh2-l2")) +
+                 EX("dh2-l3", "1.3", "Watch again, read the script below and translate the underlined phrases.",
+                    PLAYER(AUDIO, "At the wake · 0:49") + scene("u") + SAY + VOICE("dh2-l3-v", 90) + WRITER("dh2-l3")) +
+                 EX("dh2-l4", "1.4", "Answer the questions.",
+                    OL(["What reason does Gabby give for believing Mary Alice couldn’t have been in crisis?",
+                        "What final point does Susan make about Mary Alice’s death?"]) + SAY + VOICE("dh2-l4-v", 60) + WRITER("dh2-l4") +
+                    REVEAL(ANSWERS, "Suggested answers (1.1–1.4)")), id="listening")
+
+    # ---------- Grammar: should have / must have ----------
+    grammar = SEC("Grammar", "Should have / Must have",
+                  IMG(IMG_DIR + "susan.jpg", "Susan", cls="fig-small2") +
+                  EX("dh2-g1", "1.1", "Listen and complete the gaps.",
+                     PLAYER(CLIP[2], "Susan · 0:05") +
+                     "<p>" + GAPS("If Mary Alice was having problems she [should have come] to us, she [should have let] us help her.") +
+                     "</p>" + rule("should have")) +
+                  info("1. Should have", "<p>Выражает критику по поводу невыполненных обязательств или сожаление об ошибках в прошлом.</p>"
+                       "<p><b>Examples:</b><br>Mary Alice <b>should have come</b> to us for help. (But she didn’t.) <span class=\"tr\">Мэри "
+                       "Элис надо было обратиться к нам за помощью.</span><br>We <b>should have noticed</b> she was struggling. (But we "
+                       "failed to.) <span class=\"tr\">Жаль, что мы не заметили, что ей плохо.</span></p><p><b>Key contexts:</b><br>"
+                       "✔️ <b>Criticism:</b> You <b>should have told</b> me the truth! <span class=\"tr\">Мог бы тогда сказать мне правду!"
+                       "</span><br>✔️ <b>Regret:</b> I <b>should have listened</b> to her. <span class=\"tr\">Эх, надо было послушать её!"
+                       "</span></p>", "g") +
+                  EX("dh2-g2", "1.2", "Listen and complete the gaps.",
+                     PLAYER(CLIP[5], "Susan · 0:04") +
+                     "<p>" + GAPS("Gabby, the woman killed herself. Something [must have been] going on.") + "</p>" + rule("must have")) +
+                  info("2. Must have", "<p>Позволяет делать логические выводы о прошлых событиях (определённость, основанная на "
+                       "доказательствах). Выражает высокую вероятность какого-то события или состояния («Я убеждён, что так оно и было»)."
+                       "</p><p><b>Examples:</b><br>She <b>must have been</b> in terrible pain. (Deduction from her suicide.) "
+                       "<span class=\"tr\">Должно быть, она ужасно страдала.</span><br>They <b>must have known</b> something was wrong. "
+                       "<span class=\"tr\">Они, скорее всего, знали, что что-то не так.</span></p><p><b>Key contexts:</b><br>"
+                       "✔️ <b>Deduction:</b> The revolver <b>must have been</b> hidden for years. <span class=\"tr\">Должно быть, револьвер "
+                       "прятали много лет.</span><br>✔️ <b>Certainty:</b> Paul <b>must have felt</b> devastated. <span class=\"tr\">Должно "
+                       "быть, Пол был раздавлен.</span></p>", "g") +
+                  scene("") +
+                  EX("dh2-g3", "1.3", "Fill in the gaps with <i>should have</i> or <i>must have</i> and the correct form of the verb in "
+                     "brackets.", OL([GAPS(x) for x in SM_FILL])) +
+                  EX("dh2-g4", "1.4", "Rewrite the sentences using <i>should have</i> or <i>must have</i>.",
+                     OL([f"{a}<br>{GAPS(b)}" for a, b in SM_REWRITE]) +
+                     REVEAL("<b>Should have</b> — criticism, regret or unfulfilled duty (sentences 1, 3, 4, 6, 8, 10).<br>"
+                            "<b>Must have</b> — logical conclusions (sentences 2, 5, 7, 9).", "Answer key")), id="grammar")
+
+    # ---------- Grammar 2: would have / could have ----------
+    grammar2 = SEC("Grammar 2", "Would have / Could have",
+                   EX("dh2-h1", "1.1", "Listen and complete the gaps.",
+                      PLAYER(CLIP[4], "Gabby · 0:03") +
+                      "<p>" + GAPS("No. If Mary Alice was having some sort of crisis we [’d have known/would have known].") + "</p>" +
+                      rule("would have")) +
+                   info("3. Would have", "<p>Описывает гипотетические, несостоявшиеся события в прошлом, сожаление об упущенных "
+                        "возможностях. Употребляется в условном предложении третьего типа («Если бы я знал, я бы пришёл»).</p>"
+                        "<p><b>Examples:</b><br>“If Martha Huber had known the consequences, she <b>wouldn’t have sent</b> a note to Mary "
+                        "Alice.” <span class=\"tr\">Если бы Марта Хубер знала о последствиях, она не отправила бы записку Мэри Элис.</span>"
+                        "<br>“If it had been warmer, we <b>would have gone</b> for a swim.” <span class=\"tr\">Если бы было теплее, мы бы "
+                        "пошли плавать.</span></p><p><b>Key contexts:</b><br>✔️ Past regrets or missed opportunities: “She <b>would have "
+                        "reached out</b> for help if she had realized how close she was to breaking.” <span class=\"tr\">Она бы обратилась за "
+                        "помощью, если бы поняла, что скоро сорвётся.</span><br>✔️ Hypothetical past in reported speech: “Her friends "
+                        "<b>would have tried</b> to help her if they had known how much she was suffering.” <span class=\"tr\">Её друзья "
+                        "попытались бы помочь ей, если бы они знали, как сильно она страдала.</span></p>", "g") +
+                   EX("dh2-h2", "1.2", "Listen and complete the gaps.",
+                      PLAYER(CLIP[3], "Gabby · 0:02") + "<p>" + GAPS("What kind of problems [could she have had]?") + "</p>" +
+                      rule("could have")) +
+                   info("4. Could have done", "<p>Используется для нереализованных возможностей, гипотетических сценариев событий в "
+                        "прошлом или предположений о них. Оно также может выражать идею, что у кого-то был потенциал для достижения "
+                        "чего-либо, но этого не произошло.</p><p><b>Examples:</b><br>I <b>could have studied</b> harder, but I was too lazy. "
+                        "<span class=\"tr\">Я мог бы учиться лучше, но мне было лень.</span><br>Mary Alice <b>could have told</b> someone "
+                        "about her feelings if she had felt comfortable enough. <span class=\"tr\">Мэри Элис могла бы рассказать кому-то о "
+                        "своих переживаниях, если бы чувствовала доверие.</span><br>Paul <b>could have left</b> town before the incident "
+                        "happened. <span class=\"tr\">Пол мог уехать из города до того, как это случилось.</span><br>She <b>could have "
+                        "seen</b> something suspicious but chose not to mention it. <span class=\"tr\">Она могла видеть что-то "
+                        "подозрительное, но решила не упоминать об этом.</span></p><p><b>Key contexts:</b><br>✔️ Unrealized past "
+                        "opportunity/ability: She <b>could have married</b> him, but she didn't want to. <span class=\"tr\">Она могла бы "
+                        "выйти за него замуж, но не захотела.</span><br>Paul <b>could have confessed</b> his true intentions if he had been "
+                        "honest from the start. <span class=\"tr\">Пол мог бы признаться в своих намерениях, если бы с самого начала был "
+                        "честен.</span><br>✔️ Past possibility/speculation: Why did Mary Alice seem so upset? She <b>could have found out</b> "
+                        "something terrible. <span class=\"tr\">Почему Мэри Элис выглядела такой расстроенной? Возможно, она узнала что-то "
+                        "ужасное.</span><br>They <b>could have been arguing</b> just before everything happened. <span class=\"tr\">Возможно, "
+                        "они поругались как раз перед тем, как это случилось.</span><br>✔️ <i>Couldn't have done</i> (negative form): Mary "
+                        "Alice <b>couldn't have predicted</b> her fate; it was beyond her control. <span class=\"tr\">Мэри Элис не могла "
+                        "предугадать свою судьбу; это было не в её силах.</span><br>Paul <b>couldn't have known</b> that his actions would "
+                        "lead to such consequences. <span class=\"tr\">Пол не мог знать, что его поступки приведут к таким последствиям."
+                        "</span></p>", "g") +
+                   scene("b") +
+                   EX("dh2-h3", "1.3", "Complete the text with <i>could have</i> or <i>would have</i> + past participle of the verb in "
+                      "brackets.", f"<p>{GAPS(WC_TEXT)}</p>") +
+                   EX("dh2-h4", "1.4", "Complete the gaps with <i>would / should / could</i> and the correct form of the verbs in brackets.",
+                      OL([f'{GAPS(x)} <span class="tr">({k})</span>' for x, k in WSC])), id="grammar-2")
+
+    # ---------- Speaking ----------
+    speak = SEC("Speaking", "",
+                EX("dh2-s1", "1.1", "Complete the gaps with the words from the box: <i>For God's sakes, go over, closet, face, go through</i>.",
+                   IMG(IMG_DIR + "closet-peek.jpg", "", cls="fig-small2") +
+                   OL([GAPS(x) for x in ["The detective will [go through/go over] the evidence carefully.",
+                                         "Can you [go over] to Finance and drop this paperwork off to Mary?",
+                                         "There's a ladder in the [closet] to reach the upper shelves.",
+                                         "After hearing the bad news, he couldn't [face] telling his family.",
+                                         "Can you please stop arguing? [For God's sakes/For God’s sakes/For God's sake/For God’s sake], "
+                                         "we're trying to have a peaceful dinner."]])) +
+                EX("dh2-s2", "1.2", "Discuss the following questions.",
+                   OL(["Have you ever needed to go over your notes before a test? Why?",
+                       "Can you tell me about a time when you had to go through a lot of paperwork or emails?",
+                       "Have you ever found something surprising in your closet?",
+                       "Is there anything you can't face doing because it makes you uncomfortable or upset?",
+                       "When do you think people might say “for God's sakes”? Can you give an example?"]) +
+                   SAY + VOICE("dh2-s2-v") + WRITER("dh2-s2", "", 6)), id="speaking")
+
+    # ---------- Dictation ----------
+    dict_gaps = ["Susan, [I was just saying] Paul [wants to go over on Friday].",
+                 "If [Mary Alice was having problems] she [should have come to us], she [should have let us help her].",
+                 "What [kind of problems could she have had]?",
+                 "No. If [Mary Alice was having some sort of crisis] we [’d have known/would have known].",
+                 "Gabby, [the woman killed herself]. Something [must have been going on]."]
+    dictation = SEC("Dictation", "",
+                    '<p class="note-s">Прослушайте запись несколько раз и напечатайте то, что слышите. На каждое задание — 3 попытки.</p>' +
+                    "".join(EX(f"dh2-d{i + 1}", f"1.{i + 1}", "Listen and type in what you hear.",
+                               PLAYER(CLIP[i + 1], f"Dictation {i + 1}") + f"<p>{GAPS(x, 'wide')}</p>")
+                            for i, x in enumerate(dict_gaps)), id="dictation")
+
+    # ---------- Shadowing ----------
+    legend = info("Условные обозначения", "<p>Красные вертикальные линии означают паузы. На слова, подчёркнутые красным, падает смысловое "
+                  "ударение.</p><p>Слоги, подчёркнутые оранжевым, читаются долго.</p><p>Зелёные дуги, соединяющие слова, означают, что "
+                  "эти слова читаются слитно. Зелёные квадраты, объединяющие 2 соседних слова, означают, что последний звук первого слова "
+                  "и первый звук второго слова сливаются в один.</p>", "y")
+    shadow = SEC("Shadowing", "",
+                 shadow_intro() + legend +
+                 "".join(EX(f"dh2-sh{i + 1}", f"1.{i + 1}", "Listen to the track, then repeat the sentence trying to copy the rhythm and "
+                            "intonation of the original.",
+                            f'<p class="quote">{line}</p>' + PLAYER(CLIP[i + 1], f"Shadowing {i + 1}") +
+                            IMG(IMG_DIR + f"shadow-{i + 1}.jpg", "", SHADOW_NOTES[i]) + VOICE(f"dh2-sh{i + 1}-v", 30))
+                         for i, line in enumerate(LINES)), id="shadowing")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, vocab, listen, grammar, grammar2, speak, dictation, shadow))
+
+
+# ---------------- домашнее задание ----------------
+HW_LEAD = ("Домашнее задание к уроку 2: слова урока подробнее, Second Conditional по мультфильмам (в том числе инверсия "
+           "«Were I to…») и тренировка произношения реплик из сцены.")
+HW_SECTIONS = [("hw-vocabulary", "Vocabulary"), ("hw-grammar", "Grammar: Second Conditional"), ("hw-pronunciation", "Pronunciation")]
+CONDITIONAL_YT = "https://www.youtube.com/watch?v=QD0Vzq7qhh0"
+CONDITIONAL_VK = None   # плеер VK для видео SECOND CONDITIONAL — от владельца
+# примеры из видео: Second Conditional в мультфильмах
+CARTOON = ["Look, if I <b>were</b> you, I<b>'d march</b> right up to my family and say, “Hey, I'm a musician. Deal with it.”",
+           "If I <b>stepped</b> on you, <b>would</b> you <b>die</b>?",
+           "A: So do you have any live people? B: Only dead ones. C: I mean, if we <b>had</b> a lot of live people here, it "
+           "<b>wouldn't be</b> called the wild, would it?",
+           "I don't know what I<b>'d do</b> if no one <b>put up</b> my photo.",
+           "I know Master Shifu is trying to inspire me and all, but if I <b>didn't know</b> any better, I<b>'d say</b> he was trying "
+           "to get rid of me.",
+           "If I <b>discovered</b> the origin of the universe, my brother <b>would find</b> a way to market it as a foot massager.",
+           "That if Shen <b>continued</b> down this dark path, he <b>would be defeated</b> by a warrior of black and white.",
+           "No wonder you keep it a secret. If I <b>lived</b> here, I <b>wouldn't tell</b> anyone either.",
+           "Maybe if you <b>gave</b> this place a chance, I don't know, you <b>might</b> even <b>enjoy</b> yourself.",
+           "I <b>couldn't</b> even <b>play</b> that thing if I <b>wanted</b> to.",
+           "And if I <b>weren't</b> so ugly, she<b>'d</b> possibly <b>give</b> me a chance.",
+           "Of course I <b>could let</b> you <b>off</b> with a warning if you <b>were to glove</b> those trunks.",
+           "I<b>'d lose</b> my head if it <b>weren't</b> attached to my neck.",
+           "You know, if I <b>wanted</b> to avoid surveillance because I was doing something illegal, which I never have, I <b>would "
+           "use</b> the maintenance tunnel 6B.",
+           "They thought it <b>would be</b> better if a predator such as myself <b>wasn't</b> the first face that you see when you walk "
+           "into the ZPD."]
+INVERSION = [("If I were to win the lottery, I would buy a private island.", "[Were I to win the lottery], I would buy a private island."),
+             ("If they were to accept the merger, we would be in trouble.", "[Were they to accept the merger], we would be in trouble."),
+             ("If I were in your position, I would renegotiate the contract.",
+              "[Were I in your position], I would renegotiate the contract."),
+             ("How would the company change if all employees worked remotely?",
+              "How would the company change [were all employees to work remotely]?"),
+             ("If I won the lottery, I would travel the world.", "[Were I to win the lottery], I would travel the world."),
+             ("If she were the CEO, things would run differently.", "[Were she the CEO], things would run differently.")]
+SECOND = ["If I [be/were] you, I [get/would get/’d get] a new job.",
+          "If he [be/were] younger, he [travel/would travel/’d travel] more.",
+          "If we [not be/weren’t/were not] friends, I [be/would be/’d be] angry with you.",
+          "If I [have/had] enough money, I [buy/would buy/’d buy] a big house.",
+          "If she [not be/weren’t/were not/wasn’t/was not] always so late, she [be/would be/’d be] promoted.",
+          "If we [win/won] the lottery, we [travel/would travel/’d travel] the world.",
+          "If you [have/had] a better job, we [be/would be/’d be] able to buy a new car.",
+          "If I [speak/spoke] perfect English, I [have/would have/’d have] a good job.",
+          "If we [live/lived] in Mexico, I [speak/would speak/’d speak] Spanish.",
+          "If she [pass/passed] the exam, she [be/would be/’d be] able to enter university.",
+          "She [be/would be/’d be] happier if she [have/had] more friends.",
+          "We [buy/would buy/’d buy] a house if we [decide/decided] to stay here.",
+          "They [have/would have/’d have] more money if they [not buy/didn’t buy/did not buy] so many clothes.",
+          "We [come/would come/’d come] to dinner if we [have/had] time.",
+          "She [call/would call/’d call] him if she [know/knew] his number.",
+          "They [go/would go/’d go] to Spain on holiday if they [like/liked] hot weather.",
+          "She [pass/would pass/’d pass] the exam if she [study/studied] more.",
+          "I [marry/would marry/’d marry] someone famous if I [be/were/was] a movie star.",
+          "We [never be/would never be/’d never be] late again if we [buy/bought] a new car.",
+          "You [lose/would lose/’d lose] weight if you [eat/ate] less.",
+          "If he [weren’t/were not/wasn’t/was not] so arrogant, he [get/would get/’d get] more promotions.",
+          "Were you to see the CEO, you [not dare/wouldn’t dare/would not dare] to ask for a raise.",
+          "We [have/would have/’d have] a much better reputation if we [take/took] client feedback seriously.",
+          "If I [be/were] to tell you the truth, I actually prefer not to be involved."]
+
+
+def build_homework():
+    def word(title, body):
+        return info(title, body, "g")
+    vocab = SEC("Vocabulary", "",
+                EX("dhh2-v1", "1.1", "To go over",
+                   "<p><i>to examine or look at something in a careful or detailed way:</i></p><ul class=\"voc-ex\">"
+                   "<li>Forensic scientists are going over the victim's flat in a search for clues about the murderer.</li>"
+                   "<li>Remember to go over your essay for grammar and spelling mistakes before you hand it in to me.</li>"
+                   "<li>I've gone over the problem several times, but I can't think of a solution.</li></ul>") +
+                EX("dhh2-v2", "1.2", "To go through",
+                   "<p><i>to examine something that contains a collection of things carefully in order to organize them or find "
+                   "something:</i></p><ul class=\"voc-ex\"><li>I'm going through my wardrobe and throwing out all the clothes I don't "
+                   "wear any more.</li><li>Remember to go through the pockets before you put those trousers in the washing machine.</li>"
+                   "</ul>") +
+                EX("dhh2-v3", "1.3", "Can't face something / doing something",
+                   "<p><i>to not want to do or deal with something unpleasant:</i></p><ul class=\"voc-ex\">"
+                   "<li>I can't face walking up all those steps again.</li><li>I know I've got to tell her but I can't face it.</li>"
+                   "<li>I simply couldn't face the prospect of life in another country.</li>"
+                   "<li>After making such a horrible mistake, I can't face going back to work.</li>"
+                   "<li>He couldn't face telling his wife that he'd lost his job.</li></ul>") +
+                EX("dhh2-v4", "1.4", "Wardrobe vs closet & cupboard",
+                   IMG(IMG_DIR + "hw-wardrobe.jpg", "Wardrobe", "Шкаф, занимающий пространство от пола до потолка, и, как правило, "
+                       "встроенный в стену (более свойственно британскому английскому); от <i>clausum</i> (лат.) — «закрытое "
+                       "пространство».", cls="fig-small2") +
+                   word("Wardrobe", "<p>a fitted / built-in <b>wardrobe</b> — встроенный шкаф</p><p>Examples:<br>She hung the dress up "
+                        "in the <b>wardrobe</b>. <span class=\"tr\">Она повесила платье в гардероб.</span><br>There was a large dark wood "
+                        "<b>wardrobe</b> in the room. <span class=\"tr\">В комнате был большой тёмный деревянный шкаф.</span></p>") +
+                   info("Closet", "<p>Американский вариант слова <b>wardrobe</b>.</p><p>Idiom (AmE): a skeleton in the <b>closet</b> — "
+                        "скелет в шкафу</p><p>Examples:<br>I have a <b>closet</b> full of clothes that don't fit. <span class=\"tr\">У меня "
+                        "есть шкаф, полный одежды, которая не подходит.</span><br>She has a walk-in <b>closet</b> for all her clothes. "
+                        "<span class=\"tr\">У неё есть гардеробная комната для всей её одежды.</span></p>", "y") +
+                   info("Cupboard", "<p>kitchen cupboard — кухонный шкаф<br>a built-in / fitted cupboard — встроенный шкаф<br>a wall "
+                        "cupboard — шкаф, висящий на стене<br>a cupboard door — дверца шкафа<br>a stationery / linen … cupboard — шкаф для "
+                        "канцелярии / белья и др.</p><p>Idiom (BrE): a skeleton in the <b>cupboard</b> — скелет в шкафу</p><p>Examples:<br>"
+                        "Get what you want from the <b>cupboard</b>. <span class=\"tr\">Возьми всё, что хочешь, из шкафа.</span><br>The "
+                        "<b>cupboard</b> was full of old spices. <span class=\"tr\">Шкафчик был полон старых специй.</span></p>") +
+                   IMG(IMG_DIR + "hw-difference.jpg", "В чём разница: wardrobe, closet, cupboard")) +
+                EX("dhh2-v5", "1.5", "For God's sake(s)",
+                   "<p>At its core, <b>“for God’s sake”</b> is an exclamation used to express strong emotion. Its <b>meaning depends on "
+                   "the context and tone</b>:</p><ul class=\"dots\"><li><b>Frustration or irritation:</b> “For God’s sake, can you stop "
+                   "tapping your pen?”</li><li><b>Urgency or pleading:</b> “For God’s sake, call the doctor immediately!”</li>"
+                   "<li><b>Emphasis or surprise:</b> “For God’s sake, that’s amazing news!”</li></ul><p>Although it mentions “God,” the "
+                   "phrase <b>isn’t always religious</b>. Many people use it casually without intending a spiritual context, similar to "
+                   "phrases like “for heaven’s sake” or “for Pete’s sake.”</p>"
+                   '<p><a href="https://grammarride.com/for-gods-sake-meaning-example-and-usage/" target="_blank" rel="noopener">'
+                   "Подробнее: For God’s sake — meaning, examples and usage ↗</a></p>"), id="hw-vocabulary")
+
+    video = (vk_player(CONDITIONAL_VK, "SECOND CONDITIONAL in Animated Movies", "Не открывается? "
+                       f'<a href="{CONDITIONAL_YT}" target="_blank" rel="noopener">Смотреть на YouTube ↗</a>') if CONDITIONAL_VK else
+             f'<p><a class="btn ghost" href="{CONDITIONAL_YT}" target="_blank" rel="noopener">▶ SECOND CONDITIONAL in Animated Movies '
+             "(English with Movies & Series) ↗</a></p>")
+    grammar = SEC("Grammar", "Second Conditional",
+                  EX("dhh2-g1", "1.1", "Watch SECOND CONDITIONAL in Animated Movies and practice saying the sentences.",
+                     video + OL(CARTOON) + VOICE("dhh2-g1-v")) +
+                  EX("dhh2-g2", "1.2", "Make up your own examples. Use the sentences in 1.1 as a model.", WRITER("dhh2-g2", "", 6)) +
+                  EX("dhh2-g3", "2.1", "Read the sentences and answer the questions.",
+                     "<p>1.<br>a. <b>Were we to announce</b> the truth, we would receive a lot of criticism.<br>b. If we announced the "
+                     "truth, we would receive a lot of criticism.</p><p>2.<br>a. <b>Were they to buy</b> a new house, they would need to "
+                     "sell the old one first.<br>b. If they bought a new house, they would need to sell the old one first.</p>" +
+                     f'<p>Do sentences a and b have the same meaning? {S("Yes", ["Yes", "No"])}</p>'
+                     f'<p>Do sentences a and b have the same register? {S("No", ["Yes", "No"])}</p>' +
+                     info("", "<p>Инверсия во втором типе условных предложений (Second Conditional) — это способ сделать речь более "
+                              "формальной и эмоциональной, опуская союз <b>if</b> и меняя порядок слов в придаточном предложении.</p>")) +
+                  EX("dhh2-g4", "2.2", "Rewrite the following sentences using inversion or advanced structures (e.g., “If I were to”, "
+                     "“Were I to”).", OL([f"{a}<br>{GAPS(b, 'wide')}" for a, b in INVERSION])) +
+                  EX("dhh2-g5", "2.3", "Make up your examples with the Second Conditional. Use inversion.", WRITER("dhh2-g5", "", 5)) +
+                  EX("dhh2-g6", "3.1", "Put the verbs in brackets in the Second Conditional form.", OL([GAPS(x) for x in SECOND])),
+                  id="hw-grammar")
+
+    pron = SEC("Pronunciation", "",
+               "".join(EX(f"dhh2-p{i + 1}", f"1.{i + 1}", "Listen to the track, then repeat the sentence trying to copy the rhythm and "
+                          "intonation of the original.",
+                          f'<p class="quote">{line}</p>' + PLAYER(CLIP[i + 1], f"Track {i + 1}") + VOICE(f"dhh2-p{i + 1}-v", 30))
+                       for i, line in enumerate(LINES)), id="hw-pronunciation")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in HW_SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (vocab, grammar, pron))
