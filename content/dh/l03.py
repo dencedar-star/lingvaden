@@ -1,0 +1,354 @@
+"""Desperate Housewives · Урок 3: Susan meets Mike (знакомство на поминках). Second Conditional, I wish. Перенесён из ProgressMe."""
+from pathlib import Path
+
+from lib import S, EX, OL, SEC, IMG, REVEAL, VOICE, WRITER, PLAYER, GAPS
+from .l01 import SAY, info, vk_player, shadow_intro
+from .l02 import scene as _scene
+
+N = "3"
+TITLE = "Susan meets Mike"
+LEAD = ("На поминках Сьюзан знакомится с новым соседом — сантехником Майком Дельфино. Слова screw up, I get that a lot, "
+        "be very big with; Second Conditional и I wish.")
+TOPICS = "Warm up · Vocabulary · Listening · Second Conditional · I wish · Speaking · Dictation · Shadowing"
+IMG_DIR = "../assets/img/dh-l03/"
+VK = "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239226&hash=487d66aa280ab2cd&hd=3"
+AUDIO = "/media/dh/l03.mp3"   # звук сцены целиком — из записи владельца
+MEDIA = Path(__file__).resolve().parents[2] / "media" / "dh"
+# игры Wordwall (Grammar 1.3, 1.5): код встраивания от владельца
+WORDWALL_BALLOONS = "https://wordwall.net/embed/fd0b5519cb04431785e8e6e61150f677?themeId=22&templateId=71&fontStackId=0"
+WORDWALL_CARDS = "https://wordwall.net/embed/cd94a4de37db4b2eacd5281fcf2b322e?themeId=65&templateId=30&fontStackId=0"
+
+SECTIONS = [("warm-up", "Warm up"), ("vocabulary", "Vocabulary"), ("listening", "Listening"), ("grammar", "Grammar: Second Conditional"),
+            ("speaking", "Speaking"), ("dictation", "Dictation"), ("shadowing", "Shadowing")]
+
+LINES = ["I wouldn't eat that if I were you.",
+         "No, I just refuse to believe that anybody can screw up macaroni and cheese.",
+         "Oh my God. How did you… It tastes like it's burned and undercooked.",
+         "Thanks. I'm Mike Delfino. I just started renting the Sims house next door.",
+         "Yeah, I'm very big with the under five set.",
+         "Now that everybody's seen that I brought something, I should probably just throw this out."]
+
+SCENE = [("Susan", "I wouldn't eat that if I were you."),
+         ("Mike", "Why?"),
+         ("Susan", "I made it, trust me. Hey, hey, do you have a death wish?"),
+         ("Mike", "No, I just refuse to believe that anybody can {screw up} macaroni and cheese. Oh my God. How did you… It tastes "
+                  "like it's burned and undercooked."),
+         ("Susan", "Yeah, {I get that a lot}. {Here you go}."),
+         ("Mike", "Thanks. I'm Mike Delfino. I just started renting the Sims house next door."),
+         ("Susan", "Susan Mayer. I live across the street."),
+         ("Mike", "Mrs. Huber told me about you. Said you illustrate children's books."),
+         ("Susan", "Yeah, I'm {very big with} the under five set. What do you do?"),
+         ("Mike", "{Plumber}. So if you ever have a {clog}… or something."),
+         ("Susan", "Now that everybody's seen that I brought something, I should probably just throw this out.")]
+
+VOCAB = [("to screw up", "провалить, испортить, сделать что-то неправильно", "to fail at something"),
+         ("I get that a lot", "мне это часто говорят", "people say that frequently"),
+         ("here you go", "держите, вот, пожалуйста", "here is what you asked for"),
+         ("be very big with", "быть очень популярным среди", "be very popular with"),
+         ("a clog", "засор в трубе", "a blockage"),
+         ("plumber", "сантехник", "a person whose job is to connect and repair things such as water and drainage pipes, baths, and toilets")]
+
+ANSWERS = ("1. She throws the food away.<br>2. He says it tastes burned and undercooked at the same time.<br>3. She illustrates "
+           "children’s books.<br>4. He’s a plumber. He says: “So if you ever have a clog… or something.”")
+SHADOW_NOTES = [
+    "Пауз нет. Звук /t/ в wouldn't исчезает. Eat that произносится как /i:ðæt/. That if превращается в thatf, причём звук /t/ "
+    "невыраженный (см. ниже).",
+    "В американском английском /t/ произносится невыраженно, как будто «съедается»: just refuse — jusrefuse, and cheese — ancheese. "
+    "Screw up — возникает призвук /w/: /skruːwʌp/. В that anybody звук /t/ максимально расслабленный, нужный лишь для того, чтобы "
+    "соединить две гласные (см. ниже).",
+    "How did you произносится скороговоркой, все звуки краткие. It tastes — itastes. Like it's, and undercooked произносится в одно "
+    "слово.",
+    "I'm Mike Delfino — он делает небольшую паузу перед именем, чтобы выделить его. Just started — justarted, renting — rentn, next "
+    "door — nexdoor.",
+    "Сьюзан говорит очень монотонно, не выделяя ударные слова и практически без пауз. With the — withe.",
+    "Сьюзан смущена, тараторит и делает паузы в неестественных местах (логично сделать паузу после seen). Brought, should, just — "
+    "везде невыраженное /t/ или /d/. That everybody, that I — flap t для соединения с гласной."]
+WISH = [("I don’t know many people (and I’m lonely).", "<i>I wish I knew more people.</i>"),
+        ("I don’t have a mobile phone (and I need one).", "I wish [I had a mobile phone]."),
+        ("Helen isn’t here (and I need to see her).", "I wish [Helen were here/Helen was here]."),
+        ("It’s cold (and I hate cold weather).", "I wish [it weren’t cold/it wasn’t cold/it were not cold/it was not cold/it were warm/it was warm]."),
+        ("I live in a big city (and I don’t like it).", "I wish [I didn’t live in a big city/I did not live in a big city]."),
+        ("I can’t go to the party (and I’d like to).", "I wish [I could go to the party]."),
+        ("I have to work tomorrow (but I’d like to stay in bed).",
+         "I wish [I didn’t have to work tomorrow/I did not have to work tomorrow]."),
+        ("I don’t know anything about cars (and my car has just broken down).",
+         "I wish [I knew something about cars/I knew more about cars]."),
+        ("I’m not feeling well (and it’s not nice).", "I wish [I felt better/I were feeling better/I was feeling better/I felt well].")]
+
+
+def clip(n, label):
+    """Реплика сцены (media/dh/l03-N.mp3); пока файла нет — пометка, что запись появится."""
+    if (MEDIA / f"l03-{n}.mp3").exists():
+        return PLAYER(f"/media/dh/l03-{n}.mp3", label)
+    return '<p class="note-s">♪ Аудиозапись появится здесь.</p>'
+
+
+def wordwall(src, title):
+    return (f'<figure class="vid ww"><div class="ww-box"><iframe src="{src.replace("&", "&amp;")}" title="{title}" loading="lazy" '
+            'allowfullscreen></iframe></div></figure>')
+
+
+def scene(mark):
+    return _scene(mark, SCENE)
+
+
+def build():
+    # ---------- Warm up ----------
+    warm = SEC("Warm up", "",
+               EX("dh3-w1", "1.1", "Meet the characters.",
+                  '<div class="pic-grid">'
+                  f'<figure class="pic"><img src="{IMG_DIR}susan.jpg" alt="" loading="lazy"><figcaption><b>Susan Mayer</b></figcaption></figure>'
+                  f'<figure class="pic"><img src="{IMG_DIR}mike.jpg" alt="" loading="lazy"><figcaption><b>Mike Delfino</b></figcaption></figure>'
+                  "</div>") +
+               EX("dh3-w2", "1.2", "What can you tell about each character? If you haven't seen the show, share your guesses.",
+                  SAY + VOICE("dh3-w2-v") + WRITER("dh3-w2")) +
+               EX("dh3-w3", "1.3", "Describe the picture.",
+                  IMG(IMG_DIR + "wake.jpg", "", "Susan and Mike meet at the wake. Susan has brought macaroni and cheese as a contribution.") +
+                  SAY + VOICE("dh3-w3-v", 60) + WRITER("dh3-w3")), id="warm-up")
+
+    # ---------- Vocabulary ----------
+    defs = sorted(d for *_, d in VOCAB)
+    words = "".join(f'<div class="voc"><div class="voc-w"><b>{w}</b><span>{tr}</span><button type="button" class="say" data-say="{w}" '
+                    f'title="Послушать" aria-label="Послушать">🔊</button></div></div>' for w, tr, _ in VOCAB)
+    dialog = ("<p><b>Tom:</b> Hi, Mike. What's up?</p><p><b>Mike:</b> Oh, hi, Tom. Ugh, I've been trying to fix my bike, but I totally "
+              "<b>screwed up</b> and broke the chain. Now I don’t know what to do. Could you give me that wrench (гаечный ключ)?</p>"
+              "<p><b>Tom:</b> Sure, <b>here you go</b>.</p><p><b>Mike:</b> Thanks. I hope I can get it done now. My bike <b>is very big "
+              "with</b> the kids in the neighborhood — they all love riding it!</p><p><b>Tom:</b> I know.</p><p><b>Mike:</b> How are things "
+              "with you, buddy?</p><p><b>Tom:</b> Actually, I’ve got a <b>clog</b> in my drain at home. It’s such a pain. Could you take a "
+              "look at it sometime?</p><p><b>Mike:</b> Yeah, sure.</p>")
+    fill = ["I really [screwed up] the presentation by forgetting my notes.",
+            "A: “You look like Marilyn Monroe.” — B: “Yeah, I [get that a lot].”",
+            "[Here you go], your coffee.",
+            "His music isn’t famous, but he [is very big with/’s very big with] college students.",
+            "There’s [a clog] in the sink — we need to call a [plumber].",
+            "The [plumber] seems more interested in his coffee and his phone."]
+    vocab = SEC("Vocabulary", "",
+                EX("dh3-v1", "1.1", "Read the dialogue and figure out the meaning of the words in bold.",
+                   IMG(IMG_DIR + "bike.jpg", "", cls="fig-small2") + f'<div class="script-p">{dialog}</div>') +
+                EX("dh3-v2", "1.2", "Add these words to your dictionary.", f'<div class="voc-list">{words}</div>') +
+                EX("dh3-v3", "1.3", "Match the words with their definitions.", OL([f"<b>{w}</b> — {S(d, defs)}" for w, _, d in VOCAB])) +
+                EX("dh3-v4", "1.4", "Fill in the gaps with appropriate vocabulary using correct grammar: <i>here you go, screw up, get "
+                   "that a lot, be very big with, a clog, plumber</i>.", OL([GAPS(x) for x in fill])), id="vocabulary")
+
+    # ---------- Listening ----------
+    choice = [("A", "He believes that macaroni and cheese is too simple for anyone to ruin, but he realizes she completely forgot to add "
+                    "cheese or salt."),
+              ("B", "He thinks she is joking to be polite, only to find out that she accidentally used spoiled ingredients that made "
+                    "the food inedible."),
+              ("C", "He initially assumes she is exaggerating her lack of culinary skills, but he quickly discovers that she managed to "
+                    "make the dish taste both burnt and undercooked."),
+              ("D", "He suspects her cooking might be bland, but he discovers that she used too many spices and made it overly salty.")]
+    audio = PLAYER(AUDIO, "Susan meets Mike") if (MEDIA / "l03.mp3").exists() else ""
+    listen = SEC("Listening", "",
+                 EX("dh3-l1", "1.1", "Susan meets Mike. Watch the video. What does Susan do at the end?",
+                    vk_player(VK, "Desperate Housewives — Susan meets Mike") + SAY + VOICE("dh3-l1-v", 30) + WRITER("dh3-l1")) +
+                 EX("dh3-l2", "1.2", "Watch again and choose the best answer. How does Mike's reaction to Susan's warning about the "
+                    "dish reveal his initial perception of her cooking, and what does he discover instead?",
+                    "".join(f"<p><b>{k})</b> {t}</p>" for k, t in choice) + f"<p>The best answer: {S('C', ['A', 'B', 'C', 'D'])}</p>") +
+                 EX("dh3-l3", "1.3", "Watch again, read the script below and translate the underlined phrases.",
+                    audio + scene("u") + SAY + VOICE("dh3-l3-v", 90) + WRITER("dh3-l3")) +
+                 EX("dh3-l4", "1.4", "Answer the questions.",
+                    OL(["How does Mike describe the macaroni and cheese?", "What does Susan Mayer do for work?",
+                        "What is Mike Delfino’s job? And what help does he offer Susan?"]) + SAY + VOICE("dh3-l4-v", 60) +
+                    WRITER("dh3-l4") + REVEAL(ANSWERS, "Suggested answers (1.1, 1.4)")), id="listening")
+
+    # ---------- Grammar ----------
+    opts = ["past simple", "would/could/might", "base verb"]
+    grammar = SEC("Grammar", "Second Conditional",
+                  EX("dh3-g1", "1.1", "Listen to what Susan says.", IMG(IMG_DIR + "susan-mike.jpg", "Susan and Mike", cls="fig-small2") +
+                     clip(1, "Susan · 0:01")) +
+                  EX("dh3-g2", "1.2", "Listen and complete the gaps.",
+                     clip(1, "Susan · 0:01") + "<p>" + GAPS("I [wouldn't eat/would not eat] that if I [were] you.") + "</p>" +
+                     f'<p>If + {S("past simple", opts)}, {S("would/could/might", opts)} + {S("base verb", opts)}</p>') +
+                  info("Second Conditional", "<p><b>Second Conditional</b> используется, чтобы говорить о нереальных или невероятных/"
+                       "гипотетических ситуациях в настоящем или будущем и их воображаемых результатах.</p><p><b>Examples:</b><br>"
+                       "<b>If I won the lottery, I would travel the world.</b> (Unlikely, but imagining the result.) <span class=\"tr\">Если "
+                       "бы я выиграл деньги, я бы поехал путешествовать по миру.</span><br><b>If she studied harder, she could pass the "
+                       "exam.</b> (She isn’t studying hard now, so passing is unlikely.) <span class=\"tr\">Если бы она лучше училась, она "
+                       "бы сдала экзамен.</span><br><b>If it rained tomorrow, we might stay home.</b> (It probably won’t rain, but if it "
+                       "did, we would stay home.) <span class=\"tr\">Если бы завтра пошёл дождь, мы бы могли остаться дома.</span><br>"
+                       "<b>If I were you, I would apologize.</b> (Hypothetical advice — “I am not you, but if I were…”) <span class=\"tr\">"
+                       "На твоём месте я бы извинился.</span><br><b>If he had more time, he would learn a new language.</b> (He doesn’t "
+                       "have time now, so learning a language is unlikely.) <span class=\"tr\">Если бы у него было больше времени, он бы "
+                       "выучил новый язык.</span></p><p><b>Key notes:</b><br>✔️ <b>Were</b> is often used instead of <b>was</b> (e.g., "
+                       "“If I <b>were</b> rich…”).<br>✔️ The second conditional is <u>not</u> used for <u>real or possible situations</u> "
+                       "(use the first conditional for those). Compare:<br>If it <b>rains</b> tomorrow, we can stay home. <span "
+                       "class=\"tr\">Если завтра будет дождь, можем остаться дома.</span><br>If it <b>rained</b> tomorrow, we might stay "
+                       "home. <span class=\"tr\">Если бы завтра пошёл дождь, мы могли бы остаться дома.</span></p>", "g") +
+                  EX("dh3-g5", "1.3", "Pop the balloons to drop the words onto their position.",
+                     wordwall(WORDWALL_BALLOONS, "Second Conditional — Pop the balloons")) +
+                  EX("dh3-g3", "1.4", "Rewrite the sentences starting with <i>I wish</i>.", OL([f"{a}<br>{GAPS(b, 'wide')}" for a, b in WISH])) +
+                  EX("dh3-g6", "1.5", "Click on a card and finish the sentence.",
+                     wordwall(WORDWALL_CARDS, "Second Conditional — Click on a card") + SAY + VOICE("dh3-g6-v")) +
+                  EX("dh3-g4", "1.6", "Make up 5 sentences with your own ideas: <i>If I were you, I would…</i>",
+                     SAY + VOICE("dh3-g4-v") + WRITER("dh3-g4", "", 5)), id="grammar")
+
+    # ---------- Speaking ----------
+    qs = ["If you could live anywhere in the world, where would you choose and why?",
+          "What would you do if you found out you only had one year left to live?",
+          "If you could change one thing about your past, what would it be?",
+          "How would your life be different if social media didn’t exist?",
+          "If you could instantly master any skill, what would it be?",
+          "Would you still work if you didn’t need money? Why or why not?",
+          "If you could have dinner with any historical figure, who would you choose?",
+          "What would you do if you woke up one day and were famous?",
+          "If you could solve one global problem, which one would you pick?",
+          "Would you travel to space if you had the chance? Why or why not?"]
+    speak = SEC("Speaking", "",
+                EX("dh3-s1", "1.1", "Answer the questions.", OL(qs) + SAY + VOICE("dh3-s1-v") + WRITER("dh3-s1", "", 6)) +
+                EX("dh3-s2", "1.2", "Make up your examples with the target vocabulary: <i>here you go, to screw up, get that a lot, be very "
+                   "big with, a clog, plumber</i>.",
+                   info("Example", "<p>You can't open the window because it screws up the air conditioning.</p>") +
+                   SAY + VOICE("dh3-s2-v", 60) + WRITER("dh3-s2", "", 5)), id="speaking")
+
+    # ---------- Dictation ----------
+    dict_gaps = ["I [wouldn't eat that if I were you/would not eat that if I were you].",
+                 "No, [I just refuse to believe that anybody can screw up macaroni and cheese].",
+                 "Oh my God. How did you… [It tastes like it's burned and undercooked].",
+                 "Thanks. I'm Mike Delfino. [I just started renting the Sims house next door].",
+                 "Yeah, [I'm very big with the under five set].",
+                 "Now [that everybody's seen that I brought something], I should [probably just throw this out]."]
+    dictation = SEC("Dictation", "",
+                    '<p class="note-s">Прослушайте запись несколько раз и напечатайте то, что слышите. На каждое задание — 3 попытки.</p>' +
+                    "".join(EX(f"dh3-d{i + 1}", f"1.{i + 1}", "Listen and type in what you hear.",
+                               clip(i + 1, f"Dictation {i + 1}") + f"<p>{GAPS(x, 'wide')}</p>") for i, x in enumerate(dict_gaps)),
+                    id="dictation")
+
+    # ---------- Shadowing ----------
+    legend = info("Условные обозначения", "<p>Красные вертикальные линии означают паузы. На слова, подчёркнутые красным, падает смысловое "
+                  "ударение.</p><p>Слоги, подчёркнутые оранжевым, читаются долго.</p><p>Зелёные дуги, соединяющие слова, означают, что "
+                  "эти слова читаются слитно. Зелёные квадраты, объединяющие 2 соседних слова, означают, что последний звук первого слова "
+                  "и первый звук второго слова сливаются в один.</p>", "y")
+    extra = {0: info("", "<p><b>Невыраженный [t]:</b> язык принимает позицию для [t], но не производит взрывного звука, оставляя его "
+                         "«съеденным».</p>", "y"),
+             1: info("Flap t", "<p>«Flap t» (или «flap d») на конце слов в американском английском — это быстрое, расслабленное "
+                     "произношение звука «t» как лёгкого, звонкого «d» (похожего на русский «р»), если слово заканчивается на «t», а "
+                     "следующее начинается с гласной. Это сглаживает речь, убирая взрывной согласный. Этот звук возникает, когда язык "
+                     "быстро ударяет по альвеолам (бугоркам за верхними зубами).</p><p>Если следующее слово начинается с согласного, «t» "
+                     "обычно произносится чётко или становится глоттальным (гортанным).</p><p><b>Примеры на стыке слов:</b> <i>Get it</i> "
+                     "«Гедир» (звучит почти как <i>geddit</i>), <i>What about</i> «Уо-да-баут», <i>Not at all</i> «Но-дадол».<br>"
+                     "<b>Примеры в конце слов перед гласной:</b> <i>Wait a minute</i> «Уэй-да-минит», <i>Set up</i> «Се-дап».</p>", "y")}
+    shadow = SEC("Shadowing", "",
+                 shadow_intro() + legend +
+                 "".join(EX(f"dh3-sh{i + 1}", f"1.{i + 1}", "Listen to the track, then repeat the sentence trying to copy the rhythm and "
+                            "intonation of the original.",
+                            f'<p class="quote">{line}</p>' + clip(i + 1, f"Shadowing {i + 1}") +
+                            IMG(IMG_DIR + f"shadow-{i + 1}.jpg", "", SHADOW_NOTES[i]) + extra.get(i, "") + VOICE(f"dh3-sh{i + 1}-v", 30))
+                         for i, line in enumerate(LINES)), id="shadowing")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, vocab, listen, grammar, speak, dictation, shadow))
+
+
+# ---------------- домашнее задание ----------------
+HW_LEAD = ("Домашнее задание к уроку 3: слова урока подробнее, конструкция «If you were to…», вопросы и мысленные эксперименты с "
+           "Second Conditional, тренировка произношения реплик из сцены.")
+HW_SECTIONS = [("hw-vocabulary", "Vocabulary"), ("hw-grammar", "Grammar: If you were to…"), ("hw-pronunciation", "Pronunciation")]
+HW_WORDS = [
+    ("To screw up", "<p><i>to make a mistake, or to spoil something:</i></p><ul class=\"voc-ex\"><li>I totally screwed up the chemistry "
+     "exam.</li><li>Just don't screw up this time.</li></ul><p><i>When bad experiences or people screw you up, they make you worried and "
+     "unhappy or damage your personality:</i></p><ul class=\"voc-ex\"><li>It really screwed him up when he saw his friend get killed.</li>"
+     "</ul><p><i>a screw-up — a situation in which you do something badly or make a big mistake:</i></p><ul class=\"voc-ex\"><li>There's "
+     "been a screw-up with our hotel reservation.</li></ul><p><i>to do very badly or fail at something:</i></p><ul class=\"voc-ex\"><li>You "
+     "couldn’t screw up much worse than I did.</li></ul><p><i>If you screw someone up, you cause that person to become anxious, confused, "
+     "or mentally ill.</i></p>"),
+    ("I get that a lot", "<p><i>It can be used when expressing that you frequently encounter a particular question, comment, or "
+     "situation.</i></p><ul class=\"voc-ex\"><li>Whenever I mention my job, people often ask about my favorite project. I get this a lot."
+     "</li><li>So, how does it work then? I get this a lot — people are curious about the logistics of my childrearing arrangements, I "
+     "understand that.</li><li>“I kind of anticipated it because I get this a lot from national reporters who come here and say, ‘Oh, this "
+     "will be a great state for President Obama because things are going so great here,’” he said, sounding a little exasperated.</li></ul>"
+     "<p><b>Best practice.</b> Use <i>I get this a lot</i> to acknowledge a common question or situation, showing empathy and "
+     "understanding towards the person raising it.</p><p><b>Common error.</b> Avoid using <i>I get this a lot</i> too frequently in a "
+     "single conversation or piece of writing, as it can come across as dismissive or self-centered. Vary your responses with alternative "
+     "expressions to maintain a balanced tone.</p>"),
+]
+
+
+def build_homework():
+    vocab = SEC("Vocabulary", "",
+                "".join(EX(f"dhh3-v{i + 1}", f"1.{i + 1}", w, body) for i, (w, body) in enumerate(HW_WORDS)) +
+                IMG(IMG_DIR + "hw-alternatives.jpg", "More alternative expressions", "Alternative expressions for “I get that a lot”") +
+                EX("dhh3-v3", "1.3", "Follow the link and study the context for “I get that a lot”.",
+                   '<p><a class="btn ghost" href="https://archive.nytimes.com/krugman.blogs.nytimes.com/2011/08/12/the-cracked-conservative-mirror/" '
+                   'target="_blank" rel="noopener">The Cracked Conservative Mirror — “I personally get this a lot, of course.” ↗</a></p>') +
+                EX("dhh3-v4", "1.4", "To be big with",
+                   "<p><i>be popular, successful:</i></p><ul class=\"voc-ex\"><li>John <b>is big</b> here. Tickets to his show are sold out!"
+                   "</li><li>Mary <b>is</b> <i>very</i> <b>big</b> at the moment. Her last show attracted one million people.</li></ul>" +
+                   info("NB", "<p>“Big” can also mean “fat”. But context is everything.</p><p><i>Mary is very big at the moment. Her last "
+                        "show attracted one million people.</i></p><p>“At the moment” immediately removes any association with being fat "
+                        "(we don't expect fat people to get thin, not if it is someone else), although there may remain a thought of Mary "
+                        "being pregnant. The following sentence dispels that thought entirely. But most of the work of understanding what "
+                        "is meant happened before the words “Mary is very big” were even spoken, from earlier conversation, where you happen "
+                        "to be or what you are looking at.</p><p>In a university setting we hear: “big man on campus”.</p>", "y")) +
+                EX("dhh3-v5", "1.5", "Here you go",
+                   "<p><i>this is the object you asked me to give you:</i></p><ul class=\"voc-ex\"><li>“Would you please pass the sugar?” "
+                   "“Here you go.”</li></ul>") +
+                EX("dhh3-v6", "1.6", "Clog",
+                   "<p><i>to (cause something to) become blocked or filled so that movement or activity is difficult:</i></p>"
+                   "<p><b>be clogged with</b> — The roads are clogged with holiday traffic.<br><b>clog up</b> — Eating too much fat causes "
+                   "your arteries to clog up.<br><b>clog something up</b> — Leaves are clogging up the drain.</p><ul class=\"voc-ex\">"
+                   "<li>Toilet paper had clogged the toilet.</li><li>A stream of buses clogged the main street.</li><li>We are dissuaded "
+                   "from clogging our houses with unnecessary furniture by the imposition of tax on furniture.</li><li>Worse still, "
+                   "solicitors, litigants and counsel are being held up for days sometimes because of these judgment summonses clogging the "
+                   "courts.</li><li>Because of this, our county courts are jammed and clogged every month.</li><li>The clogging of "
+                   "inner-city roads has reached the point at which it is bad for safety, bad for health and bad for the economy.</li>"
+                   "<li>There is no point in imposing a bureaucratic plan if the operation involved will be clogged up by the thousands who "
+                   "are leaving in advance.</li><li>The pipelines of distribution from the factory to the retailer are clogged solid.</li></ul>") +
+                EX("dhh3-v7", "1.7", "Plumber",
+                   "<p><i>a person whose job is to supply and connect or repair water pipes, baths, toilets, etc.:</i></p><ul class=\"voc-ex\">"
+                   "<li>When is the plumber coming to repair the burst pipe?</li><li>For instance, the concept of water is viewed "
+                   "differently by a thirsty person, a plumber, a chemist, and a painter.</li><li>A good farmer (pianist, husband, acrobat, "
+                   "plumber, etc.) does not ex officio eliminate all the evils he can.</li><li>Over the next few minutes, cleaning "
+                   "personnel, waiters with trays of food, a manicurist, a plumber, and others enter the cabin.</li><li>Electricians, "
+                   "plumbers and steam engineers pursue their respective trades under license.</li></ul>"), id="hw-vocabulary")
+
+    could = [("If you could speak any language fluently, which one would you choose and why?",
+              "If I could speak any language fluently, I would choose… because…"),
+             ("If you could meet any historical figure, who would it be and what would you ask them?",
+              "If I could meet any historical figure, it would be… I would ask him/her…"),
+             ("If you could have a conversation with an alien from another planet, what would you ask them?",
+              "If I could have a conversation with an alien from another planet, I would ask them…"),
+             ("What would you do if you could control the weather?", "If I could control the weather, I would…"),
+             ("If you could live in any city, town, or village in the world, where would you choose?",
+              "If I could live anywhere in the world, I would choose… / …I would want to live in…"),
+             ("If you could be an expert in one thing, what would it be?", "If I could be an expert in one thing, it would be…"),
+             ("If you could have any job in the world, what would you choose to be and why?",
+              "If I could have any job in the world, I would choose to be a/an/the… because…")]
+    grammar = SEC("Grammar", "If you were to do something",
+                  info("If you were to do smth", "<p>This structure is used to emphasize that a condition is very unlikely. For example, "
+                       "you could say “If you were to lose your job tomorrow, what would you do?” It is equally possible to say “If you lost "
+                       "your job tomorrow, what would you do?” However, “If you were to lose your job tomorrow” makes the situation sound "
+                       "even more unbelievable and unlikely. Practice this structure below.</p><ul class=\"voc-ex\"><li>If you were to "
+                       "start a new career tomorrow (or a new major in school), completely unrelated to your current field, what would you "
+                       "choose and why?</li><li>If you were to live in a different country for a year, which one would you choose and what "
+                       "aspects of its culture and lifestyle appeal to you?</li></ul>", "g") +
+                  EX("dhh3-g1", "1.1", "Read the note above and make up your own examples.", WRITER("dhh3-g1", "", 5)) +
+                  EX("dhh3-g2", "1.2", "Answer the questions.",
+                     OL([f'{q}<br><span class="tr"><i>{a}</i></span>' for q, a in could]) + SAY + VOICE("dhh3-g2-v") +
+                     WRITER("dhh3-g2", "", 6)) +
+                  EX("dhh3-g3", "1.3", "What would you do if you visited these countries?",
+                     '<div class="pic-grid countries">' + "".join(
+                         f'<figure class="pic"><img src="{IMG_DIR}hw-{c.lower()}.jpg" alt="{c}" loading="lazy"><figcaption><b>{c}</b>'
+                         "</figcaption></figure>" for c in ("Iceland", "Ethiopia", "Chile")) + "</div>" +
+                     SAY + VOICE("dhh3-g3-v") + WRITER("dhh3-g3")) +
+                  EX("dhh3-g4", "1.4", "Complete the sentences: <i>It would be nice if…</i>",
+                     "<p>It would be great if…<br>It would be awful if…<br>It would be cool if…<br>It would be funny if…</p>" +
+                     WRITER("dhh3-g4", "", 5)) +
+                  EX("dhh3-g5", "1.5", "Complete the sentences to practice <i>Wouldn't it be nice if…?</i>",
+                     "<p>Wouldn't it be scary if…?<br>Wouldn't it be incredible if…?<br>Wouldn't it be awesome if…?<br>Wouldn't it be "
+                     "surprising if…?<br>Wouldn't it be shocking if…?</p>" + WRITER("dhh3-g5", "", 6)) +
+                  EX("dhh3-g6", "1.6", "The Insider Trading Dilemma",
+                     "<p>Imagine: you work in the finance industry and have access to non-public information that could significantly "
+                     "impact the stock market. Would you use this information for personal financial gain, potentially at the expense of "
+                     "other investors who don't have access to the same information?</p>" + SAY + VOICE("dhh3-g6-v") + WRITER("dhh3-g6")),
+                  id="hw-grammar")
+
+    pron = SEC("Pronunciation", "",
+               "".join(EX(f"dhh3-p{i + 1}", f"1.{i + 1}", "Listen to the track, then repeat the sentence trying to copy the rhythm and "
+                          "intonation of the original.",
+                          f'<p class="quote">{line}</p>' + clip(i + 1, f"Track {i + 1}") +
+                          IMG(IMG_DIR + f"shadow-{i + 1}.jpg", "", SHADOW_NOTES[i]) + VOICE(f"dhh3-p{i + 1}-v", 30))
+                       for i, line in enumerate(LINES)), id="hw-pronunciation")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in HW_SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (vocab, grammar, pron))

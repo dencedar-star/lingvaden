@@ -20,4 +20,5 @@ PLANNED = 10
 LESSONS = [
     ("dh-l01", "l01", "1", None),
     ("dh-l02", "l02", "2", None),
+    ("dh-l03", "l03", "3", None),
 ]
