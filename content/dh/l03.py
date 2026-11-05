@@ -226,3 +226,114 @@ def build():
 
     toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in SECTIONS) + "</nav>"
     return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, vocab, listen, grammar, speak, dictation, shadow))
+
+
+# ---------------- домашнее задание ----------------
+HW_LEAD = ("Домашнее задание к уроку 3: слова урока подробнее, конструкция «If you were to…», вопросы и мысленные эксперименты с "
+           "Second Conditional, тренировка произношения реплик из сцены.")
+HW_SECTIONS = [("hw-vocabulary", "Vocabulary"), ("hw-grammar", "Grammar: If you were to…"), ("hw-pronunciation", "Pronunciation")]
+HW_WORDS = [
+    ("To screw up", "<p><i>to make a mistake, or to spoil something:</i></p><ul class=\"voc-ex\"><li>I totally screwed up the chemistry "
+     "exam.</li><li>Just don't screw up this time.</li></ul><p><i>When bad experiences or people screw you up, they make you worried and "
+     "unhappy or damage your personality:</i></p><ul class=\"voc-ex\"><li>It really screwed him up when he saw his friend get killed.</li>"
+     "</ul><p><i>a screw-up — a situation in which you do something badly or make a big mistake:</i></p><ul class=\"voc-ex\"><li>There's "
+     "been a screw-up with our hotel reservation.</li></ul><p><i>to do very badly or fail at something:</i></p><ul class=\"voc-ex\"><li>You "
+     "couldn’t screw up much worse than I did.</li></ul><p><i>If you screw someone up, you cause that person to become anxious, confused, "
+     "or mentally ill.</i></p>"),
+    ("I get that a lot", "<p><i>It can be used when expressing that you frequently encounter a particular question, comment, or "
+     "situation.</i></p><ul class=\"voc-ex\"><li>Whenever I mention my job, people often ask about my favorite project. I get this a lot."
+     "</li><li>So, how does it work then? I get this a lot — people are curious about the logistics of my childrearing arrangements, I "
+     "understand that.</li><li>“I kind of anticipated it because I get this a lot from national reporters who come here and say, ‘Oh, this "
+     "will be a great state for President Obama because things are going so great here,’” he said, sounding a little exasperated.</li></ul>"
+     "<p><b>Best practice.</b> Use <i>I get this a lot</i> to acknowledge a common question or situation, showing empathy and "
+     "understanding towards the person raising it.</p><p><b>Common error.</b> Avoid using <i>I get this a lot</i> too frequently in a "
+     "single conversation or piece of writing, as it can come across as dismissive or self-centered. Vary your responses with alternative "
+     "expressions to maintain a balanced tone.</p>"),
+]
+
+
+def build_homework():
+    vocab = SEC("Vocabulary", "",
+                "".join(EX(f"dhh3-v{i + 1}", f"1.{i + 1}", w, body) for i, (w, body) in enumerate(HW_WORDS)) +
+                IMG(IMG_DIR + "hw-alternatives.jpg", "More alternative expressions", "Alternative expressions for “I get that a lot”") +
+                EX("dhh3-v3", "1.3", "Follow the link and study the context for “I get that a lot”.",
+                   '<p><a class="btn ghost" href="https://archive.nytimes.com/krugman.blogs.nytimes.com/2011/08/12/the-cracked-conservative-mirror/" '
+                   'target="_blank" rel="noopener">The Cracked Conservative Mirror — “I personally get this a lot, of course.” ↗</a></p>') +
+                EX("dhh3-v4", "1.4", "To be big with",
+                   "<p><i>be popular, successful:</i></p><ul class=\"voc-ex\"><li>John <b>is big</b> here. Tickets to his show are sold out!"
+                   "</li><li>Mary <b>is</b> <i>very</i> <b>big</b> at the moment. Her last show attracted one million people.</li></ul>" +
+                   info("NB", "<p>“Big” can also mean “fat”. But context is everything.</p><p><i>Mary is very big at the moment. Her last "
+                        "show attracted one million people.</i></p><p>“At the moment” immediately removes any association with being fat "
+                        "(we don't expect fat people to get thin, not if it is someone else), although there may remain a thought of Mary "
+                        "being pregnant. The following sentence dispels that thought entirely. But most of the work of understanding what "
+                        "is meant happened before the words “Mary is very big” were even spoken, from earlier conversation, where you happen "
+                        "to be or what you are looking at.</p><p>In a university setting we hear: “big man on campus”.</p>", "y")) +
+                EX("dhh3-v5", "1.5", "Here you go",
+                   "<p><i>this is the object you asked me to give you:</i></p><ul class=\"voc-ex\"><li>“Would you please pass the sugar?” "
+                   "“Here you go.”</li></ul>") +
+                EX("dhh3-v6", "1.6", "Clog",
+                   "<p><i>to (cause something to) become blocked or filled so that movement or activity is difficult:</i></p>"
+                   "<p><b>be clogged with</b> — The roads are clogged with holiday traffic.<br><b>clog up</b> — Eating too much fat causes "
+                   "your arteries to clog up.<br><b>clog something up</b> — Leaves are clogging up the drain.</p><ul class=\"voc-ex\">"
+                   "<li>Toilet paper had clogged the toilet.</li><li>A stream of buses clogged the main street.</li><li>We are dissuaded "
+                   "from clogging our houses with unnecessary furniture by the imposition of tax on furniture.</li><li>Worse still, "
+                   "solicitors, litigants and counsel are being held up for days sometimes because of these judgment summonses clogging the "
+                   "courts.</li><li>Because of this, our county courts are jammed and clogged every month.</li><li>The clogging of "
+                   "inner-city roads has reached the point at which it is bad for safety, bad for health and bad for the economy.</li>"
+                   "<li>There is no point in imposing a bureaucratic plan if the operation involved will be clogged up by the thousands who "
+                   "are leaving in advance.</li><li>The pipelines of distribution from the factory to the retailer are clogged solid.</li></ul>") +
+                EX("dhh3-v7", "1.7", "Plumber",
+                   "<p><i>a person whose job is to supply and connect or repair water pipes, baths, toilets, etc.:</i></p><ul class=\"voc-ex\">"
+                   "<li>When is the plumber coming to repair the burst pipe?</li><li>For instance, the concept of water is viewed "
+                   "differently by a thirsty person, a plumber, a chemist, and a painter.</li><li>A good farmer (pianist, husband, acrobat, "
+                   "plumber, etc.) does not ex officio eliminate all the evils he can.</li><li>Over the next few minutes, cleaning "
+                   "personnel, waiters with trays of food, a manicurist, a plumber, and others enter the cabin.</li><li>Electricians, "
+                   "plumbers and steam engineers pursue their respective trades under license.</li></ul>"), id="hw-vocabulary")
+
+    could = [("If you could speak any language fluently, which one would you choose and why?",
+              "If I could speak any language fluently, I would choose… because…"),
+             ("If you could meet any historical figure, who would it be and what would you ask them?",
+              "If I could meet any historical figure, it would be… I would ask him/her…"),
+             ("If you could have a conversation with an alien from another planet, what would you ask them?",
+              "If I could have a conversation with an alien from another planet, I would ask them…"),
+             ("What would you do if you could control the weather?", "If I could control the weather, I would…"),
+             ("If you could live in any city, town, or village in the world, where would you choose?",
+              "If I could live anywhere in the world, I would choose… / …I would want to live in…"),
+             ("If you could be an expert in one thing, what would it be?", "If I could be an expert in one thing, it would be…"),
+             ("If you could have any job in the world, what would you choose to be and why?",
+              "If I could have any job in the world, I would choose to be a/an/the… because…")]
+    grammar = SEC("Grammar", "If you were to do something",
+                  info("If you were to do smth", "<p>This structure is used to emphasize that a condition is very unlikely. For example, "
+                       "you could say “If you were to lose your job tomorrow, what would you do?” It is equally possible to say “If you lost "
+                       "your job tomorrow, what would you do?” However, “If you were to lose your job tomorrow” makes the situation sound "
+                       "even more unbelievable and unlikely. Practice this structure below.</p><ul class=\"voc-ex\"><li>If you were to "
+                       "start a new career tomorrow (or a new major in school), completely unrelated to your current field, what would you "
+                       "choose and why?</li><li>If you were to live in a different country for a year, which one would you choose and what "
+                       "aspects of its culture and lifestyle appeal to you?</li></ul>", "g") +
+                  EX("dhh3-g1", "1.1", "Read the note above and make up your own examples.", WRITER("dhh3-g1", "", 5)) +
+                  EX("dhh3-g2", "1.2", "Answer the questions.",
+                     OL([f'{q}<br><span class="tr"><i>{a}</i></span>' for q, a in could]) + SAY + VOICE("dhh3-g2-v") +
+                     WRITER("dhh3-g2", "", 6)) +
+                  EX("dhh3-g3", "1.3", "What would you do if you visited these countries?",
+                     IMG(IMG_DIR + "hw-iceland.jpg", "Iceland", "Iceland", cls="fig-small2") + SAY + VOICE("dhh3-g3-v") + WRITER("dhh3-g3")) +
+                  EX("dhh3-g4", "1.4", "Complete the sentences: <i>It would be nice if…</i>",
+                     "<p>It would be great if…<br>It would be awful if…<br>It would be cool if…<br>It would be funny if…</p>" +
+                     WRITER("dhh3-g4", "", 5)) +
+                  EX("dhh3-g5", "1.5", "Complete the sentences to practice <i>Wouldn't it be nice if…?</i>",
+                     "<p>Wouldn't it be scary if…?<br>Wouldn't it be incredible if…?<br>Wouldn't it be awesome if…?<br>Wouldn't it be "
+                     "surprising if…?<br>Wouldn't it be shocking if…?</p>" + WRITER("dhh3-g5", "", 6)) +
+                  EX("dhh3-g6", "1.6", "The Insider Trading Dilemma",
+                     "<p>Imagine: you work in the finance industry and have access to non-public information that could significantly "
+                     "impact the stock market. Would you use this information for personal financial gain, potentially at the expense of "
+                     "other investors who don't have access to the same information?</p>" + SAY + VOICE("dhh3-g6-v") + WRITER("dhh3-g6")),
+                  id="hw-grammar")
+
+    pron = SEC("Pronunciation", "",
+               "".join(EX(f"dhh3-p{i + 1}", f"1.{i + 1}", "Listen to the track, then repeat the sentence trying to copy the rhythm and "
+                          "intonation of the original.",
+                          f'<p class="quote">{line}</p>' + clip(i + 1, f"Track {i + 1}") +
+                          IMG(IMG_DIR + f"shadow-{i + 1}.jpg", "", SHADOW_NOTES[i]) + VOICE(f"dhh3-p{i + 1}-v", 30))
+                       for i, line in enumerate(LINES)), id="hw-pronunciation")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in HW_SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (vocab, grammar, pron))
