@@ -327,7 +327,10 @@ def build_homework():
                      OL([f'{q}<br><span class="tr"><i>{a}</i></span>' for q, a in could]) + SAY + VOICE("dhh3-g2-v") +
                      WRITER("dhh3-g2", "", 6)) +
                   EX("dhh3-g3", "1.3", "What would you do if you visited these countries?",
-                     IMG(IMG_DIR + "hw-iceland.jpg", "Iceland", "Iceland", cls="fig-small2") + SAY + VOICE("dhh3-g3-v") + WRITER("dhh3-g3")) +
+                     '<div class="pic-grid countries">' + "".join(
+                         f'<figure class="pic"><img src="{IMG_DIR}hw-{c.lower()}.jpg" alt="{c}" loading="lazy"><figcaption><b>{c}</b>'
+                         "</figcaption></figure>" for c in ("Iceland", "Ethiopia", "Chile")) + "</div>" +
+                     SAY + VOICE("dhh3-g3-v") + WRITER("dhh3-g3")) +
                   EX("dhh3-g4", "1.4", "Complete the sentences: <i>It would be nice if…</i>",
                      "<p>It would be great if…<br>It would be awful if…<br>It would be cool if…<br>It would be funny if…</p>" +
                      WRITER("dhh3-g4", "", 5)) +

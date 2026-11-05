@@ -834,3 +834,4 @@ body[data-app="home"] .foot-in{padding:8px 16px 10px}
 /* игры Wordwall: окно 500×380, на телефоне — по ширине */
 .ww-box{position:relative;width:100%;max-width:640px;aspect-ratio:500/380}
 .ww-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:10px;background:#fff}
+.countries{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}.countries .pic img{aspect-ratio:3/2}
