@@ -14,6 +14,9 @@ IMG_DIR = "../assets/img/dh-l03/"
 VK = "https://vkvideo.ru/video_ext.php?oid=-51337713&id=456239226&hash=487d66aa280ab2cd&hd=3"
 AUDIO = "/media/dh/l03.mp3"   # звук сцены целиком — из записи владельца
 MEDIA = Path(__file__).resolve().parents[2] / "media" / "dh"
+# игры Wordwall (Grammar 1.3, 1.5): код встраивания от владельца
+WORDWALL_BALLOONS = "https://wordwall.net/embed/fd0b5519cb04431785e8e6e61150f677?themeId=22&templateId=71&fontStackId=0"
+WORDWALL_CARDS = "https://wordwall.net/embed/cd94a4de37db4b2eacd5281fcf2b322e?themeId=65&templateId=30&fontStackId=0"
 
 SECTIONS = [("warm-up", "Warm up"), ("vocabulary", "Vocabulary"), ("listening", "Listening"), ("grammar", "Grammar: Second Conditional"),
             ("speaking", "Speaking"), ("dictation", "Dictation"), ("shadowing", "Shadowing")]
@@ -78,6 +81,11 @@ def clip(n, label):
     if (MEDIA / f"l03-{n}.mp3").exists():
         return PLAYER(f"/media/dh/l03-{n}.mp3", label)
     return '<p class="note-s">♪ Аудиозапись появится здесь.</p>'
+
+
+def wordwall(src, title):
+    return (f'<figure class="vid ww"><div class="ww-box"><iframe src="{src.replace("&", "&amp;")}" title="{title}" loading="lazy" '
+            'allowfullscreen></iframe></div></figure>')
 
 
 def scene(mark):
@@ -167,8 +175,12 @@ def build():
                        "(use the first conditional for those). Compare:<br>If it <b>rains</b> tomorrow, we can stay home. <span "
                        "class=\"tr\">Если завтра будет дождь, можем остаться дома.</span><br>If it <b>rained</b> tomorrow, we might stay "
                        "home. <span class=\"tr\">Если бы завтра пошёл дождь, мы могли бы остаться дома.</span></p>", "g") +
-                  EX("dh3-g3", "1.3", "Rewrite the sentences starting with <i>I wish</i>.", OL([f"{a}<br>{GAPS(b, 'wide')}" for a, b in WISH])) +
-                  EX("dh3-g4", "1.4", "Make up 5 sentences with your own ideas: <i>If I were you, I would…</i>",
+                  EX("dh3-g5", "1.3", "Pop the balloons to drop the words onto their position.",
+                     wordwall(WORDWALL_BALLOONS, "Second Conditional — Pop the balloons")) +
+                  EX("dh3-g3", "1.4", "Rewrite the sentences starting with <i>I wish</i>.", OL([f"{a}<br>{GAPS(b, 'wide')}" for a, b in WISH])) +
+                  EX("dh3-g6", "1.5", "Click on a card and finish the sentence.",
+                     wordwall(WORDWALL_CARDS, "Second Conditional — Click on a card") + SAY + VOICE("dh3-g6-v")) +
+                  EX("dh3-g4", "1.6", "Make up 5 sentences with your own ideas: <i>If I were you, I would…</i>",
                      SAY + VOICE("dh3-g4-v") + WRITER("dh3-g4", "", 5)), id="grammar")
 
     # ---------- Speaking ----------
