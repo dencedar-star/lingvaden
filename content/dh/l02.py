@@ -46,10 +46,10 @@ VOCAB = [("to go over", "пойти к кому-то, зайти в гости",
           "pleadingly")]
 
 
-def scene(mark):
-    """Сцена; mark — 'u' (подчеркнуть слова урока), 'b' (жирным) или '' (без выделения)."""
+def scene(mark, lines=None):
+    """Сцена (по умолчанию — этого урока); mark — 'u' (подчеркнуть слова урока), 'b' (жирным) или '' (без выделения)."""
     out = ""
-    for sp, t in SCENE:
+    for sp, t in lines or SCENE:
         for w in [x.split("}")[0] for x in t.split("{")[1:]]:
             t = t.replace("{" + w + "}", f"<{mark}>{w}</{mark}>" if mark else w)
         out += f'<p><b class="sp sp-{sp.lower()}">{sp}:</b> {t}</p>'
