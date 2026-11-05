@@ -295,3 +295,142 @@ def build():
 
     toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in SECTIONS) + "</nav>"
     return toc + "".join(f'<article class="page">{x}</article>' for x in (warm, vocab, listen, grammar, grammar2, speak, dictation, shadow))
+
+
+# ---------------- домашнее задание ----------------
+HW_LEAD = ("Домашнее задание к уроку 2: слова урока подробнее, Second Conditional по мультфильмам (в том числе инверсия "
+           "«Were I to…») и тренировка произношения реплик из сцены.")
+HW_SECTIONS = [("hw-vocabulary", "Vocabulary"), ("hw-grammar", "Grammar: Second Conditional"), ("hw-pronunciation", "Pronunciation")]
+CONDITIONAL_YT = "https://www.youtube.com/watch?v=QD0Vzq7qhh0"
+CONDITIONAL_VK = None   # плеер VK для видео SECOND CONDITIONAL — от владельца
+# примеры из видео: Second Conditional в мультфильмах
+CARTOON = ["Look, if I <b>were</b> you, I<b>'d march</b> right up to my family and say, “Hey, I'm a musician. Deal with it.”",
+           "If I <b>stepped</b> on you, <b>would</b> you <b>die</b>?",
+           "A: So do you have any live people? B: Only dead ones. C: I mean, if we <b>had</b> a lot of live people here, it "
+           "<b>wouldn't be</b> called the wild, would it?",
+           "I don't know what I<b>'d do</b> if no one <b>put up</b> my photo.",
+           "I know Master Shifu is trying to inspire me and all, but if I <b>didn't know</b> any better, I<b>'d say</b> he was trying "
+           "to get rid of me.",
+           "If I <b>discovered</b> the origin of the universe, my brother <b>would find</b> a way to market it as a foot massager.",
+           "That if Shen <b>continued</b> down this dark path, he <b>would be defeated</b> by a warrior of black and white.",
+           "No wonder you keep it a secret. If I <b>lived</b> here, I <b>wouldn't tell</b> anyone either.",
+           "Maybe if you <b>gave</b> this place a chance, I don't know, you <b>might</b> even <b>enjoy</b> yourself.",
+           "I <b>couldn't</b> even <b>play</b> that thing if I <b>wanted</b> to.",
+           "And if I <b>weren't</b> so ugly, she<b>'d</b> possibly <b>give</b> me a chance.",
+           "Of course I <b>could let</b> you <b>off</b> with a warning if you <b>were to glove</b> those trunks.",
+           "I<b>'d lose</b> my head if it <b>weren't</b> attached to my neck.",
+           "You know, if I <b>wanted</b> to avoid surveillance because I was doing something illegal, which I never have, I <b>would "
+           "use</b> the maintenance tunnel 6B.",
+           "They thought it <b>would be</b> better if a predator such as myself <b>wasn't</b> the first face that you see when you walk "
+           "into the ZPD."]
+INVERSION = [("If I were to win the lottery, I would buy a private island.", "[Were I to win the lottery], I would buy a private island."),
+             ("If they were to accept the merger, we would be in trouble.", "[Were they to accept the merger], we would be in trouble."),
+             ("If I were in your position, I would renegotiate the contract.",
+              "[Were I in your position], I would renegotiate the contract."),
+             ("How would the company change if all employees worked remotely?",
+              "How would the company change [were all employees to work remotely]?"),
+             ("If I won the lottery, I would travel the world.", "[Were I to win the lottery], I would travel the world."),
+             ("If she were the CEO, things would run differently.", "[Were she the CEO], things would run differently.")]
+SECOND = ["If I [be/were] you, I [get/would get/’d get] a new job.",
+          "If he [be/were] younger, he [travel/would travel/’d travel] more.",
+          "If we [not be/weren’t/were not] friends, I [be/would be/’d be] angry with you.",
+          "If I [have/had] enough money, I [buy/would buy/’d buy] a big house.",
+          "If she [not be/weren’t/were not/wasn’t/was not] always so late, she [be/would be/’d be] promoted.",
+          "If we [win/won] the lottery, we [travel/would travel/’d travel] the world.",
+          "If you [have/had] a better job, we [be/would be/’d be] able to buy a new car.",
+          "If I [speak/spoke] perfect English, I [have/would have/’d have] a good job.",
+          "If we [live/lived] in Mexico, I [speak/would speak/’d speak] Spanish.",
+          "If she [pass/passed] the exam, she [be/would be/’d be] able to enter university.",
+          "She [be/would be/’d be] happier if she [have/had] more friends.",
+          "We [buy/would buy/’d buy] a house if we [decide/decided] to stay here.",
+          "They [have/would have/’d have] more money if they [not buy/didn’t buy/did not buy] so many clothes.",
+          "We [come/would come/’d come] to dinner if we [have/had] time.",
+          "She [call/would call/’d call] him if she [know/knew] his number.",
+          "They [go/would go/’d go] to Spain on holiday if they [like/liked] hot weather.",
+          "She [pass/would pass/’d pass] the exam if she [study/studied] more.",
+          "I [marry/would marry/’d marry] someone famous if I [be/were/was] a movie star.",
+          "We [never be/would never be/’d never be] late again if we [buy/bought] a new car.",
+          "You [lose/would lose/’d lose] weight if you [eat/ate] less.",
+          "If he [weren’t/were not/wasn’t/was not] so arrogant, he [get/would get/’d get] more promotions.",
+          "Were you to see the CEO, you [not dare/wouldn’t dare/would not dare] to ask for a raise.",
+          "We [have/would have/’d have] a much better reputation if we [take/took] client feedback seriously.",
+          "If I [be/were] to tell you the truth, I actually prefer not to be involved."]
+
+
+def build_homework():
+    def word(title, body):
+        return info(title, body, "g")
+    vocab = SEC("Vocabulary", "",
+                EX("dhh2-v1", "1.1", "To go over",
+                   "<p><i>to examine or look at something in a careful or detailed way:</i></p><ul class=\"voc-ex\">"
+                   "<li>Forensic scientists are going over the victim's flat in a search for clues about the murderer.</li>"
+                   "<li>Remember to go over your essay for grammar and spelling mistakes before you hand it in to me.</li>"
+                   "<li>I've gone over the problem several times, but I can't think of a solution.</li></ul>") +
+                EX("dhh2-v2", "1.2", "To go through",
+                   "<p><i>to examine something that contains a collection of things carefully in order to organize them or find "
+                   "something:</i></p><ul class=\"voc-ex\"><li>I'm going through my wardrobe and throwing out all the clothes I don't "
+                   "wear any more.</li><li>Remember to go through the pockets before you put those trousers in the washing machine.</li>"
+                   "</ul>") +
+                EX("dhh2-v3", "1.3", "Can't face something / doing something",
+                   "<p><i>to not want to do or deal with something unpleasant:</i></p><ul class=\"voc-ex\">"
+                   "<li>I can't face walking up all those steps again.</li><li>I know I've got to tell her but I can't face it.</li>"
+                   "<li>I simply couldn't face the prospect of life in another country.</li>"
+                   "<li>After making such a horrible mistake, I can't face going back to work.</li>"
+                   "<li>He couldn't face telling his wife that he'd lost his job.</li></ul>") +
+                EX("dhh2-v4", "1.4", "Wardrobe vs closet & cupboard",
+                   IMG(IMG_DIR + "hw-wardrobe.jpg", "Wardrobe", "Шкаф, занимающий пространство от пола до потолка, и, как правило, "
+                       "встроенный в стену (более свойственно британскому английскому); от <i>clausum</i> (лат.) — «закрытое "
+                       "пространство».", cls="fig-small2") +
+                   word("Wardrobe", "<p>a fitted / built-in <b>wardrobe</b> — встроенный шкаф</p><p>Examples:<br>She hung the dress up "
+                        "in the <b>wardrobe</b>. <span class=\"tr\">Она повесила платье в гардероб.</span><br>There was a large dark wood "
+                        "<b>wardrobe</b> in the room. <span class=\"tr\">В комнате был большой тёмный деревянный шкаф.</span></p>") +
+                   info("Closet", "<p>Американский вариант слова <b>wardrobe</b>.</p><p>Idiom (AmE): a skeleton in the <b>closet</b> — "
+                        "скелет в шкафу</p><p>Examples:<br>I have a <b>closet</b> full of clothes that don't fit. <span class=\"tr\">У меня "
+                        "есть шкаф, полный одежды, которая не подходит.</span><br>She has a walk-in <b>closet</b> for all her clothes. "
+                        "<span class=\"tr\">У неё есть гардеробная комната для всей её одежды.</span></p>", "y") +
+                   info("Cupboard", "<p>kitchen cupboard — кухонный шкаф<br>a built-in / fitted cupboard — встроенный шкаф<br>a wall "
+                        "cupboard — шкаф, висящий на стене<br>a cupboard door — дверца шкафа<br>a stationery / linen … cupboard — шкаф для "
+                        "канцелярии / белья и др.</p><p>Idiom (BrE): a skeleton in the <b>cupboard</b> — скелет в шкафу</p><p>Examples:<br>"
+                        "Get what you want from the <b>cupboard</b>. <span class=\"tr\">Возьми всё, что хочешь, из шкафа.</span><br>The "
+                        "<b>cupboard</b> was full of old spices. <span class=\"tr\">Шкафчик был полон старых специй.</span></p>") +
+                   IMG(IMG_DIR + "hw-difference.jpg", "В чём разница: wardrobe, closet, cupboard")) +
+                EX("dhh2-v5", "1.5", "For God's sake(s)",
+                   "<p>At its core, <b>“for God’s sake”</b> is an exclamation used to express strong emotion. Its <b>meaning depends on "
+                   "the context and tone</b>:</p><ul class=\"dots\"><li><b>Frustration or irritation:</b> “For God’s sake, can you stop "
+                   "tapping your pen?”</li><li><b>Urgency or pleading:</b> “For God’s sake, call the doctor immediately!”</li>"
+                   "<li><b>Emphasis or surprise:</b> “For God’s sake, that’s amazing news!”</li></ul><p>Although it mentions “God,” the "
+                   "phrase <b>isn’t always religious</b>. Many people use it casually without intending a spiritual context, similar to "
+                   "phrases like “for heaven’s sake” or “for Pete’s sake.”</p>"
+                   '<p><a href="https://grammarride.com/for-gods-sake-meaning-example-and-usage/" target="_blank" rel="noopener">'
+                   "Подробнее: For God’s sake — meaning, examples and usage ↗</a></p>"), id="hw-vocabulary")
+
+    video = (vk_player(CONDITIONAL_VK, "SECOND CONDITIONAL in Animated Movies", "Не открывается? "
+                       f'<a href="{CONDITIONAL_YT}" target="_blank" rel="noopener">Смотреть на YouTube ↗</a>') if CONDITIONAL_VK else
+             f'<p><a class="btn ghost" href="{CONDITIONAL_YT}" target="_blank" rel="noopener">▶ SECOND CONDITIONAL in Animated Movies '
+             "(English with Movies & Series) ↗</a></p>")
+    grammar = SEC("Grammar", "Second Conditional",
+                  EX("dhh2-g1", "1.1", "Watch SECOND CONDITIONAL in Animated Movies and practice saying the sentences.",
+                     video + OL(CARTOON) + VOICE("dhh2-g1-v")) +
+                  EX("dhh2-g2", "1.2", "Make up your own examples. Use the sentences in 1.1 as a model.", WRITER("dhh2-g2", "", 6)) +
+                  EX("dhh2-g3", "2.1", "Read the sentences and answer the questions.",
+                     "<p>1.<br>a. <b>Were we to announce</b> the truth, we would receive a lot of criticism.<br>b. If we announced the "
+                     "truth, we would receive a lot of criticism.</p><p>2.<br>a. <b>Were they to buy</b> a new house, they would need to "
+                     "sell the old one first.<br>b. If they bought a new house, they would need to sell the old one first.</p>" +
+                     f'<p>Do sentences a and b have the same meaning? {S("Yes", ["Yes", "No"])}</p>'
+                     f'<p>Do sentences a and b have the same register? {S("No", ["Yes", "No"])}</p>' +
+                     info("", "<p>Инверсия во втором типе условных предложений (Second Conditional) — это способ сделать речь более "
+                              "формальной и эмоциональной, опуская союз <b>if</b> и меняя порядок слов в придаточном предложении.</p>")) +
+                  EX("dhh2-g4", "2.2", "Rewrite the following sentences using inversion or advanced structures (e.g., “If I were to”, "
+                     "“Were I to”).", OL([f"{a}<br>{GAPS(b, 'wide')}" for a, b in INVERSION])) +
+                  EX("dhh2-g5", "2.3", "Make up your examples with the Second Conditional. Use inversion.", WRITER("dhh2-g5", "", 5)) +
+                  EX("dhh2-g6", "3.1", "Put the verbs in brackets in the Second Conditional form.", OL([GAPS(x) for x in SECOND])),
+                  id="hw-grammar")
+
+    pron = SEC("Pronunciation", "",
+               "".join(EX(f"dhh2-p{i + 1}", f"1.{i + 1}", "Listen to the track, then repeat the sentence trying to copy the rhythm and "
+                          "intonation of the original.",
+                          f'<p class="quote">{line}</p>' + PLAYER(CLIP[i + 1], f"Track {i + 1}") + VOICE(f"dhh2-p{i + 1}-v", 30))
+                       for i, line in enumerate(LINES)), id="hw-pronunciation")
+
+    toc = '<nav class="toc">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in HW_SECTIONS) + "</nav>"
+    return toc + "".join(f'<article class="page">{x}</article>' for x in (vocab, grammar, pron))
